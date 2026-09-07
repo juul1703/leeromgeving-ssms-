@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les · SSMS Leeromgeving</title>
+<meta name="theme-color" content="#F6F2EE">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="lespagina">
+<div class="wrap">
+  <div class="les-top">
+    <a class="terug" href="index.html">&larr; Terug naar overzicht</a>
+    <div class="tools">
+      <button class="rond" id="menuKnop" aria-label="Menu in- of uitklappen" title="Menu in- of uitklappen">☰</button>
+      <button class="rond" id="modus" aria-label="Wissel licht en donker">☾</button>
+    </div>
+  </div>
+
+  <div class="kruimel" id="kruimel"></div>
+  <h1 class="les-titel" id="titel">Les laden…</h1>
+  <div class="les-meta" id="meta"></div>
+
+  <div class="voortgang-strip">
+    <div class="voortgang-balk"><i id="lesBalk" style="width:0"></i></div>
+    <span class="voortgang-tekst" id="lesVoortgang"></span>
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="Onderdelen van deze les"></nav>
+
+  <div class="les-body" id="lesBody">
+    <div>
+      <div class="tab-kop">
+        <div>
+          <div class="label" id="tabLabel"></div>
+          <h2 class="tab-titel" id="tabTitel"></h2>
+        </div>
+        <button class="btn af-knop" id="tabAf">Onderdeel afvinken</button>
+      </div>
+
+      <div class="inhoud" id="inhoud"></div>
+
+      <div class="tab-nav">
+        <button class="btn leeg" id="tabVorige">&larr; Vorige</button>
+        <button class="btn" id="tabVolgende">Volgende &rarr;</button>
+      </div>
+
+      <div class="les-nav">
+        <a id="vorigeLink" class="leeg" href="#">&larr; Vorige les</a>
+        <a id="volgendeLink" class="leeg" href="#" style="text-align:right;">Volgende les &rarr;</a>
+      </div>
+    </div>
+
+    <aside class="zijkolom" id="zijkolom">
+      <div class="zij-blok">
+        <span class="label">Aantekening bij <span id="notitieTab">dit onderdeel</span></span>
+        <textarea class="notitieveld" id="notitie" placeholder="Wat neem je hieruit mee?"></textarea>
+        <span class="opslag" id="opslag">wordt bewaard op dit apparaat</span>
+      </div>
+      <div class="zij-blok">
+        <span class="label">Onderdelen</span>
+        <div id="tablijst" class="tablijst"></div>
+      </div>
+      <div class="zij-blok">
+        <span class="label">Lessen in dit vak</span>
+        <div id="vaklijst"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="melding" id="melding" hidden></div>
+
+<script src="rooster.js"></script>
+<script src="app.js"></script>
+<script src="lesblokken.js"></script>
+<script src="lesstof.js"></script>
+<script src="les.js"></script>
+</body>
+</html>

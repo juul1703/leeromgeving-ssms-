@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSMS · Leeromgeving</title>
+<meta name="theme-color" content="#F6F2EE">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="merk">
+      <div class="zegel">S</div>
+      <div>
+        <b>Safety &amp; Security Management Studies</b>
+        <span>The Hague University of Applied Sciences</span>
+      </div>
+    </div>
+    <div class="tools">
+      <label class="zoek"><i></i><input id="zoek" type="search" placeholder="Zoek een vak of les" autocomplete="off"></label>
+      <button class="rond" id="instellingen" aria-label="Rooster instellen" title="Rooster instellen">⚙</button>
+      <button class="rond" id="modus" aria-label="Wissel licht en donker">☾</button>
+    </div>
+  </div>
+
+  <div id="resultaten" hidden></div>
+
+  <div class="hero">
+    <div>
+      <div class="datum" id="datum"></div>
+      <h1 id="groet"></h1>
+      <p id="subregel"></p>
+      <div class="acties">
+        <button class="btn" id="verder">Verder waar je stopte</button>
+        <button class="btn leeg" id="naarRooster">Rooster van vandaag</button>
+      </div>
+    </div>
+    <div class="ring-blok">
+      <svg class="ring" viewBox="0 0 64 64" width="104" height="104" aria-hidden="true">
+        <circle class="baan" cx="32" cy="32" r="26" stroke-width="5"></circle>
+        <circle class="waarde" id="totRing" cx="32" cy="32" r="26" stroke-width="5" stroke-dasharray="163.4" stroke-dashoffset="163.4"></circle>
+      </svg>
+      <div>
+        <div class="cijfer" id="totCijfer">0%</div>
+        <div class="sub" id="totTekst"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="paneel">
+      <div class="paneel-kop"><span class="label">Vandaag</span><span class="telling" id="roosterTelling"></span></div>
+      <div id="rooster"></div>
+      <div class="rooster-status" id="roosterStatus">rooster ophalen…</div>
+    </div>
+    <div class="paneel">
+      <div class="paneel-kop"><span class="label">Deadlines</span><span class="telling" id="dlTelling"></span></div>
+      <div id="deadlines"></div>
+    </div>
+  </div>
+
+  <div id="semesters"></div>
+
+  <div class="sem-kop" style="margin-bottom:0;">
+    <h2>Laatst bekeken</h2>
+    <span class="stat">jouw aantekeningen</span>
+  </div>
+  <div class="notities" id="notities"></div>
+
+  <footer>
+    <span>Gebouwd in eigen huisstijl · <a href="les.html?vak=voorbeeld&amp;les=les-1">bekijk de les-template</a></span>
+    <span id="voetDatum"></span>
+  </footer>
+</div>
+
+<div class="lade" id="feedLade" hidden>
+  <div class="sluier" id="feedSluier"></div>
+  <div class="blad" role="dialog" aria-modal="true" aria-labelledby="feedTitel">
+    <div class="blad-kop">
+      <div>
+        <div class="kicker">Rooster koppelen</div>
+        <h3 id="feedTitel">Je persoonlijke roosterlink</h3>
+      </div>
+      <button id="feedSluit" aria-label="Sluiten">×</button>
+    </div>
+
+    <div class="inhoud" style="margin-top:22px;">
+      <p>Je link wordt <strong>alleen in deze browser</strong> bewaard — niet in de code, dus
+      je kunt de repository publiek zetten zonder hem te delen.</p>
+
+      <div class="stappen" style="margin:18px 0;">
+        <details class="stap" open>
+          <summary><span class="stap-nr">1</span><span>Open MyTimetable</span></summary>
+          <div class="stap-body">Ga naar <a href="https://mytimetable.hhs.nl" target="_blank" rel="noopener">mytimetable.hhs.nl</a> en log in.</div>
+        </details>
+        <details class="stap">
+          <summary><span class="stap-nr">2</span><span>Kopieer je iCal-link</span></summary>
+          <div class="stap-body">Zoek de knop <em>Abonneren</em> of <em>Agenda toevoegen</em> en kies de iCal- of ICS-link. Kopieer die.</div>
+        </details>
+        <details class="stap">
+          <summary><span class="stap-nr">3</span><span>Plak hem hieronder</span></summary>
+          <div class="stap-body">Daarna verschijnen je vakken en colleges automatisch.</div>
+        </details>
+      </div>
+
+      <label class="label" for="feedVeld">Roosterlink (iCal)</label>
+      <textarea class="notitieveld" id="feedVeld" style="min-height:96px;margin-top:8px;font-size:12.5px;" placeholder="https://mytimetable.hhs.nl/ical?eu=…&amp;h=…"></textarea>
+      <div class="feed-melding" id="feedMelding"></div>
+
+      <div class="acties" style="margin-top:18px;">
+        <button class="btn" id="feedOpslaan">Koppelen</button>
+        <button class="btn leeg" id="feedWissen">Ontkoppelen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lade" id="lade" hidden>
+  <div class="sluier" id="sluier"></div>
+  <div class="blad" role="dialog" aria-modal="true" aria-labelledby="ladeTitel">
+    <div class="blad-kop">
+      <div>
+        <div class="kicker" id="ladeSem"></div>
+        <h3 id="ladeTitel"></h3>
+      </div>
+      <button id="sluit" aria-label="Sluiten">×</button>
+    </div>
+    <div class="blad-voortgang">
+      <div class="balk"><i id="ladeBalk" style="width:0"></i></div>
+      <span id="ladeLabel"></span>
+    </div>
+    <div id="ladeLessen"></div>
+  </div>
+</div>
+
+<script src="rooster.js"></script>
+<script src="app.js"></script>
+<script src="lesblokken.js"></script>
+<script src="lesstof.js"></script>
+</body>
+</html>

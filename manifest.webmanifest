@@ -1,0 +1,10 @@
+{
+  "name": "SSMS Leeromgeving",
+  "short_name": "SSMS",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F6F2EE",
+  "theme_color": "#F6F2EE",
+  "lang": "nl",
+  "icons": []
+}
