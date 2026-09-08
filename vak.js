@@ -2,7 +2,9 @@
    vak.js — homescreen per vak
 
    Toont voor één vak: de hoofdstukken met voortgang, je eigen
-   deadlines (bewaard in deze browser) en de course manual.
+   deadlines (bewaard in deze browser), de voorbereiding voor het
+   volgende college, de course manual (met knop naar de pdf en een
+   samenvatting per onderdeel) en de studiegids-informatie.
 
    Openen via: vak.html?vak=<vakId>
    ============================================================ */
@@ -41,17 +43,31 @@
     return Math.round((d - vandaag) / 86400000);
   }
 
+  /* De voorbereiding voor het eerstvolgende college van dit vak, uit
+     VAK_VOORBEREIDING. Read-only: dit komt uit het leesschema, niet van jou. */
+  function voorbereidingRegel(){
+    if (typeof voorbereidingDeadlines !== 'function') return '';
+    var mijn = voorbereidingDeadlines(new Date()).filter(function(d){ return d.vakId === vakParam; })[0];
+    if (!mijn) return '';
+    var wanneer = mijn.dagen === 0 ? 'vandaag' : mijn.dagen === 1 ? 'morgen' : 'over ' + mijn.dagen + ' dagen';
+    return '<div class="dl-rij voorbereiding">' +
+      '<span>' + esc(mijn.titel) + '<span class="dl-soort voorbereiding">voorbereiding</span></span>' +
+      '<span class="dl-datum">' + esc(wanneer) + '</span></div>';
+  }
+
   function toonDeadlines(){
     var lijst = leesDeadlines().slice().sort(function(a,b){
       return (a.datum || '9999').localeCompare(b.datum || '9999');
     });
     var el = document.getElementById('deadlines');
+    var voor = voorbereidingRegel();
+
     if (!lijst.length) {
-      el.innerHTML = '<p class="noot" style="margin:0;">Nog geen deadlines voor dit vak. ' +
-        'Voeg er hieronder een toe.</p>';
+      el.innerHTML = voor + '<p class="noot" style="margin:' + (voor ? '12px 0 0' : '0') + ';">' +
+        'Nog geen eigen deadlines voor dit vak. Voeg er hieronder een toe; hij komt ook op je homescreen te staan.</p>';
       return;
     }
-    el.innerHTML = lijst.map(function(d, i){
+    el.innerHTML = voor + lijst.map(function(d, i){
       var dagen = dagenTot(d.datum);
       var extra = '';
       if (dagen !== null) {
@@ -106,14 +122,58 @@
         '<p class="noot" style="margin:0;">Nog geen course manual toegevoegd voor dit vak.</p>';
       return;
     }
+
+    var knop = man.pdf
+      ? '<a class="btn manual-knop" href="' + esc(man.pdf) + '" target="_blank" rel="noopener">' +
+        'Open de course manual (pdf) &rarr;</a>' +
+        (man.pdfNaam ? '<span class="manual-bestand">' + esc(man.pdfNaam) + '</span>' : '')
+      : '';
+
     var rijen = (man.regels || []).map(function(r){
       return '<li><strong>' + esc(r.label) + '</strong> ' + esc(r.waarde) + '</li>';
     }).join('');
+
+    /* Samenvatting per onderdeel: uitklapbaar, zodat je niet voor elk
+       detail de pdf hoeft te openen. */
+    var samen = (man.samenvatting || []).map(function(s, i){
+      return '<details class="man-deel"' + (i === 0 ? ' open' : '') + '>' +
+        '<summary><span class="man-deel-nr">' + (i + 1) + '</span><span>' + esc(s.titel) + '</span></summary>' +
+        '<div class="man-deel-body">' + rijkeTekst(s.tekst || '') +
+        (s.punten && s.punten.length
+          ? '<ul>' + s.punten.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'
+          : '') +
+        (s.bladzijde ? '<span class="man-bron">handleiding · ' + esc(s.bladzijde) + '</span>' : '') +
+        '</div></details>';
+    }).join('');
+
     blok.querySelector('#manual').innerHTML =
-      (man.intro ? '<p style="margin:0 0 14px;font-size:13.5px;line-height:1.6;">' + esc(man.intro) + '</p>' : '') +
-      '<ul class="manual-lijst">' + rijen + '</ul>' +
+      (man.intro ? '<p class="manual-intro">' + esc(man.intro) + '</p>' : '') +
+      knop +
+      (rijen ? '<ul class="manual-lijst">' + rijen + '</ul>' : '') +
+      (samen ? '<div class="man-delen"><span class="label">Per onderdeel</span>' + samen + '</div>' : '') +
       (man.url ? '<p style="margin:14px 0 0;"><a href="' + esc(man.url) +
         '" target="_blank" rel="noopener">Open de volledige handleiding &rarr;</a></p>' : '');
+  }
+
+  /* ---------- studiegids bij dit vak ----------
+     Hergebruikt de studiegids-onderdelen uit ssms-inhoud.js, zodat opbouw,
+     leesschema, literatuur en toetsing bij het vak zelf staan en niet alleen
+     in een los studiegids-vak. */
+  function toonStudiegids(){
+    var blok = document.getElementById('gidsBlok');
+    if (!blok) return;
+    var man = (typeof VAK_MANUAL !== 'undefined') ? VAK_MANUAL[vakParam] : null;
+    var sleutel = man && man.studiegids;
+    var stof = sleutel && typeof LESSTOF !== 'undefined' ? LESSTOF['studiegids/' + sleutel] : null;
+
+    if (!stof) { blok.hidden = true; return; }
+    blok.hidden = false;
+    blok.querySelector('#gids').innerHTML = stof.map(function(o, i){
+      var ctx = { sleutel: 'gids-' + vakParam + '-' + o.id };
+      return '<details class="gids-deel"' + (i === 0 ? ' open' : '') + '>' +
+        '<summary><span>' + esc(o.titel) + '</span></summary>' +
+        '<div class="gids-body inhoud">' + blokkenHtml(o.blokken, ctx) + '</div></details>';
+    }).join('');
   }
 
   /* ---------- hoofdstukken ---------- */
@@ -173,6 +233,7 @@
     toonHoofdstukken();
     toonDeadlines();
     toonManual();
+    toonStudiegids();
     koppelDeadlineFormulier();
   }
 
@@ -183,6 +244,18 @@
       ? '<span class="hint">Je rooster wordt opgehaald…</span>'
       : '<a class="btn" href="index.html">Terug naar het overzicht</a>';
   }
+
+  /* kopieerbare stukjes en vinkjes werken ook hier */
+  document.addEventListener('click', function(e){
+    var doel = e.target.closest && e.target.closest('[data-vinkdoel]');
+    if (doel) {
+      var k = doel.getAttribute('data-vinkdoel');
+      lokaalZet(k, !lokaalWaar(k));
+      doel.textContent = lokaalWaar(k) ? '\u2713' : '';
+      var rij = doel.closest('.doel') || doel.closest('.kun');
+      if (rij) rij.classList.toggle('af', lokaalWaar(k));
+    }
+  });
 
   start();
   if (typeof opFeed === 'function') opFeed(function(){

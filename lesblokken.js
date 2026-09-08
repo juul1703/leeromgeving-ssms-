@@ -55,16 +55,41 @@ var BLOKKEN = {
         : '') + '</div></div>';
   },
 
-  /* ---- leerdoelen ---- */
+  /* ---- leerdoelen ----
+     Blijft bestaan voor losse gevallen, maar in een uitgewerkte les worden
+     leerdoelen automatisch verplaatst naar het laatste tabblad 'Kun je dit?'
+     (zie lesstof.js). */
   leerdoelen: function(b, ctx){
     return '<h2>' + esc(b.titel || 'Na dit onderdeel kun je') + '</h2>' +
       '<ul class="doelen">' + (b.items || []).map(function(d, i){
+        var doel = typeof d === 'string' ? d : d.doel;
         var k = ctx.sleutel + '-doel-' + i;
         var af = lokaalWaar(k);
         return '<li class="doel' + (af ? ' af' : '') + '">' +
           '<button class="vink" data-vinkdoel="' + esc(k) + '">' + (af ? '✓' : '') + '</button>' +
-          '<span>' + esc(d) + '</span></li>';
+          '<span>' + esc(doel) + '</span></li>';
       }).join('') + '</ul>';
+  },
+
+  /* ---- afvinklijst met uitleg per vaardigheid (laatste tabblad) ---- */
+  checklist: function(b, ctx){
+    var items = (b.items || []).map(function(d, i){
+      var doel = typeof d === 'string' ? { doel: d } : d;
+      var k = (ctx.sleutel || 'check') + '-kun-' + i;
+      var af = lokaalWaar(k);
+      return '<li class="kun' + (af ? ' af' : '') + '">' +
+        '<button class="vink" data-vinkdoel="' + esc(k) + '">' + (af ? '✓' : '') + '</button>' +
+        '<div class="kun-tekst"><span class="kun-doel">' + esc(doel.doel) + '</span>' +
+        (doel.uitleg
+          ? '<details class="kun-uitleg"><summary>Zo doe je dit</summary>' +
+            '<div class="kun-body">' + rijkeTekst(doel.uitleg) + '</div></details>'
+          : '') +
+        '</div></li>';
+    }).join('');
+    return '<div class="blok-kop"><h2>' + esc(b.titel || 'Kun je dit?') + '</h2>' +
+      '<span class="hint">vink alleen af wat je hardop kunt uitleggen</span></div>' +
+      (b.tekst ? rijkeTekst(b.tekst) : '') +
+      '<ul class="kunlijst">' + items + '</ul>';
   },
 
   /* ---- citaat ---- */

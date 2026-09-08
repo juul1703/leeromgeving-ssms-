@@ -14,14 +14,38 @@ LESSTOF["intro-to-safety-security/h1"] = [
       {
         "type": "leerdoelen",
         "items": [
-          "Uitleggen waarom de vraag \"wat is het verschil tussen safety en security\" geen taalkundige maar een praktische vraag is",
-          "De historische ontwikkeling van safety schetsen: van installatie, via organisatie, naar samenleving",
-          "De historische ontwikkeling van security schetsen: van staatsveiligheid, via eigen kwetsbaarheid, naar 9/11 en daarna",
-          "De twee academische onderscheidingsassen benoemen, toepassen, en uitleggen waarom ze soms verschillende antwoorden geven",
-          "De drie invalshoeken van het boek noemen en per hoofdstuk aangeven waar het thuishoort",
-          "Uitleggen waarom safety science en security science jonge en versnipperde vakgebieden zijn, en waarom dat gevolgen heeft voor jouw beroep",
-          "De vier structurele knelpunten benoemen die ontstaan als organisaties safety en security tegelijk moeten leveren",
-          "Beargumenteren waarom \"veilig genoeg\" geen technische maar een politieke vraag is"
+                  {
+                            "doel": "Uitleggen waarom de vraag \"wat is het verschil tussen safety en security\" geen taalkundige maar een praktische vraag is",
+                            "uitleg": "Begin nooit bij de woordenboekdefinitie. Zeg meteen waar het antwoord over gaat: **wie er verantwoordelijk is, wie betaalt en welke maatregel er komt**.\n\nDoe het in drie zinnen. Eerst: in het Engels zijn het twee woorden, in het Nederlands één, dus de taal helpt je niet. Dan: het onderscheid bepaalt welke afdeling, welke wet en welk budget aan zet is. Tot slot een voorbeeld waarin dat verschil maakt, bijvoorbeeld een brand die is aangestoken tegenover een brand door kortsluiting: zelfde schade, andere eigenaar van het probleem."
+                  },
+                  {
+                            "doel": "De historische ontwikkeling van safety schetsen: van installatie, via organisatie, naar samenleving",
+                            "uitleg": "Onthoud drie haltes en één beweging: de blik wordt telkens **wijder**.\n\nEerst de installatie: techniek veilig maken, betere machines en barrières. Dan de organisatie: het besef dat management, procedures en cultuur ongelukken veroorzaken, met de jaren tachtig als omslag. Daarna de samenleving: systemische risico’s, wetgeving en publieke verwachtingen. Noem bij de tweede halte Perrow, want die verplaatste de schuld van de operator naar het systeem."
+                  },
+                  {
+                            "doel": "De historische ontwikkeling van security schetsen: van staatsveiligheid, via eigen kwetsbaarheid, naar 9/11 en daarna",
+                            "uitleg": "Ook hier drie haltes, maar met een andere beweging: van **buiten naar binnen**.\n\nEerst security als zaak van de staat: verdediging tegen een vijand. Dan het besef dat organisaties zelf kwetsbaar zijn en zelf moeten beveiligen. Daarna 9/11, dat security institutionaliseerde: nieuwe diensten, verplichte screening, budgetten en regels die er daarvoor niet waren.\n\nZet de twee tijdlijnen naast elkaar als je het uitlegt. Safety verbreedt, security verplaatst zich naar de organisatie zelf. Precies daarom passen ze slecht in elkaar."
+                  },
+                  {
+                            "doel": "De twee academische onderscheidingsassen benoemen, toepassen, en uitleggen waarom ze soms verschillende antwoorden geven",
+                            "uitleg": "As 1 is **intentionaliteit**: was er opzet in het spel of niet. As 2 is **oorsprong en gevolg**: beweegt de schade van het systeem naar de omgeving, of van de omgeving naar het systeem.\n\nOefen met één casus en loop beide assen af, in die volgorde. Bij een medewerker die uit onvrede een klep openzet, zegt as 1 security (opzet) en as 2 safety (schade gaat van binnen naar buiten). Dat de assen botsen is geen fout van jou: dat is de kern van de paragraaf. Sluit dus af met de vraag waar het echt om gaat, namelijk welke maatregel je nodig hebt."
+                  },
+                  {
+                            "doel": "De drie invalshoeken van het boek noemen en per hoofdstuk aangeven waar het thuishoort",
+                            "uitleg": "De drie zijn de **conceptuele** invalshoek (wat betekenen de begrippen), de **organisatorische** (hoe werkt het in een organisatie) en de **maatschappelijke of institutionele** (wat doen politiek, wet en publiek ermee).\n\nHang elk hoofdstuk dat je leest meteen aan één van de drie; schrijf dat in je aantekening. Zo zie je waarom Leveson en Brooks & Coole elkaar lijken tegen te spreken: ze staan op een andere invalshoek en beantwoorden dus niet dezelfde vraag."
+                  },
+                  {
+                            "doel": "Uitleggen waarom safety science en security science jonge en versnipperde vakgebieden zijn, en waarom dat gevolgen heeft voor jouw beroep",
+                            "uitleg": "Noem drie oorzaken: beide vakgebieden zijn **jong**, ze zijn opgebouwd uit losse disciplines (techniek, psychologie, bestuurskunde, criminologie), en ze hebben **geen gedeelde begrippenlijst**.\n\nHet gevolg voor jou is concreet: er is geen standaardantwoord dat je kunt opzoeken, dus je moet je keuze onderbouwen. Zeg dat ook zo in een toets. Twee mensen kunnen met goede bronnen tot verschillende adviezen komen, en het verschil zit in hun invalshoek."
+                  },
+                  {
+                            "doel": "De vier structurele knelpunten benoemen die ontstaan als organisaties safety en security tegelijk moeten leveren",
+                            "uitleg": "Leer ze als vier **botsingen**, niet als vier losse woorden: tegengestelde maatregelen (een nooduitgang moet open, een beveiligde deur moet dicht), verschillende afdelingen en budgetten, verschillende soorten kennis en taal, en verschillende regels en toezichthouders.\n\nGebruik ze als checklist bij een casus: loop de vier langs en je vindt bijna altijd waar het misgaat. Knelpunt drie zit dieper dan het lijkt, want die twee groepen delen niet eens dezelfde manier van redeneren over risico."
+                  },
+                  {
+                            "doel": "Beargumenteren waarom \"veilig genoeg\" geen technische maar een politieke vraag is",
+                            "uitleg": "De redenering heeft drie stappen. Elke maatregel kost iets: geld, vrijheid, gemak of vertrouwen. Techniek kan berekenen hoe groót een risico is, maar niet welk **restrisico** aanvaardbaar is. Dus beslist iemand dat, en die keuze verdeelt lasten over partijen.\n\nKoppel het aan de openingszin van het hoofdstuk: hoe veiliger het wordt, hoe meer we eisen. De meetlat schuift mee, dus zonder expliciete afspraak over \"veilig genoeg\" is het antwoord altijd \"meer\"."
+                  }
         ]
       },
       {
@@ -3753,94 +3777,30 @@ LESSTOF['demystifying-research-methods/ch13'] = [
   if (typeof opFeed === 'function') opFeed(zetDrm);
 })();
 
+/* De subnavigatie binnen een tabblad zat hier vroeger. Die is vervangen
+   door de echte subtabbladen in lesextra.js: één paragraaf tegelijk, met
+   een afvinkknop en een 'verder'-knop onderaan. */
+
 /* ============================================================
-   Subnavigatie binnen een tabblad: pilletjes voor genummerde
-   paragrafen (4.1, 4.2, ...) zodat je binnen Kernstof direct
-   naar een onderdeel kunt springen. Blijft in beeld tijdens
-   het scrollen. Werkt los van les.js: dit script kijkt mee met
-   de #inhoud-container en bouwt de navigatie zelf op.
+   Voorbereiding per college — voedt het kopje Deadlines.
+
+   De sleutel is het sessienummer: het hoeveelste college van dat vak
+   in je rooster. Op het homescreen zie je hoogstens de eerstvolgende
+   per vak, zodat het geen waslijst wordt.
+
+   lesIds verwijzen naar de hoofdstukken hierboven: staan die allemaal
+   afgevinkt, dan verdwijnt de regel vanzelf.
    ============================================================ */
-(function(){
-  function slug(s){
-    return 'sub-' + s.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .slice(0, 40);
+var VAK_VOORBEREIDING = {
+
+  'intro-to-safety-security': {
+    2: { titel: 'Bieder H1 en H2 gelezen', lesIds: ['h1', 'h2'] },
+    4: { titel: 'Bieder H3 en H5 gelezen', lesIds: ['h3', 'h5'] },
+    6: { titel: 'Bieder H7 en H9 gelezen', lesIds: ['h7', 'h9'] },
+    8: { titel: 'Bieder H10 gelezen · daarna midterm', lesIds: ['h10'] }
   }
 
-  function bouwSubnav(inhoud){
-    var oud = document.getElementById('subnavBalk');
-    if (oud) oud.remove();
-
-    var koppen = inhoud.querySelectorAll('h2');
-    var items = [];
-    koppen.forEach(function(h){
-      var tekst = h.textContent.trim();
-      if (/^\d+\.\d+/.test(tekst)) {
-        var id = slug(tekst);
-        var sectie = h.closest('.blok') || h.parentElement;
-        if (sectie) sectie.id = id;
-        var label = tekst.match(/^\d+\.\d+/)[0];
-        items.push({ id: id, label: label, titel: tekst });
-      }
-    });
-
-    if (items.length < 2) return;
-
-    var balk = document.createElement('nav');
-    balk.className = 'subnav';
-    balk.id = 'subnavBalk';
-    balk.setAttribute('aria-label', 'Onderdelen van deze paragraaf');
-    balk.innerHTML = items.map(function(it){
-      return '<button type="button" data-sub="' + it.id + '" title="' + it.titel.replace(/"/g,'&quot;') + '">' +
-        it.label + '</button>';
-    }).join('');
-    inhoud.parentNode.insertBefore(balk, inhoud);
-
-    balk.addEventListener('click', function(e){
-      var btn = e.target.closest('[data-sub]');
-      if (!btn) return;
-      var doel = document.getElementById(btn.getAttribute('data-sub'));
-      if (doel) {
-        var top = doel.getBoundingClientRect().top + window.scrollY - 132;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
-    });
-  }
-
-  function actievePil(){
-    var balk = document.getElementById('subnavBalk');
-    if (!balk) return;
-    var beste = null, besteAfstand = Infinity;
-    balk.querySelectorAll('[data-sub]').forEach(function(btn){
-      var el = document.getElementById(btn.getAttribute('data-sub'));
-      if (!el) return;
-      var afstand = Math.abs(el.getBoundingClientRect().top - 140);
-      if (el.getBoundingClientRect().top < 220 && afstand < besteAfstand) {
-        besteAfstand = afstand; beste = btn;
-      }
-    });
-    balk.querySelectorAll('[data-sub]').forEach(function(b){ b.classList.remove('nu'); });
-    if (beste) beste.classList.add('nu');
-  }
-
-  var inhoudEl = document.getElementById('inhoud');
-  if (!inhoudEl) return;
-
-  var timer;
-  var observer = new MutationObserver(function(){
-    clearTimeout(timer);
-    timer = setTimeout(function(){ bouwSubnav(inhoudEl); actievePil(); }, 30);
-  });
-  observer.observe(inhoudEl, { childList: true });
-
-  window.addEventListener('scroll', function(){
-    clearTimeout(window._subnavScrollTimer);
-    window._subnavScrollTimer = setTimeout(actievePil, 60);
-  }, { passive: true });
-
-  bouwSubnav(inhoudEl);
-})();
+};
 
 /* ============================================================
    Course manual per vak — getoond op het vak-homescreen
@@ -3853,6 +3813,7 @@ var VAK_MANUAL = {
     // Zet de pdf in de map 'manuals' naast je andere bestanden en pas de naam hier aan.
     pdf: 'manuals/ssms-jaar1-semester1-handleiding.pdf',
     pdfNaam: 'Module manual Y1 Semester 1 (2026-2027)',
+    studiegids: 'intro',
     intro: 'Funderingsvak dat de domeinen van safety en security introduceert, plus de stakeholderbenaderingen van de SSMS-professional.',
     regels: [
       { label: 'Code',        waarde: 'SSMS-1T1-24' },
@@ -3863,12 +3824,37 @@ var VAK_MANUAL = {
       { label: 'Eindtoets',   waarde: 'Mondeling · 50% · februari 2027' },
       { label: 'Voldoende',   waarde: '5,5 of hoger voor beide toetsen' },
       { label: 'Let op',      waarde: 'Gastcolleges zijn verplicht (sessie 7 en 9 tot en met 15)' }
+    ],
+    /* Uitklapbaar per onderdeel, zodat je niet voor elk detail de pdf opent.
+       Vul dit aan met de tekst uit de handleiding van het vak. */
+    samenvatting: [
+      { titel: 'Wat je hier leert',
+        tekst: 'Funderingsvak dat je de **domeinen** van safety en security laat zien, de **interventies** die je als SSMS-professional kunt inzetten, en de **stakeholderbenaderingen** waarmee je risico\u2019s beheerst. E\u00e9n college gaat over de opbouw van de opleiding zelf.',
+        punten: [
+          'Domeinen van safety en security conceptualiseren',
+          'Stakeholdermanagement in internationale context uitleggen',
+          'De structuur en het multidisciplinaire karakter van SSMS samenvatten',
+          'Risicomanagement en resilience toepassen op internationale casussen'
+        ] },
+      { titel: 'Opbouw en leesschema',
+        tekst: 'Zestien sessies. Het hele boek zit **v\u00f3\u00f3r de midterm**; daarna is het toepassen en verbreden met gastcolleges.',
+        punten: [
+          'Sessie 2 · hoofdstuk 1 en 2',
+          'Sessie 4 · hoofdstuk 3 en 5',
+          'Sessie 6 · hoofdstuk 7 en 9',
+          'Sessie 8 · hoofdstuk 10, daarna midterm en POP-week'
+        ] },
+      { titel: 'Toetsing',
+        tekst: 'Midterm schriftelijk in Remindo (50%, november 2026) en een **mondelinge** eindtoets (50%, februari 2027). Beide moeten een 5,5 of hoger zijn. Toetsmateriaal is alle cursusliteratuur \u00e9n de collegeslides, dus ook die van gastcolleges.' },
+      { titel: 'Aanwezigheid en regels',
+        tekst: 'Colleges zijn niet verplicht maar wel sterk aanbevolen. **Gastcolleges zijn wel verplicht.** Geplande data voor presentaties, workshops, opdrachten, toetsen en excursies zijn hard.' }
     ]
   },
 
   'demystifying-research-methods': {
     pdf: 'manuals/ssms-jaar1-semester1-handleiding.pdf',
     pdfNaam: 'Module manual Y1 Semester 1 (2026-2027)',
+    studiegids: 'drm',
     intro: 'Eerste vak van de Research Methods-track. Je leert een eigen applied research design opzetten, met probleem, doelstelling, hoofdvraag en deelvragen.',
     regels: [
       { label: 'Code',        waarde: 'SSMS-1RM1-25' },

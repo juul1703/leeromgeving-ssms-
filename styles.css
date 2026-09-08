@@ -522,3 +522,103 @@ a.notitie:hover .titel{color:var(--accent);}
 .bron-telling{font-size:12px;color:var(--muted);white-space:nowrap;}
 .bron-groep[open] .bron-naam{color:var(--accent);}
 .bron-inhoud{padding:0 0 10px 4px;}
+
+/* ============================================================
+   Aanvullingen v11
+   ============================================================ */
+
+/* --- homescreen: het actieve vak als lage strook i.p.v. grote kaart --- */
+.held.strook{
+  min-height:0;flex-direction:row;align-items:center;justify-content:space-between;
+  gap:22px;padding:20px 24px;border-radius:20px;margin-bottom:16px;
+}
+.held.strook .bol{display:none;}
+.held.strook h3{font-size:22px;margin:6px 0 0;max-width:none;}
+.held.strook .volgende{margin-top:6px;font-size:13px;}
+.held.strook .voet{margin-top:0;flex:none;gap:12px;}
+.held.strook .voet .groot{font-size:15px;}
+.held.strook .voet .klein{font-size:11.5px;}
+.tegels{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media (max-width:900px){
+  .tegels{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .held.strook{flex-direction:column;align-items:flex-start;gap:14px;}
+}
+@media (max-width:560px){ .tegels{grid-template-columns:1fr;} }
+
+/* --- deadlines: waar een regel vandaan komt --- */
+.dl-soort{
+  display:inline-block;margin-left:8px;padding:2px 7px;border-radius:999px;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--paper2);color:var(--muted);vertical-align:middle;
+}
+.dl-soort.voorbereiding{background:var(--sage-soft);color:var(--sage);}
+.dl-rij.voorbereiding{opacity:.95;}
+
+/* --- 'Kun je dit?' afvinklijst met uitleg --- */
+.kunlijst{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;}
+.kun{
+  display:flex;gap:12px;align-items:flex-start;padding:14px 16px;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+}
+.kun.af{border-color:var(--sage);background:var(--sage-soft);}
+.kun .vink{
+  flex:none;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);
+  background:transparent;color:var(--paper);cursor:pointer;font-size:12px;line-height:1;
+}
+.kun.af .vink{background:var(--sage);border-color:var(--sage);}
+.kun-tekst{flex:1;min-width:0;}
+.kun-doel{display:block;font-size:14.5px;line-height:1.5;color:var(--ink);}
+.kun.af .kun-doel{color:var(--ink2);}
+.kun-uitleg{margin-top:8px;}
+.kun-uitleg summary{
+  cursor:pointer;font-size:12.5px;color:var(--accent);list-style:none;
+}
+.kun-uitleg summary::-webkit-details-marker{display:none;}
+.kun-body{font-size:13.5px;line-height:1.65;color:var(--ink2);}
+.kun-body p{margin:8px 0 0;}
+
+/* --- verder-knop onderaan een subtabblad --- */
+.subverder{
+  margin-top:26px;padding-top:18px;border-top:1px solid var(--line);
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.subverder-hint{font-size:12.5px;color:var(--muted);}
+
+/* --- course manual --- */
+.manual-intro{margin:0 0 14px;font-size:13.5px;line-height:1.6;color:var(--ink2);}
+.manual-knop{display:inline-block;margin-bottom:6px;}
+.manual-bestand{display:block;font-size:11.5px;color:var(--muted);margin:0 0 14px;}
+.man-delen{margin-top:18px;}
+.man-delen .label{display:block;margin-bottom:8px;}
+.man-deel{border-top:1px solid var(--line);}
+.man-deel summary{
+  display:flex;align-items:center;gap:10px;padding:11px 0;cursor:pointer;
+  font-size:13.5px;color:var(--ink);list-style:none;
+}
+.man-deel summary::-webkit-details-marker{display:none;}
+.man-deel[open] summary{color:var(--accent);}
+.man-deel-nr{
+  flex:none;width:20px;height:20px;border-radius:50%;background:var(--paper2);
+  color:var(--muted);font-size:11px;display:flex;align-items:center;justify-content:center;
+}
+.man-deel-body{padding:0 0 14px;font-size:13.5px;line-height:1.65;color:var(--ink2);}
+.man-deel-body p{margin:0 0 10px;}
+.man-deel-body ul{margin:0;padding-left:18px;}
+.man-deel-body li{margin:4px 0;}
+.man-bron{display:block;margin-top:10px;font-size:11.5px;color:var(--muted);}
+
+/* --- studiegids op de vakpagina --- */
+.gids-deel{border-top:1px solid var(--line);}
+.gids-deel:last-of-type{border-bottom:1px solid var(--line);}
+.gids-deel summary{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 0;cursor:pointer;font-family:var(--serif);font-size:16px;
+  color:var(--ink);list-style:none;
+}
+.gids-deel summary::-webkit-details-marker{display:none;}
+.gids-deel summary::after{content:'+';color:var(--muted);font-family:var(--sans);}
+.gids-deel[open] summary{color:var(--accent);}
+.gids-deel[open] summary::after{content:'\2212';}
+.gids-body{padding:0 0 18px;}
+.gids-body .blok{margin-bottom:18px;}
+.gids-body h2{font-size:17px;}

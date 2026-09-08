@@ -36,7 +36,68 @@ var EIGEN_DEADLINES = [
   // { titel: 'Onderzoeksverslag inleveren', vak: 'Demystifying Research Methods', datum: '2026-10-15' }
 ];
 
-/* Alles bij elkaar: jouw deadlines + toetsen en tentamens die in je rooster staan. */
+/* Deadlines die je zelf op een vakpagina toevoegt, staan per vak in deze
+   browser onder 'ssms-deadlines-<vakId>'. Die halen we hier op zodat ze ook
+   op het homescreen verschijnen. */
+function handmatigeDeadlines(nu){
+  var uit = [];
+  alleVakken().forEach(function(x){
+    var lijst = [];
+    try { lijst = JSON.parse(localStorage.getItem('ssms-deadlines-' + x.vak.id) || '[]'); } catch(e){}
+    lijst.forEach(function(d){
+      if (!d || !d.titel) return;
+      var wanneer = d.datum ? new Date(d.datum + 'T23:59') : null;
+      if (!wanneer || isNaN(wanneer)) return;
+      uit.push({
+        titel: d.titel, vak: x.vak.naam, vakId: x.vak.id, datum: wanneer,
+        soort: 'eigen',
+        dagen: Math.ceil((wanneer - nu) / 86400000)
+      });
+    });
+  });
+  return uit.filter(function(d){ return d.dagen >= 0; });
+}
+
+/* Voorbereiding voor het eerstvolgende college: 'hoofdstuk 1 en 2 gelezen'.
+   Het leesschema staat per vak in VAK_VOORBEREIDING (ssms-inhoud.js), op
+   sessienummer. Welk sessienummer eraan komt, leiden we af uit je rooster.
+   Per vak tonen we er hoogstens één, anders wordt het een waslijst. */
+function voorbereidingDeadlines(nu){
+  if (typeof VAK_VOORBEREIDING === 'undefined') return [];
+  if (typeof ROOSTER_FEED === 'undefined' || !ROOSTER_FEED) return [];
+  var uit = [];
+
+  Object.keys(VAK_VOORBEREIDING).forEach(function(vakId){
+    var hit = vindVak(vakId);
+    if (!hit || verborgen(hit.vak)) return;
+
+    var colleges = ROOSTER_FEED.filter(function(e){
+      return e.vakId === vakId && soortUit(e.titel) !== 'toets';
+    }).sort(function(a, b){ return a.start - b.start; });
+
+    for (var i = 0; i < colleges.length; i++) {
+      if (colleges[i].eind <= nu) continue;           // al geweest
+      var plan = VAK_VOORBEREIDING[vakId][i + 1];     // sessienummer = plek in de reeks
+      if (!plan) continue;
+      var klaar = (plan.lesIds || []).length && (plan.lesIds || []).every(function(lesId){
+        var les = hit.vak.lessen.filter(function(l){ return l.id === lesId; })[0];
+        return les ? isAf(hit.vak, les) : false;
+      });
+      if (klaar) continue;                            // al gelezen, niets te melden
+      uit.push({
+        titel: plan.titel, vak: hit.vak.naam, vakId: vakId, soort: 'voorbereiding',
+        datum: colleges[i].start,
+        dagen: Math.ceil((colleges[i].start - nu) / 86400000)
+      });
+      break;                                          // hoogstens één per vak
+    }
+  });
+
+  return uit;
+}
+
+/* Alles bij elkaar: jouw deadlines (uit de code en uit de vakpagina's),
+   de voorbereiding voor het volgende college, en toetsen uit je rooster. */
 function deadlines(){
   var nu = new Date();
   var uit = EIGEN_DEADLINES.map(function(d){
@@ -44,13 +105,14 @@ function deadlines(){
       ? new Date(nu.getTime() + d.dagen * 86400000)
       : new Date(d.datum + 'T23:59');
     return {
-      titel: d.titel, vak: d.vak, datum: wanneer,
+      titel: d.titel, vak: d.vak, datum: wanneer, soort: 'eigen',
       dagen: Math.ceil((wanneer - nu) / 86400000)
     };
   }).filter(function(d){ return d.dagen >= 0; });
 
+  uit = uit.concat(handmatigeDeadlines(nu)).concat(voorbereidingDeadlines(nu));
   if (typeof toetsenUitRooster === 'function') uit = uit.concat(toetsenUitRooster(nu));
-  return uit.sort(function(x, y){ return x.dagen - y.dagen; }).slice(0, 5);
+  return uit.sort(function(x, y){ return x.dagen - y.dagen; }).slice(0, 6);
 }
 
 /* 'Laatst bekeken' vult zich met de aantekeningen die je op lespagina's schrijft. */
@@ -197,9 +259,23 @@ function volgendeLes(vak){
   for (var i = 0; i < vak.lessen.length; i++) if (!isAf(vak, vak.lessen[i])) return vak.lessen[i];
   return vak.lessen[vak.lessen.length - 1] || null;
 }
+/* Vakken die je niet in de leeromgeving wil zien, ook al staan ze in je
+   rooster. Zet hier het vak-id neer (zoals het in de adresbalk staat). */
+var VERBORGEN_VAKKEN = ['study-skills'];
+
+function verborgen(vak){
+  if (!vak) return false;
+  if (VERBORGEN_VAKKEN.indexOf(vak.id) > -1) return true;
+  return VERBORGEN_VAKKEN.some(function(id){
+    return (vak.naam || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').indexOf(id) > -1;
+  });
+}
+
 function alleVakken(){
   var out = [];
-  DATA.semesters.forEach(function(s){ s.vakken.forEach(function(v){ out.push({ vak: v, sem: s }); }); });
+  DATA.semesters.forEach(function(s){
+    s.vakken.forEach(function(v){ if (!verborgen(v)) out.push({ vak: v, sem: s }); });
+  });
   return out;
 }
 function vindVak(id){
@@ -284,14 +360,17 @@ function render(){
         var datum = d.datum
           ? d.datum.toLocaleDateString('nl-NL', { weekday: 'short', day: 'numeric', month: 'short' })
           : '';
-        return '<div class="dl"' + (d.vakId ? ' data-vak="' + esc(d.vakId) + '"' : '') +
-          '><div><div class="titel">' + esc(d.titel) + '</div><div class="vak">' +
+        var merk = d.soort === 'voorbereiding'
+          ? '<span class="dl-soort voorbereiding">voorbereiding</span>'
+          : d.soort === 'eigen' ? '<span class="dl-soort">eigen</span>' : '';
+        return '<div class="dl' + (d.soort ? ' ' + d.soort : '') + '"' + (d.vakId ? ' data-vak="' + esc(d.vakId) + '"' : '') +
+          '><div><div class="titel">' + esc(d.titel) + merk + '</div><div class="vak">' +
           esc(d.vak) + '</div></div><span class="wanneer"><span class="' + klasse + '">' + telling +
           '</span>' + (datum ? '<span class="dl-datum">' + esc(datum) + '</span>' : '') + '</span></div>';
       }).join('')
     : '<div class="dl" style="display:block;color:var(--muted);font-size:13px;line-height:1.6;">' +
       (gekoppeld
-        ? 'Niets in zicht. Toetsen uit je rooster komen hier automatisch; eigen inleverdata zet je in <code>EIGEN_DEADLINES</code> in app.js.'
+        ? 'Niets in zicht. Toetsen uit je rooster komen hier automatisch; eigen deadlines voeg je toe op de pagina van een vak.'
         : 'Zodra je rooster gekoppeld is, verschijnen je toetsen en tentamens hier.') + '</div>';
 
   var html = '';
@@ -300,7 +379,7 @@ function render(){
   });
   opVolgorde.forEach(function(sem){
     var af = 0, al = 0;
-    sem.vakken.forEach(function(v){ af += aantalAf(v); al += v.lessen.length; });
+    sem.vakken.forEach(function(v){ if (verborgen(v)) return; af += aantalAf(v); al += v.lessen.length; });
 
     if (sem.id === actief.id) {
       html += '<div class="sem-kop"><h2>' + esc(sem.naam) + ' <span>· ' + esc(sem.status) +
@@ -313,9 +392,10 @@ function render(){
                      : 'Plak je iCal-link uit MyTimetable — <button class="tekstknop" id="koppelNu2">nu koppelen</button>') +
           '</span></div>';
       } else {
-        html += '<div class="mozaiek">' + heldKaart(held, keuze.reden) + '<div class="tegels">' +
-          sem.vakken.filter(function(v){ return v.id !== held.id; }).map(tegelKaart).join('') +
-          '</div></div>';
+        var zichtbaar = sem.vakken.filter(function(v){ return !verborgen(v); });
+        html += heldKaart(held, keuze.reden) + '<div class="tegels">' +
+          zichtbaar.filter(function(v){ return !held || v.id !== held.id; }).map(tegelKaart).join('') +
+          '</div>';
       }
     } else {
       html += '<div class="archief"><button class="archief-kop" data-archief="' + esc(sem.id) + '">' +
@@ -368,17 +448,20 @@ function render(){
 
 function heldKaart(vak, reden){
   var p = procent(vak), volg = volgendeLes(vak);
-  var voet = vak.lessen.length
-    ? '<svg class="ring" viewBox="0 0 64 64" width="62" height="62" aria-hidden="true">' +
-      '<circle class="baan" cx="32" cy="32" r="26" stroke-width="6"></circle>' +
-      '<circle class="waarde" cx="32" cy="32" r="26" stroke-width="6" stroke-dasharray="163.4" stroke-dashoffset="' +
-      (RING * (1 - p / 100)) + '"></circle></svg><div><div class="groot">' + p +
-      '% bijgewerkt</div><div class="klein">' + aantalAf(vak) + ' van ' + vak.lessen.length + ' colleges</div></div>'
-    : '<div><div class="groot">Nog geen lessen</div><div class="klein">voeg dit vak toe in app.js</div></div>';
-  return '<div class="held" data-vak="' + esc(vak.id) + '"><div class="bol"></div>' +
-    '<div class="binnen"><div class="kicker">' + esc(reden || 'Actief vak') + '</div><h3>' + esc(vak.naam) + '</h3>' +
-    (volg ? '<div class="volgende">Eerstvolgend · ' + esc(volg.titel) + '</div>' : '') + '</div>' +
-    '<div class="voet">' + voet + '</div></div>';
+  var ring = vak.lessen.length
+    ? '<svg class="ring" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">' +
+      '<circle class="baan" cx="32" cy="32" r="26" stroke-width="7"></circle>' +
+      '<circle class="waarde" cx="32" cy="32" r="26" stroke-width="7" stroke-dasharray="163.4" stroke-dashoffset="' +
+      (RING * (1 - p / 100)) + '"></circle></svg>' +
+      '<div><div class="groot">' + p + '%</div><div class="klein">' +
+      aantalAf(vak) + ' van ' + vak.lessen.length + '</div></div>'
+    : '<div><div class="groot">Nog leeg</div><div class="klein">geen hoofdstukken</div></div>';
+
+  return '<div class="held strook" data-vak="' + esc(vak.id) + '">' +
+    '<div class="binnen"><div class="kicker">' + esc(reden || 'Actief vak') + '</div>' +
+    '<h3>' + esc(vak.naam) + '</h3>' +
+    (volg ? '<div class="volgende">Eerstvolgend \u00b7 ' + esc(volg.titel) + '</div>' : '') + '</div>' +
+    '<div class="voet">' + ring + '</div></div>';
 }
 
 function tegelKaart(vak){
@@ -505,6 +588,19 @@ function zetModus(m){
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+
+  /* ---- de terugknop gaat één pagina terug ----
+     Kwam je van een vakpagina, dan ga je daarnaartoe terug en niet naar het
+     homescreen. Is er geen geschiedenis (nieuw tabblad, gedeelde link), dan
+     blijft de link gewoon werken. */
+  var terug = document.querySelector('.terug');
+  if (terug) {
+    var vanBinnen = document.referrer && document.referrer.indexOf(window.location.origin) === 0;
+    if (vanBinnen && window.history.length > 1) {
+      terug.textContent = '\u2190 Terug';
+      terug.addEventListener('click', function(e){ e.preventDefault(); window.history.back(); });
+    }
   }
 
   // Alleen het homescreen heeft deze onderdelen; les.html gebruikt dezelfde data via les.js.

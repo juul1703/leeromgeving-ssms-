@@ -48,7 +48,7 @@
   document.title = les.titel + ' · ' + vak.naam;
   document.getElementById('kruimel').innerHTML = vakParam === 'voorbeeld'
     ? '<a href="index.html">Homescreen</a> · voorbeeld'
-    : '<a href="index.html">' + esc(sem.naam) + '</a> · <a href="index.html#' + esc(vak.id) + '">' + esc(vak.naam) + '</a>';
+    : '<a href="index.html">' + esc(sem.naam) + '</a> · <a href="vak.html?vak=' + encodeURIComponent(vak.id) + '">' + esc(vak.naam) + '</a>';
   document.getElementById('titel').textContent = les.titel;
   document.getElementById('meta').innerHTML =
     '<span class="pil">Les ' + (index + 1) + ' van ' + vak.lessen.length + '</span>' +
@@ -91,7 +91,7 @@
     }).join('');
   }
 
-  function toonTab(){
+  function toonTab(bewaarPlek){
     var o = onderdelen[actief];
     var ctx = {
       sleutel: basis + '-' + o.id,
@@ -115,15 +115,30 @@
     laadOefeningen();
     toonTabs();
     toonVoortgang();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!bewaarPlek) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function naarTab(i){
     if (i < 0 || i >= onderdelen.length) return;
     actief = i;
-    try { sessionStorage.setItem(basis + '-tab-actief', String(i)); } catch(e){}
+    onthoudPlek(i);
     toonTab();
   }
+
+  /* ---- waar was je gebleven? ----
+     Blijft bewaard tussen sessies (localStorage), zodat je bij het
+     openen van een hoofdstuk terugkomt op het onderdeel waar je stopte. */
+  function onthoudPlek(i){
+    try { localStorage.setItem(basis + '-plek', String(i)); } catch(e){}
+  }
+  function laatstePlek(){
+    var v = null;
+    try { v = localStorage.getItem(basis + '-plek'); } catch(e){}
+    if (v === null) { try { v = sessionStorage.getItem(basis + '-tab-actief'); } catch(e){} } // oude opslag
+    return v === null ? null : +v;
+  }
+  // andere scripts (lesextra.js) mogen weten in welke les we zitten
+  window.LES_BASIS = basis;
 
   /* ---- aantekening per tabblad ---- */
   var timer;
@@ -191,7 +206,8 @@
       var k = doel.getAttribute('data-vinkdoel');
       lokaalZet(k, !lokaalWaar(k));
       doel.textContent = lokaalWaar(k) ? '✓' : '';
-      doel.closest('.doel').classList.toggle('af', lokaalWaar(k));
+      var rij = doel.closest('.doel') || doel.closest('.kun');
+      if (rij) rij.classList.toggle('af', lokaalWaar(k));
       return;
     }
 
@@ -205,14 +221,14 @@
   document.getElementById('tabAf').addEventListener('click', function(){
     var k = tabSleutel(actief);
     lokaalZet(k, !lokaalWaar(k));
-    toonTab();
+    toonTab(true);
     if (lokaalWaar(k) && actief < onderdelen.length - 1) naarTab(actief + 1);
   });
 
   document.getElementById('tabVorige').addEventListener('click', function(){ naarTab(actief - 1); });
   document.getElementById('tabVolgende').addEventListener('click', function(){
     if (actief < onderdelen.length - 1) return naarTab(actief + 1);
-    window.location.href = volgende ? lesUrl(vak, volgende) : 'index.html';
+    window.location.href = volgende ? lesUrl(vak, volgende) : 'vak.html?vak=' + encodeURIComponent(vak.id);
   });
 
   /* ---- quiz ---- */
@@ -281,14 +297,13 @@
     if (e.key === 'ArrowLeft') { actief > 0 ? naarTab(actief - 1) : (vorige && (window.location.href = lesUrl(vak, vorige))); }
   });
 
-  /* ---- start op het laatst bekeken tabblad ---- */
-  var bewaard = null;
-  try { bewaard = sessionStorage.getItem(basis + '-tab-actief'); } catch(e){}
-  if (bewaard !== null && +bewaard < onderdelen.length) actief = +bewaard;
+  /* ---- start waar je gebleven was ---- */
+  var bewaard = laatstePlek();
+  if (bewaard !== null && bewaard < onderdelen.length) actief = bewaard;
   else {
     for (var i = 0; i < onderdelen.length; i++) if (!tabAf(i)) { actief = i; break; }
   }
-  toonTab();
+  toonTab(true);
   } /* einde start() */
 
   /* Nog geen rooster binnen? Wachten. Wel binnen en toch niets gevonden? Melden. */

@@ -5,6 +5,10 @@
    2. Subkopjes (1.1, 1.2, ...) worden echte tabbladen: je ziet één
       onderdeel tegelijk, met een tabbalk die in beeld blijft.
    3. Elk subonderdeel is afvinkbaar, met nummer en titel erbij.
+   4. Onderaan elk subonderdeel staat een knop 'Verder': die vinkt
+      het onderdeel af en springt naar het volgende. Bij het laatste
+      subonderdeel rondt hij het hele tabblad af.
+   5. Waar je gebleven was blijft bewaard, ook na afsluiten.
 
    Laden na les.js.
    ============================================================ */
@@ -42,15 +46,25 @@
   /* ---------- hulpjes ---------- */
   function paginaSleutel(){
     var p = new URLSearchParams(window.location.search);
-    return 'ssms-sub-' + (p.get('vak') || '') + '-' + (p.get('les') || '');
+    var tab = document.getElementById('tabTitel');
+    var tabDeel = tab ? tab.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-') : '';
+    return 'ssms-sub-' + (p.get('vak') || '') + '-' + (p.get('les') || '') + '-' + tabDeel;
   }
   function vinkWaar(k){ try { return localStorage.getItem(k) === 'af'; } catch(e){ return false; } }
   function vinkZet(k, v){ try { localStorage.setItem(k, v ? 'af' : 'open'); } catch(e){} }
 
-  /* ---------- 2 en 3. Subtabbladen ---------- */
+  /* ---------- 2, 3 en 4. Subtabbladen ---------- */
   function bouwSubtabs(inhoud){
     var oude = document.getElementById('subtabBalk');
     if (oude) oude.remove();
+
+    // al opgebouwd? dan eerst terug naar de platte inhoud
+    inhoud.querySelectorAll('.subvak').forEach(function(vak){
+      var rij = vak.querySelector('.subkop-rij'); if (rij) rij.remove();
+      var voet = vak.querySelector('.subverder'); if (voet) voet.remove();
+      while (vak.firstChild) vak.parentNode.insertBefore(vak.firstChild, vak);
+      vak.remove();
+    });
 
     var basis = paginaSleutel();
     var koppen = [];
@@ -99,7 +113,14 @@
     }).join('');
     inhoud.parentNode.insertBefore(balk, inhoud);
 
-    groepen.forEach(function(g){
+    var actief = 0;
+    try {
+      var bewaard = localStorage.getItem(basis + '-plek');
+      if (bewaard !== null && +bewaard < groepen.length) actief = +bewaard;
+    } catch(e){}
+
+    /* kopregel met vinkje, en onderaan de verder-knop */
+    groepen.forEach(function(g, i){
       var rij = document.createElement('div');
       rij.className = 'subkop-rij';
       rij.innerHTML = '<button type="button" class="subvink" aria-label="Onderdeel afvinken"></button>' +
@@ -112,13 +133,41 @@
         vinkZet(g.sleutel, !vinkWaar(g.sleutel));
         werkBij();
       });
+
+      var laatste = i === groepen.length - 1;
+      var voet = document.createElement('div');
+      voet.className = 'subverder';
+      voet.innerHTML = '<button type="button" class="btn">' +
+        (laatste ? 'Afvinken en tabblad afronden \u2192' : 'Afvinken en verder \u2192') +
+        '</button><span class="subverder-hint">' +
+        (laatste ? 'hiermee is dit tabblad klaar' : 'volgende: ' + groepen[i + 1].nummer + ' \u00b7 ' + groepen[i + 1].titel) +
+        '</span>';
+      g.container.appendChild(voet);
+
+      voet.querySelector('button').addEventListener('click', function(){
+        vinkZet(g.sleutel, true);
+        werkBij();
+        if (!laatste) return naarSub(i + 1);
+        rondTabblad();
+      });
     });
 
-    var actief = 0;
-    try {
-      var bewaard = sessionStorage.getItem(basis + '-subtab');
-      if (bewaard !== null && +bewaard < groepen.length) actief = +bewaard;
-    } catch(e){}
+    function naarSub(i){
+      actief = i;
+      try { localStorage.setItem(basis + '-plek', String(i)); } catch(e){}
+      werkBij();
+      var top = balk.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+
+    /* Alles afgevinkt? Dan het hele tabblad afronden via de knop van les.js,
+       die zelf al doorspringt naar het volgende onderdeel. */
+    function rondTabblad(){
+      var af = document.getElementById('tabAf');
+      if (af && af.className.indexOf('af') < 0) return af.click();
+      var volg = document.getElementById('tabVolgende');
+      if (volg) volg.click();
+    }
 
     function werkBij(){
       groepen.forEach(function(g, i){
@@ -137,11 +186,7 @@
     balk.addEventListener('click', function(e){
       var tab = e.target.closest('[data-subtab]');
       if (!tab) return;
-      actief = +tab.getAttribute('data-subtab');
-      try { sessionStorage.setItem(basis + '-subtab', String(actief)); } catch(err){}
-      werkBij();
-      var top = balk.getBoundingClientRect().top + window.scrollY - 120;
-      window.scrollTo({ top: top, behavior: 'smooth' });
+      naarSub(+tab.getAttribute('data-subtab'));
     });
 
     werkBij();
@@ -153,11 +198,20 @@
 
   balkInklapbaar();
 
+  /* De observer kijkt of les.js een nieuw tabblad heeft neergezet. Tijdens
+     het opbouwen zetten we hem uit: bouwSubtabs verplaatst zelf blokken, en
+     dat liet hem vroeger opnieuw afgaan — met dubbele rijen tot gevolg. */
   var timer;
-  new MutationObserver(function(){
+  var waker = new MutationObserver(function(){
     clearTimeout(timer);
-    timer = setTimeout(function(){ bouwSubtabs(inhoud); }, 30);
-  }).observe(inhoud, { childList: true });
+    timer = setTimeout(opnieuw, 30);
+  });
 
-  bouwSubtabs(inhoud);
+  function opnieuw(){
+    waker.disconnect();
+    try { bouwSubtabs(inhoud); } catch(e){}
+    waker.observe(inhoud, { childList: true });
+  }
+
+  opnieuw();
 })();

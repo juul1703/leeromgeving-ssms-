@@ -210,13 +210,59 @@ function lesUitgewerkt(vak, les){
   return !!(LESSTOF[vak.id + '/' + les.id] || LESSTOF[vak.id]);
 }
 
+/* ------------------------------------------------------------
+   Leerdoelen naar achteren.
+
+   Een les opende met een lijst 'na dit onderdeel kun je'. Dat leest
+   als huiswerk voordat je iets gelezen hebt. Daarom halen we die
+   lijsten automatisch uit de onderdelen en zetten we ze als laatste
+   tabblad 'Kun je dit?' neer: een afvinklijst met per punt uitleg.
+
+   Werkt voor elk vak en elke literatuur, zonder dat je de lesstof
+   zelf hoeft aan te passen. Een leerdoel mag een string zijn, of
+   { doel: '...', uitleg: '...' } als je er uitleg bij wil.
+   ------------------------------------------------------------ */
+function metKunJeDit(onderdelen){
+  if (!onderdelen || !onderdelen.length) return onderdelen;
+  if (onderdelen.filter(function(o){ return o.id === 'vaardigheden'; }).length) return onderdelen;
+
+  var doelen = [];
+  var schoon = [];
+
+  onderdelen.forEach(function(o){
+    var blokken = (o.blokken || []).filter(function(b){
+      if (b && b.type === 'leerdoelen') {
+        (b.items || []).forEach(function(d){ doelen.push(d); });
+        return false;
+      }
+      return true;
+    });
+    if (blokken.length) schoon.push({ id: o.id, titel: o.titel, blokken: blokken });
+  });
+
+  if (!doelen.length) return onderdelen;
+
+  schoon.push({
+    id: 'vaardigheden', titel: 'Vaardigheden',
+    blokken: [
+      { type: 'checklist', titel: 'Kun je dit al?',
+        tekst: 'Loop dit pas na als je de rest hebt gedaan. Vink alleen af wat je **zonder terugkijken** kunt uitleggen; wat blijft staan, is precies je leerlijst voor de toets.',
+        items: doelen },
+      { type: 'slimmer', titel: 'Wat je met de openstaande punten doet',
+        tekst: 'Neem er \u00e9\u00e9n per keer. Zoek het terug in Kernstof, leg het hardop uit alsof je het aan een medestudent vertelt, en vink het pas af als dat lukte zonder haperen.' }
+    ]
+  });
+
+  return schoon;
+}
+
 /* De onderdelen van een les ophalen: eigen stof > vakstof > leeg skelet. */
 function lesOnderdelen(vak, les){
-  if (les && les.onderdelen) return les.onderdelen;
+  if (les && les.onderdelen) return metKunJeDit(les.onderdelen);
   var eigen = LESSTOF[vak.id + '/' + les.id];
-  if (eigen) return eigen;
+  if (eigen) return metKunJeDit(eigen);
   var perVak = LESSTOF[vak.id];
-  if (perVak) return perVak;
+  if (perVak) return metKunJeDit(perVak);
   return leegSkelet(les);
 }
 
