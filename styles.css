@@ -84,11 +84,6 @@
   .regel.bezig::before{content:"";position:absolute;left:-14px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--accent);transform:translateY(-50%);}
   .regel.voorbij .tijd,.regel.voorbij .titel{opacity:.45;}
   .dl{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:11px 0;border-top:1px solid var(--line);}
-  .tekstknop{background:none;border:none;padding:0;font:inherit;font-size:13px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
-  .tekstknop:hover{color:var(--ink);}
-  .feed-melding{margin-top:10px;font-size:12.5px;line-height:1.5;min-height:1em;}
-  .feed-melding.fout{color:#B4635A;}
-  .feed-melding.goed{color:var(--sage);}
   .rooster-status{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
   .dl .titel{font-size:13.5px;}
   .dl .vak{font-size:11.5px;color:var(--muted);margin-top:2px;}
@@ -97,8 +92,6 @@
   .pil{font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:5px 11px;border-radius:999px;white-space:nowrap;background:var(--paper2);color:var(--ink2);}
   .pil.nu{background:var(--accent-soft);color:var(--accent);}
   .pil.rustig{background:var(--sage-soft);color:var(--sage);}
-  .pil.open{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:400;}
-  .niet-uit{display:inline-block;margin-left:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:99px;padding:2px 7px;vertical-align:1px;}
 
   /* ---- semester ---- */
   .sem-kop{display:flex;align-items:baseline;justify-content:space-between;margin:56px 0 20px;}
@@ -197,7 +190,7 @@
    LESPAGINA
    ============================================================ */
 .lespagina .wrap{max-width:1240px;}
-.les-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 0 0;}
+.les-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;position:sticky;top:0;z-index:30;background:var(--paper);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
 .terug{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2);}
 .terug:hover{color:var(--accent);}
 .kruimel{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:40px;}
@@ -413,3 +406,9 @@ a.notitie{display:block;color:inherit;}
 a.notitie:hover .titel{color:var(--accent);}
 .hero .ring-blok.leeg{display:none;}
 .les .meta code,.dl code{font-family:ui-monospace,SFMono-Regular,monospace;font-size:11.5px;}
+
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:12px 0;border-bottom:1px solid var(--line);position:sticky;top:68px;z-index:20;background:var(--paper);}
+.subnav button{font:12.5px/1 var(--sans);padding:7px 12px;border-radius:999px;border:1px solid var(--line);
+  background:transparent;color:var(--ink2);cursor:pointer;transition:background .15s,color .15s;}
+.subnav button:hover{background:var(--paper2);}
+.subnav button.nu{background:var(--ink);color:var(--paper);border-color:var(--ink);}
