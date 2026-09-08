@@ -1,6 +1,8 @@
 /* Simpele offline-cache. Verhoog VERSIE na elke wijziging. */
-var VERSIE = 'ssms-v7';
-var BESTANDEN = ['./', './index.html', './les.html', './styles.css', './app.js', './rooster.js', './les.js', './lesblokken.js', './lesstof.js', './ssms-inhoud.js', './manifest.webmanifest'];
+var VERSIE = 'ssms-v9';
+var BESTANDEN = ['./', './index.html', './les.html', './vak.html', './styles.css', './app.js',
+  './rooster.js', './les.js', './lesextra.js', './vak.js', './lesblokken.js', './lesstof.js',
+  './ssms-inhoud.js', './manifest.webmanifest'];
 
 self.addEventListener('install', function(e){
   e.waitUntil(caches.open(VERSIE).then(function(c){ return c.addAll(BESTANDEN); }));

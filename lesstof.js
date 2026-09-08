@@ -178,9 +178,7 @@ var LES_OPZET = [
   { id: 'toepassen', titel: 'Toepassen',
     wat: 'Stappenplannen en oefeningen met modelantwoord, zodat je de stof ook echt kunt gebruiken.' },
   { id: 'checken', titel: 'Checken',
-    wat: 'Quiz met uitleg per antwoord, de bronnenlijst in APA en een vooruitblik op de volgende les.' },
-  { id: 'aantekeningen', titel: 'Aantekeningen',
-    wat: 'Jouw eigen ruimte: wat de docent nadrukkelijk herhaalde, wat je nog niet snapt, vragen voor de volgende keer.' }
+    wat: 'Quiz met uitleg per antwoord, de bronnenlijst in APA en een vooruitblik op de volgende les.' }
 ];
 
 /* Een nog niet uitgewerkte les: dezelfde structuur, met per onderdeel

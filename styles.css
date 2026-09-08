@@ -84,6 +84,11 @@
   .regel.bezig::before{content:"";position:absolute;left:-14px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--accent);transform:translateY(-50%);}
   .regel.voorbij .tijd,.regel.voorbij .titel{opacity:.45;}
   .dl{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:11px 0;border-top:1px solid var(--line);}
+  .tekstknop{background:none;border:none;padding:0;font:inherit;font-size:13px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+  .tekstknop:hover{color:var(--ink);}
+  .feed-melding{margin-top:10px;font-size:12.5px;line-height:1.5;min-height:1em;}
+  .feed-melding.fout{color:#B4635A;}
+  .feed-melding.goed{color:var(--sage);}
   .rooster-status{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
   .dl .titel{font-size:13.5px;}
   .dl .vak{font-size:11.5px;color:var(--muted);margin-top:2px;}
@@ -92,6 +97,8 @@
   .pil{font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:5px 11px;border-radius:999px;white-space:nowrap;background:var(--paper2);color:var(--ink2);}
   .pil.nu{background:var(--accent-soft);color:var(--accent);}
   .pil.rustig{background:var(--sage-soft);color:var(--sage);}
+  .pil.open{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:400;}
+  .niet-uit{display:inline-block;margin-left:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:99px;padding:2px 7px;vertical-align:1px;}
 
   /* ---- semester ---- */
   .sem-kop{display:flex;align-items:baseline;justify-content:space-between;margin:56px 0 20px;}
@@ -190,7 +197,7 @@
    LESPAGINA
    ============================================================ */
 .lespagina .wrap{max-width:1240px;}
-.les-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;position:sticky;top:0;z-index:30;background:var(--paper);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.les-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 0 0;}
 .terug{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2);}
 .terug:hover{color:var(--accent);}
 .kruimel{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:40px;}
@@ -407,8 +414,80 @@ a.notitie:hover .titel{color:var(--accent);}
 .hero .ring-blok.leeg{display:none;}
 .les .meta code,.dl code{font-family:ui-monospace,SFMono-Regular,monospace;font-size:11.5px;}
 
-.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:12px 0;border-bottom:1px solid var(--line);position:sticky;top:68px;z-index:20;background:var(--paper);}
-.subnav button{font:12.5px/1 var(--sans);padding:7px 12px;border-radius:999px;border:1px solid var(--line);
-  background:transparent;color:var(--ink2);cursor:pointer;transition:background .15s,color .15s;}
-.subnav button:hover{background:var(--paper2);}
-.subnav button.nu{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+/* ============================================================
+   Aanpassingen: doorlopende tekst, inklapbare balk, subnavigatie,
+   afvinkbare subkopjes, vak-homescreen.
+   ============================================================ */
+
+/* 1. Tekst loopt door over de volle breedte zodra het menu is ingeklapt */
+.les-body.menu-uit .inhoud p,
+.les-body.menu-uit .inhoud ul,
+.les-body.menu-uit .inhoud ol,
+.les-body.menu-uit .doelen{max-width:none;}
+.les-body.menu-uit .les-titel{max-width:none;}
+
+/* 2. Bovenbalk blijft staan en is zelf inklapbaar */
+.les-top{position:sticky;top:0;z-index:40;background:var(--paper);
+  padding:12px 0;transition:padding .2s ease,opacity .2s ease;}
+.les-top.ingeklapt{padding:4px 0;}
+.les-top.ingeklapt .terug{opacity:0;pointer-events:none;}
+.balk-knop{border:1px solid var(--line);background:transparent;color:var(--muted);
+  width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:13px;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;transition:background .15s,color .15s;}
+.balk-knop:hover{background:var(--paper2);color:var(--ink);}
+
+/* 3. Subnavigatie: blijft in beeld, ook bij een lang tabblad */
+.subnav{position:sticky;top:58px;z-index:30;background:var(--paper);
+  display:flex;align-items:center;gap:10px;padding:10px 0;margin:0 0 24px;
+  border-bottom:1px solid var(--line);}
+.subnav select{flex:1;min-width:0;font:13.5px/1.4 var(--sans);color:var(--ink);
+  background:var(--paper2);border:1px solid var(--line);border-radius:10px;
+  padding:9px 12px;cursor:pointer;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;}
+.subnav .subnav-telling{font-size:12px;color:var(--muted);white-space:nowrap;}
+
+/* 4. Afvinkbare subkopjes met nummer en titel */
+.subkop{display:flex;align-items:flex-start;gap:12px;margin:0 0 14px;}
+.subkop .subvink{flex:none;width:22px;height:22px;margin-top:3px;border-radius:6px;
+  border:1.5px solid var(--line);background:transparent;color:var(--paper);
+  font-size:12px;line-height:1;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;transition:background .15s,border-color .15s;}
+.subkop .subvink:hover{border-color:var(--accent);}
+.subkop.af .subvink{background:var(--accent);border-color:var(--accent);}
+.subkop h2{margin:0;}
+.subkop.af h2{opacity:.55;}
+
+/* 5. Vak-homescreen */
+.vak-hero{padding:34px 0 8px;border-bottom:1px solid var(--line);margin-bottom:34px;}
+.vak-hero h1{margin:10px 0 0;font-family:var(--serif);font-weight:300;
+  font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-.02em;}
+.vak-hero .kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.vak-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:38px;align-items:start;}
+@media (max-width:900px){.vak-grid{grid-template-columns:minmax(0,1fr);}}
+.vak-blok{border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:24px;background:var(--paper2);}
+.vak-blok h2{margin:0 0 14px;font-family:var(--serif);font-weight:400;font-size:19px;}
+.hfd-rij{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);
+  color:var(--ink2);font-size:14px;}
+.hfd-rij:last-child{border-bottom:none;}
+.hfd-rij:hover{color:var(--accent);}
+.hfd-rij .mini-vink{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);
+  display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);}
+.hfd-rij.af .mini-vink{background:var(--accent);border-color:var(--accent);color:var(--paper);}
+.dl-rij{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+.dl-rij:last-of-type{border-bottom:none;}
+.dl-rij .dl-datum{color:var(--muted);font-size:12.5px;white-space:nowrap;}
+.dl-rij button{border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:15px;line-height:1;}
+.dl-rij button:hover{color:var(--accent);}
+.dl-form{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.dl-form input{flex:1;min-width:120px;font:13px var(--sans);padding:9px 11px;
+  border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink);}
+.dl-form button{font:13px var(--sans);padding:9px 15px;border-radius:9px;border:none;
+  background:var(--ink);color:var(--paper);cursor:pointer;}
+.manual-lijst{list-style:none;margin:0;padding:0;}
+.manual-lijst li{padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink2);}
+.manual-lijst li:last-child{border-bottom:none;}
+.manual-lijst strong{color:var(--ink);font-weight:600;}

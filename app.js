@@ -377,6 +377,16 @@ function renderLade(){
   document.getElementById('ladeBalk').style.width = p + '%';
   document.getElementById('ladeLabel').textContent = aantalAf(vak) + '/' + vak.lessen.length + ' afgerond';
   var box = document.getElementById('ladeLessen');
+  var naarVak = document.getElementById('naarVakHome');
+  if (!naarVak) {
+    naarVak = document.createElement('a');
+    naarVak.id = 'naarVakHome';
+    naarVak.className = 'btn';
+    naarVak.style.cssText = 'display:inline-block;margin-bottom:18px;';
+    box.parentNode.insertBefore(naarVak, box);
+  }
+  naarVak.href = 'vak.html?vak=' + encodeURIComponent(vak.id);
+  naarVak.textContent = 'Open het vak-homescreen \u2192';
   if (!vak.lessen.length) {
     box.innerHTML = '<div class="leegmelding"><b>Nog geen lessen</b><span>Voeg lessen toe in app.js, ' +
       'ze verschijnen hier automatisch.</span></div>';

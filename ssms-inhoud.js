@@ -2346,17 +2346,17 @@ LESSTOF["intro-to-safety-security/h11"] = [
   if (typeof DATA === 'undefined') return;
 
   var LESSEN = [
-    { id: 'h1',  titel: 'H1 · Safety en security samenbrengen',        duur: 60 },
-    { id: 'h2',  titel: 'H2 · Risico, safety en security als concept', duur: 75 },
-    { id: 'h3',  titel: 'H3 · Twee kanten van dezelfde medaille',      duur: 90 },
-    { id: 'h4',  titel: 'H4 · Safety versus security in de luchtvaart', duur: 90 },
-    { id: 'h5',  titel: 'H5 · Security- en safetycultuur',             duur: 75 },
-    { id: 'h6',  titel: 'H6 · Gebruikerservaring op de luchthaven',    duur: 60 },
-    { id: 'h7',  titel: 'H7 · De divergentie van safety en security',  duur: 75 },
-    { id: 'h8',  titel: 'H8 · Voorbereiden om verrast te worden',      duur: 75 },
-    { id: 'h9',  titel: 'H9 · Spanningen en synergie in management',   duur: 75 },
-    { id: 'h10', titel: 'H10 · Het snijvlak op de werkplek',           duur: 60 },
-    { id: 'h11', titel: 'H11 · Onderzoeks- en managementuitdagingen',  duur: 60 }
+    { id: 'h1',  titel: 'The Coupling of Safety and Security · H1 Safety en security samenbrengen',        duur: 60 },
+    { id: 'h2',  titel: 'The Coupling of Safety and Security · H2 Risico, safety en security als concept', duur: 75 },
+    { id: 'h3',  titel: 'The Coupling of Safety and Security · H3 Twee kanten van dezelfde medaille',      duur: 90 },
+    { id: 'h4',  titel: 'The Coupling of Safety and Security · H4 Safety versus security in de luchtvaart', duur: 90 },
+    { id: 'h5',  titel: 'The Coupling of Safety and Security · H5 Security- en safetycultuur',             duur: 75 },
+    { id: 'h6',  titel: 'The Coupling of Safety and Security · H6 Gebruikerservaring op de luchthaven',    duur: 60 },
+    { id: 'h7',  titel: 'The Coupling of Safety and Security · H7 De divergentie van safety en security',  duur: 75 },
+    { id: 'h8',  titel: 'The Coupling of Safety and Security · H8 Voorbereiden om verrast te worden',      duur: 75 },
+    { id: 'h9',  titel: 'The Coupling of Safety and Security · H9 Spanningen en synergie in management',   duur: 75 },
+    { id: 'h10', titel: 'The Coupling of Safety and Security · H10 Het snijvlak op de werkplek',           duur: 60 },
+    { id: 'h11', titel: 'The Coupling of Safety and Security · H11 Onderzoeks- en managementuitdagingen',  duur: 60 }
   ];
 
   var sem = DATA.semesters.filter(function(s){ return s.id === DATA.actiefSemester; })[0];
@@ -2381,17 +2381,17 @@ LESSTOF["intro-to-safety-security/h11"] = [
       sem.vakken.forEach(function(vak){
         if (vak.id === 'intro-to-safety-security') {
           vak.lessen = [
-            { id: 'h1',  titel: 'H1 · Safety en security samenbrengen',           duur: 60 },
-            { id: 'h2',  titel: 'H2 · Risico, safety en security als concept',    duur: 75 },
-            { id: 'h3',  titel: 'H3 · Twee kanten van dezelfde medaille',         duur: 90 },
-            { id: 'h4',  titel: 'H4 · Safety versus security in de luchtvaart',   duur: 90 },
-            { id: 'h5',  titel: 'H5 · Security- en safetycultuur',                duur: 75 },
-            { id: 'h6',  titel: 'H6 · Gebruikerservaring op de luchthaven',       duur: 60 },
-            { id: 'h7',  titel: 'H7 · De divergentie van safety en security',     duur: 75 },
-            { id: 'h8',  titel: 'H8 · Voorbereiden om verrast te worden',         duur: 75 },
-            { id: 'h9',  titel: 'H9 · Spanningen en synergie in management',      duur: 75 },
-            { id: 'h10', titel: 'H10 · Het snijvlak op de werkplek',              duur: 60 },
-            { id: 'h11', titel: 'H11 · Onderzoeks- en managementuitdagingen',     duur: 60 }
+            { id: 'h1',  titel: 'The Coupling of Safety and Security · H1 Safety en security samenbrengen',           duur: 60 },
+            { id: 'h2',  titel: 'The Coupling of Safety and Security · H2 Risico, safety en security als concept',    duur: 75 },
+            { id: 'h3',  titel: 'The Coupling of Safety and Security · H3 Twee kanten van dezelfde medaille',         duur: 90 },
+            { id: 'h4',  titel: 'The Coupling of Safety and Security · H4 Safety versus security in de luchtvaart',   duur: 90 },
+            { id: 'h5',  titel: 'The Coupling of Safety and Security · H5 Security- en safetycultuur',                duur: 75 },
+            { id: 'h6',  titel: 'The Coupling of Safety and Security · H6 Gebruikerservaring op de luchthaven',       duur: 60 },
+            { id: 'h7',  titel: 'The Coupling of Safety and Security · H7 De divergentie van safety en security',     duur: 75 },
+            { id: 'h8',  titel: 'The Coupling of Safety and Security · H8 Voorbereiden om verrast te worden',         duur: 75 },
+            { id: 'h9',  titel: 'The Coupling of Safety and Security · H9 Spanningen en synergie in management',      duur: 75 },
+            { id: 'h10', titel: 'The Coupling of Safety and Security · H10 Het snijvlak op de werkplek',              duur: 60 },
+            { id: 'h11', titel: 'The Coupling of Safety and Security · H11 Onderzoeks- en managementuitdagingen',     duur: 60 }
           ];
         }
       });
@@ -3720,10 +3720,10 @@ LESSTOF['demystifying-research-methods/ch13'] = [
   if (typeof DATA === 'undefined') return;
 
   var LESSEN_DRM = [
-    { id: 'ch3',  titel: 'H3 · De achtergrond van je onderzoek',        duur: 45 },
-    { id: 'ch4',  titel: 'H4 · Centrale vraag en doelstelling',         duur: 60 },
-    { id: 'ch5',  titel: 'H5 · Begripsafbakening en modelbouw',         duur: 60 },
-    { id: 'ch13', titel: 'H13 · Kwantitatieve data: voorbereiding',     duur: 45 }
+    { id: 'ch3',  titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H3 De achtergrond van je onderzoek',        duur: 45 },
+    { id: 'ch4',  titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H4 Centrale vraag en doelstelling',         duur: 60 },
+    { id: 'ch5',  titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H5 Begripsafbakening en modelbouw',         duur: 60 },
+    { id: 'ch13', titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H13 Kwantitatieve data: voorbereiding',     duur: 45 }
   ];
 
   function isDrm(vak){
@@ -3841,3 +3841,40 @@ LESSTOF['demystifying-research-methods/ch13'] = [
 
   bouwSubnav(inhoudEl);
 })();
+
+/* ============================================================
+   Course manual per vak — getoond op het vak-homescreen
+   (vak.html?vak=<vakId>). Vul aan zodra je de handleiding van
+   een vak hebt; de sleutel is hetzelfde vakId als hierboven.
+   ============================================================ */
+var VAK_MANUAL = {
+
+  'intro-to-safety-security': {
+    intro: 'Funderingsvak dat de domeinen van safety en security introduceert, plus de stakeholderbenaderingen van de SSMS-professional.',
+    regels: [
+      { label: 'Code',        waarde: 'SSMS-1T1-24' },
+      { label: 'Docenten',    waarde: 'Jonathan Corr, Enrique Gomez Llata Cazares' },
+      { label: 'Studiepunten', waarde: '6 ECTS · 42 contacturen · 126 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'Bieder & Pettersen Gould (2020), The Coupling of Safety and Security (open access)' },
+      { label: 'Midterm',     waarde: 'Remindo, schriftelijk · 50% · november 2026' },
+      { label: 'Eindtoets',   waarde: 'Mondeling · 50% · februari 2027' },
+      { label: 'Voldoende',   waarde: '5,5 of hoger voor beide toetsen' },
+      { label: 'Let op',      waarde: 'Gastcolleges zijn verplicht (sessie 7 en 9 tot en met 15)' }
+    ]
+  },
+
+  'demystifying-research-methods': {
+    intro: 'Eerste vak van de Research Methods-track. Je leert een eigen applied research design opzetten, met probleem, doelstelling, hoofdvraag en deelvragen.',
+    regels: [
+      { label: 'Code',        waarde: 'SSMS-1RM1-25' },
+      { label: 'Docent',      waarde: 'Jonas Carinhas' },
+      { label: 'Studiepunten', waarde: '4 ECTS · 28 contacturen · 84 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'Geen aanschaf; alles op Brightspace. Aanvullend: Verhoeven, Doing Research; Van Tulder, Skill Sheets' },
+      { label: 'Toetsing',    waarde: 'Cumulatieve toets in drie momenten (20% / 50% / 30%) plus drie quizzes (pass/fail)' },
+      { label: 'Quizzes',     waarde: 'Week 4, week 7 en week 14 · alle drie halen is verplicht' },
+      { label: 'Voldoende',   waarde: '5,5 of hoger voor de cumulatieve toets' },
+      { label: 'Let op',      waarde: 'AI-tools bij individuele opdrachten gelden als schending van de academische integriteit' }
+    ]
+  }
+
+};
