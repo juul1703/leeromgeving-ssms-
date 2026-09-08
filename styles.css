@@ -622,3 +622,66 @@ a.notitie:hover .titel{color:var(--accent);}
 .gids-body{padding:0 0 18px;}
 .gids-body .blok{margin-bottom:18px;}
 .gids-body h2{font-size:17px;}
+
+/* ============================================================
+   Aanvullingen v12
+   ============================================================ */
+
+/* --- vakpagina: deadlines op mobiel naar boven --- */
+.vak-grid{
+  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  grid-template-areas:"hoofd dl" "hoofd man";
+  gap:38px;align-items:start;
+}
+.vak-hoofd{grid-area:hoofd;}
+.vak-dl{grid-area:dl;}
+.vak-man{grid-area:man;}
+.vak-grid > .vak-kolom > .vak-blok + .vak-blok{margin-top:24px;}
+@media (max-width:900px){
+  .vak-grid{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"dl" "hoofd" "man";
+    gap:24px;
+  }
+}
+
+/* --- deadlines afvinken en archiveren --- */
+.dl-rij .dl-vink{
+  flex:none;width:20px;height:20px;border-radius:50%;padding:0;
+  border:1px solid var(--line);background:transparent;color:var(--paper);
+  font-size:10px;line-height:1;cursor:pointer;
+}
+.dl-rij .dl-vink:hover{border-color:var(--accent);}
+.dl-rij > span:first-of-type{flex:1;min-width:0;}
+.dl-rij.af{opacity:.62;}
+.dl-rij.af .dl-vink{background:var(--sage);border-color:var(--sage);color:var(--paper);}
+.dl-rij.af > span:first-of-type{text-decoration:line-through;}
+.dl-archief{margin-top:6px;border-top:1px solid var(--line);}
+.dl-archief summary{
+  cursor:pointer;list-style:none;padding:10px 0 4px;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.dl-archief summary::-webkit-details-marker{display:none;}
+.dl-archief summary span{
+  margin-left:6px;padding:1px 7px;border-radius:999px;
+  background:var(--paper2);letter-spacing:0;
+}
+.dl-archief[open] summary{color:var(--accent);}
+
+/* --- weekrooster op het homescreen --- */
+.roosterdag + .roosterdag{margin-top:4px;}
+.dagkop{
+  padding:12px 0 6px;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+.roosterdag:first-child .dagkop{padding-top:2px;}
+.dagkop span{
+  margin-left:6px;padding:1px 7px;border-radius:999px;letter-spacing:0;
+  background:var(--accent-soft);color:var(--accent);
+}
+.roosterdag.vandaag .dagkop{color:var(--accent);}
+
+/* --- studiegids binnen het manual-blok --- */
+.man-deel-body .gids-body .blok{margin-bottom:16px;}
+.man-deel-body .gids-body h2{font-size:15px;margin:0 0 8px;}
+.man-deel-body .gids-body .tabel-wrap{overflow-x:auto;}

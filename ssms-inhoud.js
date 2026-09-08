@@ -3852,20 +3852,99 @@ var VAK_MANUAL = {
   },
 
   'demystifying-research-methods': {
-    pdf: 'manuals/ssms-jaar1-semester1-handleiding.pdf',
-    pdfNaam: 'Module manual Y1 Semester 1 (2026-2027)',
+    pdf: 'manuals/2026-2027_DRM_course_manual.pdf',
+    pdfNaam: 'Demystifying Research Methods course manual (2026-2027)',
     studiegids: 'drm',
-    intro: 'Eerste vak van de Research Methods-track. Je leert een eigen applied research design opzetten, met probleem, doelstelling, hoofdvraag en deelvragen.',
+    intro: 'Eerste vak van de Research Methods-track. Je leert een eigen applied research design opzetten, met probleem, doelstelling, hoofdvraag en twee deelvragen, en je leert bestaand onderzoek beoordelen.',
     regels: [
       { label: 'Code',        waarde: 'SSMS-1RM1-25' },
-      { label: 'Docent',      waarde: 'Jonas Carinhas' },
-      { label: 'Studiepunten', waarde: '4 ECTS · 28 contacturen · 84 uur zelfstudie' },
-      { label: 'Literatuur',  waarde: 'Geen aanschaf; alles op Brightspace. Aanvullend: Verhoeven, Doing Research; Van Tulder, Skill Sheets' },
-      { label: 'Toetsing',    waarde: 'Cumulatieve toets in drie momenten (20% / 50% / 30%) plus drie quizzes (pass/fail)' },
-      { label: 'Quizzes',     waarde: 'Week 4, week 7 en week 14 · alle drie halen is verplicht' },
-      { label: 'Voldoende',   waarde: '5,5 of hoger voor de cumulatieve toets' },
+      { label: 'Docenten',    waarde: 'Jonas Carinhas (j.f.dacostacarinhas@hhs.nl), Ilse Lindhout (i.j.lindhout@student.hhs.nl)' },
+      { label: 'Studiepunten', waarde: '4 ECTS \u00b7 28 contacturen \u00b7 84 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'Alles op Brightspace. Boek: Verhoeven, Doing Research (5e of 6e druk), gratis via de HHS-bibliotheek' },
+      { label: 'Toetsing',    waarde: 'Cumulatieve toets in drie delen: CT1 20%, CT2 50%, CT3 30%' },
+      { label: 'Quizzes',     waarde: 'Q1 week 4, Q2 week 7, Q3 week 14 \u00b7 pass/fail \u00b7 alle drie halen is verplicht' },
+      { label: 'Voldoende',   waarde: '5,5 of hoger voor de cumulatieve toets, plus een pass voor alle drie de quizzes' },
+      { label: 'Herkansing',  waarde: 'E\u00e9n toets van 120 minuten over alles, telt voor 100% \u00b7 semester 2, maart-april' },
       { label: 'Let op',      waarde: 'AI-tools bij individuele opdrachten gelden als schending van de academische integriteit' }
+    ],
+    samenvatting: [
+      { titel: 'Waar dit vak over gaat',
+        tekst: 'Je krijgt de gereedschapskist voor **applied research** in safety en security: van eerste analyse tot een af onderzoeksontwerp. Het is het eerste vak van de Research Methods-track en de basis voor je opdrachten, rapporten en uiteindelijk je scriptie.',
+        punten: [
+          'Kernbegrippen toepassen op echte safety- en securitysituaties',
+          'Vooronderzoek doen met het 6W-raamwerk',
+          'Onderzoeksvragen, ontwerpen en beperkingen van bestaand onderzoek beoordelen',
+          'Zelf een applied research design formuleren'
+        ], bladzijde: 'hoofdstuk 1' },
+
+      { titel: 'De zeven leerdoelen',
+        tekst: 'De toetsmatrix is per leerdoel opgebouwd, dus dit is letterlijk je leerlijst.',
+        punten: [
+          '1. Basisbegrippen van applied research toepassen op verschillende contexten',
+          '2. Vooronderzoek doen met het 6W-raamwerk op verschillende soorten literatuur',
+          '3. Kernbegrippen en variabelen van een studie onderscheiden en hun verbanden onderzoeken',
+          '4. Onderzoeksvragen beoordelen op type, helderheid, focus, relevantie, haalbaarheid, complexiteit, bias en ethiek',
+          '5. Een onderzoeksontwerp beoordelen: benadering, probleem, doelstelling, hoofdvraag en deelvragen',
+          '6. Beperkingen beoordelen: databeschikbaarheid, toegang, steekproefgrootte, representativiteit, generaliseerbaarheid, tijd en budget',
+          '7. Zelf een applied research design formuleren met probleem, doelstelling, hoofdvraag en twee deelvragen'
+        ], bladzijde: 'hoofdstuk 2' },
+
+      { titel: 'Literatuur en materiaal',
+        tekst: 'Alles wat je nodig hebt staat op **Brightspace**: slides, workshop- en huiswerkopdrachten, de conceptlijst met uitleg en video\u2019s, alle quizzes en fragmenten uit methodenboeken.\n\nHet boek is Verhoeven, *Doing Research*, vijfde of zesde druk. Gratis online via de HHS-bibliotheek, een paar fysieke exemplaren in de bibliotheek, of tweedehands van oudere SSMS\u2019ers.\n\nBelangrijk bij verschillen in definities: **de definities uit de Brightspace-materialen gaan v\u00f3\u00f3r**, ook als een ander boek het net anders zegt.',
+        bladzijde: 'hoofdstuk 3' },
+
+      { titel: 'Toetsing: drie delen plus drie quizzes',
+        tekst: 'Er is \u00e9\u00e9n cumulatieve toets, verdeeld over drie momenten. Je eindcijfer komt uit het totaal over alle drie.',
+        punten: [
+          'CT1 \u00b7 20 meerkeuzevragen \u00b7 30 minuten \u00b7 20% \u00b7 november \u00b7 nadruk op toepassen (75%)',
+          'CT2 \u00b7 6 meerkeuze en 4 open vragen \u00b7 60 minuten \u00b7 50% \u00b7 december \u00b7 6W en het eigen ontwerp',
+          'CT3 \u00b7 20 meerkeuzevragen \u00b7 30 minuten \u00b7 30% \u00b7 februari \u00b7 nadruk op evalueren (circa 60%)',
+          'Q1 over deel 1, Q2 over deel 2, Q3 over deel 3 \u00b7 via Brightspace \u00b7 pass/fail, met resits',
+          'Toetsstof is alle literatuur en materialen op Brightspace tot de toetsdatum, slides en opdrachten inbegrepen'
+        ], bladzijde: 'hoofdstuk 4' },
+
+      { titel: 'Hoe je cijfer wordt berekend',
+        tekst: 'De punten worden geschaald naar 1000 in Osiris: CT1 200, CT2 500, CT3 300. Een zwak deel kan dus gecompenseerd worden; CT1 telt maar voor een vijfde.\n\nTwee dingen om te weten. Er geldt een **gokcorrectie** bij de meerkeuzevragen: scoor je onder die grens, dan is het cijfer automatisch een 1. En de **cesuur wordt aangepast aan de moeilijkheid**: niet 55% van het maximum, maar 60% van de top 5% hoogste scores wordt de 5,5. Daarom weet je je cijfer pas nadat alle drie de momenten zijn geweest.',
+        punten: [
+          'Losse delen herkansen kan niet',
+          'De herkansing is \u00e9\u00e9n toets van 120 minuten over CT1, CT2 en CT3 samen en telt voor 100%',
+          'De cesuur van de herkansing is dezelfde als die van de eerste gelegenheid'
+        ], bladzijde: 'hoofdstuk 5' },
+
+      { titel: 'De open vragen van CT2, en waar de punten zitten',
+        tekst: 'Je krijgt vier korte academische teksten en schrijft daaruit een compleet applied research design van ongeveer 250 woorden voor een opdrachtgever. Baseer je antwoorden **alleen op de aangeleverde teksten**; alleen bij je beperkingen mag je verder redeneren.',
+        punten: [
+          'Doelstelling (5 punten) met 2 tot 3 kernacties, elk beginnend met een werkwoord (identificeren, analyseren)',
+          'E\u00e9n hoofdvraag (7 punten) van 15 tot 30 woorden, aansluitend op opdrachtgever \u00e9n doelstelling',
+          'Twee deelvragen (7 punten) die samen de hoofdvraag helpen beantwoorden',
+          'Twee beperkingen (6 punten): benoemen levert 1 punt per stuk op, de onderbouwing van de impact 2 punten per stuk',
+          'De SSMS-norm voor elke vraag: toegepast, gefocust, relevant, helder, haalbaar, complex genoeg, open, neutraal geformuleerd en ethisch'
+        ], bladzijde: 'appendix 5' },
+
+      { titel: 'Weekprogramma',
+        tekst: 'Elke ronde heeft dezelfde vorm: college, workshop, quiz. Je gaat alleen naar **je eigen ingedeelde workshopslot**, want je werkt in vaste groepen. Neem schrijfgerei of een laptop mee.',
+        punten: [
+          'Week 2 college 1 en week 3 workshop 1 \u00b7 intro research methods \u00b7 week 4 quiz 1',
+          'Week 5 college 2 en week 6 workshop 2 \u00b7 6W, begrippen en variabelen \u00b7 week 7 quiz 2',
+          'Herfstvakantie, daarna week 8 en 9 de resits van quiz 1 en 2 \u00b7 week 10 CT1',
+          'Week 12 college 3 en week 13 workshop 3 \u00b7 applied research design en beperkingen \u00b7 week 14 quiz 3',
+          'Week 15 CT2 \u00b7 week 17 college 4 over het hele proces \u00b7 week 18 resit quiz 3 \u00b7 week 20 CT3',
+          'Semester 2 week 5 of 6 \u00b7 herkansing'
+        ], bladzijde: 'hoofdstuk 6' },
+
+      { titel: 'Regels bij dit vak',
+        tekst: 'Aanwezigheid bij colleges en workshops is **niet verplicht maar sterk aangeraden**: wat daar behandeld wordt is precies wat de toets vraagt. Alles is fysiek op de campus; er zijn geen livestreams of opnames tenzij anders gezegd.\n\nJe wordt geacht Brightspace bij te houden voor wijzigingen in inhoud, planning en toetsing. Individuele opdrachten maak je zonder hulp van anderen of van AI-tools; dat geldt als schending van de academische integriteit, en in de toets heb je die tools sowieso niet.\n\nHeb je een aanpassing nodig vanwege een beperking, dan loopt dat via je studieloopbaanbegeleider. Zonder dat offici\u00eble traject kunnen er geen aanpassingen worden gemaakt.',
+        bladzijde: 'hoofdstuk 7' },
+
+      { titel: 'De conceptlijst: wat je uit je hoofd moet kennen',
+        tekst: 'De conceptlijst in de bijlage is de kern van de toetsstof en volgt de drie delen van het vak.',
+        punten: [
+          'Deel 1 \u00b7 informele en systematische aanpak, onderzoek, fundamenteel tegenover toegepast, probleem, doelstelling, hoofd- en deelvragen, onderzoeksethiek, data, informatie, feit, theorie, raamwerk, mening, denkfouten en cognitieve biases, kwalitatief en kwantitatief, leestechnieken, deductief en inductief, mixed- en multi-method, triangulatie, holisme',
+          'Deel 2 \u00b7 onderzoeksproject, voor- en achtergrondonderzoek, 6W, onderzoeksvoorstel, casestudy, bronnen en citeren, primair en secundair, witte en grijze literatuur, peer review',
+          'Deel 3 \u00b7 applied research design, afbakening, soorten onderzoeksvragen, beperkingen, generaliseerbaarheid, populatie en steekproef, representativiteit, onafhankelijke, afhankelijke, controle-, storende, mediërende en modererende variabelen, verbanden tussen variabelen, hypothese, betrouwbaarheid, validiteit, conceptueel raamwerk en model'
+        ], bladzijde: 'appendix 7' }
     ]
   }
+
 
 };

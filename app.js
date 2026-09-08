@@ -45,7 +45,7 @@ function handmatigeDeadlines(nu){
     var lijst = [];
     try { lijst = JSON.parse(localStorage.getItem('ssms-deadlines-' + x.vak.id) || '[]'); } catch(e){}
     lijst.forEach(function(d){
-      if (!d || !d.titel) return;
+      if (!d || !d.titel || d.af) return;
       var wanneer = d.datum ? new Date(d.datum + 'T23:59') : null;
       if (!wanneer || isNaN(wanneer)) return;
       uit.push({
@@ -204,6 +204,40 @@ function roosterVandaag(nu){
   });
 }
 
+/* Het rooster van de komende zeven dagen, gegroepeerd per dag. */
+function roosterWeek(nu){
+  nu = nu || new Date();
+  if (typeof ROOSTER_FEED === 'undefined' || !ROOSTER_FEED) return [];
+  var start = new Date(nu); start.setHours(0,0,0,0);
+  var eind = new Date(start.getTime() + 7 * 86400000);
+
+  var dagen = [];
+  ROOSTER_FEED.filter(function(e){ return e.start >= start && e.start < eind; })
+    .sort(function(a, b){ return a.start - b.start; })
+    .forEach(function(e){
+      var hit = e.vakId ? vindVak(e.vakId) : null;
+      if (e.vakId && !hit) return;                       // verborgen vak (bv. Study Skills)
+      var stempel = e.start.toDateString();
+      var d = dagen.filter(function(x){ return x.stempel === stempel; })[0];
+      if (!d) {
+        d = { stempel: stempel, datum: e.start,
+              naam: e.start.toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'short' }),
+              vandaag: e.start.toDateString() === nu.toDateString(),
+              items: [] };
+        dagen.push(d);
+      }
+      d.items.push({
+        van: klok(e.start), tot: klok(e.eind), plek: e.plek,
+        soort: (typeof soortUit === 'function') ? soortUit(e.titel) : 'les',
+        vak: hit ? hit.vak : null,
+        naam: hit ? hit.vak.naam : e.titel,
+        bezig: nu >= e.start && nu < e.eind,
+        voorbij: nu >= e.eind
+      });
+    });
+  return dagen;
+}
+
 /* Welk vak staat groot in beeld?
    1. het college dat nu bezig is
    2. anders het eerstvolgende college van vandaag
@@ -334,20 +368,26 @@ function render(){
     document.getElementById('totRing').setAttribute('stroke-dashoffset', RING * (1 - totPct / 100));
   }, 120);
 
-  document.getElementById('roosterTelling').textContent = dag.length
-    ? dag.length + (dag.length === 1 ? ' moment' : ' momenten') : 'vrij';
-  document.getElementById('rooster').innerHTML = dag.length
-    ? dag.map(function(r){
-        var klasse = 'regel' + (r.bezig ? ' bezig' : '') + (r.voorbij ? ' voorbij' : '');
-        return '<div class="' + klasse + '"' + (r.vak ? ' data-vak="' + esc(r.vak.id) + '"' : '') + '>' +
-          '<span class="tijd">' + esc(r.van) + '</span><span class="titel">' + esc(r.naam) +
-          ' · ' + esc(r.soort) + '</span><span class="plek">' + esc(r.plek) + '</span></div>';
+  var week = roosterWeek(nu);
+  var weekAantal = week.reduce(function(n, d){ return n + d.items.length; }, 0);
+  document.getElementById('roosterTelling').textContent = weekAantal
+    ? weekAantal + (weekAantal === 1 ? ' moment' : ' momenten') : 'vrije week';
+  document.getElementById('rooster').innerHTML = weekAantal
+    ? week.map(function(d){
+        return '<div class="roosterdag' + (d.vandaag ? ' vandaag' : '') + '">' +
+          '<div class="dagkop">' + esc(d.naam) + (d.vandaag ? ' <span>vandaag</span>' : '') + '</div>' +
+          d.items.map(function(r){
+            var klasse = 'regel' + (r.bezig ? ' bezig' : '') + (r.voorbij ? ' voorbij' : '');
+            return '<div class="' + klasse + '"' + (r.vak ? ' data-vak="' + esc(r.vak.id) + '"' : '') + '>' +
+              '<span class="tijd">' + esc(r.van) + '</span><span class="titel">' + esc(r.naam) +
+              ' · ' + esc(r.soort) + '</span><span class="plek">' + esc(r.plek) + '</span></div>';
+          }).join('') + '</div>';
       }).join('')
     : '<div class="regel" style="display:block;font-size:13px;line-height:1.6;color:var(--muted);">' +
       (!gekoppeld
-        ? 'Nog niet gekoppeld. <button class="tekstknop" id="koppelNu">Plak je roosterlink</button> — daarna staat je dag hier.'
+        ? 'Nog niet gekoppeld. <button class="tekstknop" id="koppelNu">Plak je roosterlink</button> — daarna staat je week hier.'
         : bezigMetOphalen ? 'Je rooster wordt opgehaald…'
-        : 'Geen college vandaag — goede dag om achterstand weg te werken.') + '</div>';
+        : 'Geen colleges deze week — goede week om achterstand weg te werken.') + '</div>';
   var statusEl = document.getElementById('roosterStatus');
   if (statusEl && typeof statusTekst === 'function') statusEl.textContent = statusTekst();
 
