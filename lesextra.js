@@ -1,10 +1,10 @@
 /* ============================================================
    lesextra.js — aanvullingen op de lespagina
 
-   1. De bovenbalk is inklapbaar (knop naast het menu-icoon).
-   2. Subnavigatie als keuzemenu: blijft in beeld, ook bij een
-      lang tabblad, en springt naar het gekozen subkopje.
-   3. Subkopjes (1.1, 1.2, ...) zijn afvinkbaar, met de titel erbij.
+   1. De bovenbalk is inklapbaar (pijl-knop naast het menu-icoon).
+   2. Subkopjes (1.1, 1.2, ...) worden echte tabbladen: je ziet één
+      onderdeel tegelijk, met een tabbalk die in beeld blijft.
+   3. Elk subonderdeel is afvinkbaar, met nummer en titel erbij.
 
    Laden na les.js.
    ============================================================ */
@@ -28,7 +28,7 @@
 
     function toon(){
       top.classList.toggle('ingeklapt', ingeklapt);
-      knop.textContent = ingeklapt ? '⌄' : '⌃';
+      knop.textContent = ingeklapt ? '\u2304' : '\u2303';
       knop.title = ingeklapt ? 'Balk uitklappen' : 'Balk inklappen';
     }
     knop.addEventListener('click', function(){
@@ -40,109 +40,111 @@
   }
 
   /* ---------- hulpjes ---------- */
-  function sleutelVanPagina(){
+  function paginaSleutel(){
     var p = new URLSearchParams(window.location.search);
     return 'ssms-sub-' + (p.get('vak') || '') + '-' + (p.get('les') || '');
   }
   function vinkWaar(k){ try { return localStorage.getItem(k) === 'af'; } catch(e){ return false; } }
   function vinkZet(k, v){ try { localStorage.setItem(k, v ? 'af' : 'open'); } catch(e){} }
 
-  /* ---------- 2 en 3. Subkopjes en subnavigatie ---------- */
-  function bouwSubkoppen(inhoud){
-    var oude = document.getElementById('subnavBalk');
+  /* ---------- 2 en 3. Subtabbladen ---------- */
+  function bouwSubtabs(inhoud){
+    var oude = document.getElementById('subtabBalk');
     if (oude) oude.remove();
 
-    var basis = sleutelVanPagina();
-    var items = [];
+    var basis = paginaSleutel();
+    var koppen = [];
 
     inhoud.querySelectorAll('h2').forEach(function(h){
-      var tekst = h.textContent.trim();
-      var m = tekst.match(/^(\d+\.\d+)\s*(.*)$/);
-      if (!m) return;
-
-      var nummer = m[1];
-      var id = 'sub-' + nummer.replace('.', '-');
-      var sectie = h.closest('.blok') || h.parentElement;
-      if (sectie) sectie.id = id;
-
-      var sleutel = basis + '-' + nummer;
-      var af = vinkWaar(sleutel);
-
-      // kop omzetten naar een afvinkbare regel
-      var wrap = document.createElement('div');
-      wrap.className = 'subkop' + (af ? ' af' : '');
-      var knop = document.createElement('button');
-      knop.type = 'button';
-      knop.className = 'subvink';
-      knop.setAttribute('aria-label', 'Onderdeel ' + nummer + ' afvinken');
-      knop.textContent = af ? '✓' : '';
-      knop.addEventListener('click', function(){
-        var nu = !vinkWaar(sleutel);
-        vinkZet(sleutel, nu);
-        knop.textContent = nu ? '✓' : '';
-        wrap.classList.toggle('af', nu);
-        werkTellingBij();
-      });
-      h.parentNode.insertBefore(wrap, h);
-      wrap.appendChild(knop);
-      wrap.appendChild(h);
-
-      items.push({ id: id, nummer: nummer, titel: m[2] || tekst, sleutel: sleutel });
+      var m = h.textContent.trim().match(/^(\d+\.\d+)\s*(.*)$/);
+      if (m) koppen.push({ h: h, nummer: m[1], titel: m[2] || h.textContent.trim() });
     });
 
-    if (items.length < 2) return;
+    if (koppen.length < 2) return;
 
-    // keuzemenu in plaats van pilletjes: blijft bruikbaar bij lange tabbladen
+    var blokken = Array.prototype.slice.call(inhoud.children);
+    var groepen = [];
+    var huidige = null;
+
+    blokken.forEach(function(blok){
+      var kop = koppen.filter(function(k){ return blok.contains(k.h); })[0];
+      if (kop) {
+        huidige = { nummer: kop.nummer, titel: kop.titel, elementen: [] };
+        groepen.push(huidige);
+      }
+      if (huidige) huidige.elementen.push(blok);
+    });
+
+    if (groepen.length < 2) return;
+
+    groepen.forEach(function(g, i){
+      var vak = document.createElement('div');
+      vak.className = 'subvak';
+      vak.setAttribute('data-subvak', i);
+      g.elementen[0].parentNode.insertBefore(vak, g.elementen[0]);
+      g.elementen.forEach(function(el){ vak.appendChild(el); });
+      g.container = vak;
+      g.sleutel = basis + '-' + g.nummer;
+    });
+
     var balk = document.createElement('nav');
-    balk.className = 'subnav';
-    balk.id = 'subnavBalk';
-    balk.setAttribute('aria-label', 'Ga naar een onderdeel');
-
-    var select = document.createElement('select');
-    select.id = 'subnavKeuze';
-    select.innerHTML = '<option value="">Ga naar een onderdeel…</option>' +
-      items.map(function(it){
-        return '<option value="' + it.id + '">' + it.nummer + '  ' + it.titel + '</option>';
-      }).join('');
-
-    var telling = document.createElement('span');
-    telling.className = 'subnav-telling';
-    telling.id = 'subnavTelling';
-
-    balk.appendChild(select);
-    balk.appendChild(telling);
+    balk.className = 'subtabs';
+    balk.id = 'subtabBalk';
+    balk.setAttribute('aria-label', 'Onderdelen van dit tabblad');
+    balk.innerHTML = groepen.map(function(g, i){
+      return '<button type="button" class="subtab" data-subtab="' + i + '">' +
+        '<span class="subtab-nr">' + g.nummer + '</span>' +
+        '<span class="subtab-titel">' + g.titel + '</span>' +
+        '<span class="subtab-vink"></span></button>';
+    }).join('');
     inhoud.parentNode.insertBefore(balk, inhoud);
 
-    select.addEventListener('change', function(){
-      var doel = document.getElementById(select.value);
-      if (doel) {
-        var top = doel.getBoundingClientRect().top + window.scrollY - 130;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
+    groepen.forEach(function(g){
+      var rij = document.createElement('div');
+      rij.className = 'subkop-rij';
+      rij.innerHTML = '<button type="button" class="subvink" aria-label="Onderdeel afvinken"></button>' +
+        '<span class="subkop-label">' + g.nummer + ' \u00b7 ' + g.titel + '</span>';
+      g.container.insertBefore(rij, g.container.firstChild);
+      g.vinkKnop = rij.querySelector('.subvink');
+      g.vinkRij = rij;
+
+      g.vinkKnop.addEventListener('click', function(){
+        vinkZet(g.sleutel, !vinkWaar(g.sleutel));
+        werkBij();
+      });
     });
 
-    function werkTellingBij(){
-      var af = items.filter(function(it){ return vinkWaar(it.sleutel); }).length;
-      telling.textContent = af + ' / ' + items.length;
-    }
-    werkTellingBij();
+    var actief = 0;
+    try {
+      var bewaard = sessionStorage.getItem(basis + '-subtab');
+      if (bewaard !== null && +bewaard < groepen.length) actief = +bewaard;
+    } catch(e){}
 
-    // laat het menu meelopen met waar je bent
-    window.addEventListener('scroll', function(){
-      clearTimeout(window._subnavTimer);
-      window._subnavTimer = setTimeout(function(){
-        var beste = '', besteAfstand = Infinity;
-        items.forEach(function(it){
-          var el = document.getElementById(it.id);
-          if (!el) return;
-          var t = el.getBoundingClientRect().top;
-          if (t < 200 && Math.abs(t - 130) < besteAfstand) {
-            besteAfstand = Math.abs(t - 130); beste = it.id;
-          }
-        });
-        if (beste && select.value !== beste) select.value = beste;
-      }, 80);
-    }, { passive: true });
+    function werkBij(){
+      groepen.forEach(function(g, i){
+        var af = vinkWaar(g.sleutel);
+        g.container.hidden = (i !== actief);
+        g.vinkKnop.textContent = af ? '\u2713' : '';
+        g.vinkRij.classList.toggle('af', af);
+
+        var tab = balk.querySelector('[data-subtab="' + i + '"]');
+        tab.classList.toggle('nu', i === actief);
+        tab.classList.toggle('af', af);
+        tab.querySelector('.subtab-vink').textContent = af ? '\u2713' : '';
+      });
+    }
+
+    balk.addEventListener('click', function(e){
+      var tab = e.target.closest('[data-subtab]');
+      if (!tab) return;
+      actief = +tab.getAttribute('data-subtab');
+      try { sessionStorage.setItem(basis + '-subtab', String(actief)); } catch(err){}
+      werkBij();
+      var top = balk.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+
+    werkBij();
   }
 
   /* ---------- opstarten ---------- */
@@ -154,8 +156,8 @@
   var timer;
   new MutationObserver(function(){
     clearTimeout(timer);
-    timer = setTimeout(function(){ bouwSubkoppen(inhoud); }, 30);
+    timer = setTimeout(function(){ bouwSubtabs(inhoud); }, 30);
   }).observe(inhoud, { childList: true });
 
-  bouwSubkoppen(inhoud);
+  bouwSubtabs(inhoud);
 })();

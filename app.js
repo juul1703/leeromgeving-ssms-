@@ -54,6 +54,42 @@ function deadlines(){
 }
 
 /* 'Laatst bekeken' vult zich met de aantekeningen die je op lespagina's schrijft. */
+/* Laatst geopende hoofdstukken (wordt gevuld vanuit les.js) */
+function onthoudBezoek(vakId, lesId){
+  try {
+    var lijst = JSON.parse(localStorage.getItem('ssms-bezocht') || '[]');
+    lijst = lijst.filter(function(x){ return !(x.vakId === vakId && x.lesId === lesId); });
+    lijst.unshift({ vakId: vakId, lesId: lesId, tijd: Date.now() });
+    localStorage.setItem('ssms-bezocht', JSON.stringify(lijst.slice(0, 12)));
+  } catch(e){}
+}
+
+function laatstBezocht(max){
+  var uit = [];
+  try {
+    var lijst = JSON.parse(localStorage.getItem('ssms-bezocht') || '[]');
+    lijst.forEach(function(b){
+      var hit = vindVak(b.vakId);
+      if (!hit) return;
+      var les = hit.vak.lessen.filter(function(l){ return l.id === b.lesId; })[0];
+      if (!les) return;
+      uit.push({ vak: hit.vak.naam, vakId: hit.vak.id, lesId: les.id,
+                 titel: les.titel, wanneer: geledenTekst(b.tijd) });
+    });
+  } catch(e){}
+  return uit.slice(0, max || 3);
+}
+
+function geledenTekst(tijd){
+  var min = Math.round((Date.now() - tijd) / 60000);
+  if (min < 1) return 'zojuist';
+  if (min < 60) return min + ' min geleden';
+  var uur = Math.round(min / 60);
+  if (uur < 24) return uur + ' uur geleden';
+  var dag = Math.round(uur / 24);
+  return dag === 1 ? 'gisteren' : dag + ' dagen geleden';
+}
+
 function laatsteNotities(max){
   var uit = [];
   try {
@@ -296,15 +332,16 @@ function render(){
   });
   document.getElementById('semesters').innerHTML = html;
 
-  var notities = laatsteNotities(3);
-  document.getElementById('notities').innerHTML = notities.length
-    ? notities.map(function(n){
+  var bezocht = laatstBezocht(3);
+  document.getElementById('notities').innerHTML = bezocht.length
+    ? bezocht.map(function(n){
         return '<a class="notitie" href="les.html?vak=' + encodeURIComponent(n.vakId) +
           '&les=' + encodeURIComponent(n.lesId) + '"><div class="vak">' + esc(n.vak) +
-          '</div><div class="titel">' + esc(n.titel) + '</div><div class="tekst">' + esc(n.tekst) + '</div></a>';
+          '</div><div class="titel">' + esc(n.titel) + '</div><div class="tekst">' +
+          esc(n.wanneer) + ' &middot; verder lezen &rarr;</div></a>';
       }).join('')
-    : '<div class="leegmelding" style="margin-top:0;grid-column:1/-1;"><b>Nog geen aantekeningen</b>' +
-      '<span>Open een college en schrijf er iets bij — het verschijnt hier.</span></div>';
+    : '<div class="leegmelding" style="margin-top:0;grid-column:1/-1;"><b>Nog niets geopend</b>' +
+      '<span>Open een hoofdstuk — het verschijnt hier zodat je zo verder kunt.</span></div>';
 
   var verderKnop = document.getElementById('verder');
   var roosterKnop = document.getElementById('naarRooster');
@@ -361,6 +398,16 @@ function lesUrl(vak, les){ return 'les.html?vak=' + encodeURIComponent(vak.id) +
 var huidigVak = null;
 
 function openVak(id){
+  var direct = vindVak(id);
+  if (direct) {
+    onthoudVak(direct.vak.id);
+    window.location.href = 'vak.html?vak=' + encodeURIComponent(direct.vak.id);
+    return;
+  }
+  return openVakLade(id);
+}
+
+function openVakLade(id){
   var hit = vindVak(id);
   if (!hit) return;
   huidigVak = hit;

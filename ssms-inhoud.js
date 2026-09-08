@@ -3850,6 +3850,9 @@ LESSTOF['demystifying-research-methods/ch13'] = [
 var VAK_MANUAL = {
 
   'intro-to-safety-security': {
+    // Zet de pdf in de map 'manuals' naast je andere bestanden en pas de naam hier aan.
+    pdf: 'manuals/ssms-jaar1-semester1-handleiding.pdf',
+    pdfNaam: 'Module manual Y1 Semester 1 (2026-2027)',
     intro: 'Funderingsvak dat de domeinen van safety en security introduceert, plus de stakeholderbenaderingen van de SSMS-professional.',
     regels: [
       { label: 'Code',        waarde: 'SSMS-1T1-24' },
@@ -3864,6 +3867,8 @@ var VAK_MANUAL = {
   },
 
   'demystifying-research-methods': {
+    pdf: 'manuals/ssms-jaar1-semester1-handleiding.pdf',
+    pdfNaam: 'Module manual Y1 Semester 1 (2026-2027)',
     intro: 'Eerste vak van de Research Methods-track. Je leert een eigen applied research design opzetten, met probleem, doelstelling, hoofdvraag en deelvragen.',
     regels: [
       { label: 'Code',        waarde: 'SSMS-1RM1-25' },

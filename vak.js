@@ -123,13 +123,30 @@
       el.innerHTML = '<p class="noot" style="margin:0;">Dit vak heeft nog geen hoofdstukken.</p>';
       return;
     }
-    el.innerHTML = vak.lessen.map(function(l, i){
-      var af = isAf(vak, l);
-      var uit = typeof lesUitgewerkt === 'function' ? lesUitgewerkt(vak, l) : true;
-      return '<a class="hfd-rij' + (af ? ' af' : '') + '" href="' + lesUrl(vak, l) + '">' +
-        '<span class="mini-vink">' + (af ? '✓' : (i + 1)) + '</span>' +
-        '<span>' + esc(l.titel) +
-        (uit ? '' : ' <span class="niet-uit">nog leeg</span>') + '</span></a>';
+    var groepen = [];
+    vak.lessen.forEach(function(l, i){
+      var deel = l.titel.split(' \u00b7 ');
+      var bron = deel.length > 1 ? deel[0] : 'Hoofdstukken';
+      var kort = deel.length > 1 ? deel.slice(1).join(' \u00b7 ') : l.titel;
+      var g = groepen.filter(function(x){ return x.bron === bron; })[0];
+      if (!g) { g = { bron: bron, items: [] }; groepen.push(g); }
+      g.items.push({ les: l, nr: i + 1, kort: kort });
+    });
+
+    el.innerHTML = groepen.map(function(g, gi){
+      var afg = g.items.filter(function(x){ return isAf(vak, x.les); }).length;
+      var rijen = g.items.map(function(x){
+        var isafg = isAf(vak, x.les);
+        var uit = typeof lesUitgewerkt === 'function' ? lesUitgewerkt(vak, x.les) : true;
+        return '<a class="hfd-rij' + (isafg ? ' af' : '') + '" href="' + lesUrl(vak, x.les) + '">' +
+          '<span class="mini-vink">' + (isafg ? '\u2713' : x.nr) + '</span>' +
+          '<span>' + esc(x.kort) +
+          (uit ? '' : ' <span class="niet-uit">nog leeg</span>') + '</span></a>';
+      }).join('');
+      return '<details class="bron-groep"' + (gi === 0 ? ' open' : '') + '>' +
+        '<summary><span class="bron-naam">' + esc(g.bron) + '</span>' +
+        '<span class="bron-telling">' + afg + ' / ' + g.items.length + '</span></summary>' +
+        '<div class="bron-inhoud">' + rijen + '</div></details>';
     }).join('');
 
     var af = vak.lessen.filter(function(l){ return isAf(vak, l); }).length;

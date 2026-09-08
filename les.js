@@ -34,6 +34,7 @@
     les = vak.lessen[index];
     if (!les) return wachtOfMeld();
     onthoudVak(vak.id);
+    if (typeof onthoudBezoek === 'function') onthoudBezoek(vak.id, les.id);
   }
   opgelost = true;
 
