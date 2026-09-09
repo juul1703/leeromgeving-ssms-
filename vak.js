@@ -229,7 +229,9 @@
         return '<a class="hfd-rij' + (isafg ? ' af' : '') + '" href="' + lesUrl(vak, x.les) + '">' +
           '<span class="mini-vink">' + (isafg ? '\u2713' : x.nr) + '</span>' +
           '<span>' + esc(x.kort) +
-          (uit ? '' : ' <span class="niet-uit">nog leeg</span>') + '</span></a>';
+          (uit ? '' : ' <span class="niet-uit">nog leeg</span>') +
+          (x.les.voorbereiding ? '<span class="hfd-voor">' + esc(x.les.voorbereiding) + '</span>' : '') +
+          '</span></a>';
       }).join('');
       return '<details class="bron-groep"' + (gi === 0 ? ' open' : '') + '>' +
         '<summary><span class="bron-naam">' + esc(g.bron) + '</span>' +

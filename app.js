@@ -101,7 +101,7 @@ function voorbereidingDeadlines(nu){
       if (!klaar) {
         uit.push({
           titel: plan.titel, vak: hit.vak.naam, vakId: vakId, soort: 'voorbereiding',
-          onderwerp: plan.onderwerp || '', sessie: i + 1,
+          onderwerp: plan.onderwerp || '', sessie: i + 1, leeg: !!plan.leeg,
           datum: sessies[i].start,
           dagen: Math.ceil((sessies[i].start - nu) / 86400000)
         });
@@ -127,9 +127,15 @@ function deadlines(){
     };
   }).filter(function(d){ return d.dagen >= 0; });
 
-  uit = uit.concat(handmatigeDeadlines(nu)).concat(voorbereidingDeadlines(nu));
+  /* Jouw eigen deadlines en je toetsen gaan altijd voor. De voorbereiding
+     per vak is nuttig maar het zijn er zes, en die verdrongen anders alles
+     wat je zelf had toegevoegd uit het lijstje van het homescreen. */
+  var voorbereiding = voorbereidingDeadlines(nu)
+    .filter(function(d){ return !d.leeg; }).slice(0, 2);
+  uit = uit.concat(handmatigeDeadlines(nu));
   if (typeof toetsenUitRooster === 'function') uit = uit.concat(toetsenUitRooster(nu));
-  return uit.sort(function(x, y){ return x.dagen - y.dagen; }).slice(0, 6);
+  uit = uit.sort(function(x, y){ return x.dagen - y.dagen; }).slice(0, 6);
+  return uit.concat(voorbereiding).sort(function(x, y){ return x.dagen - y.dagen; });
 }
 
 /* 'Laatst bekeken' vult zich met de aantekeningen die je op lespagina's schrijft. */

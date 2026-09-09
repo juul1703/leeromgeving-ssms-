@@ -693,3 +693,6 @@ a.notitie:hover .titel{color:var(--accent);}
 .voorbereiding-onderwerp{font-size:14px;color:var(--ink);margin-top:6px;font-weight:500;}
 .voorbereiding-taak{font-size:13.5px;color:var(--ink2);margin-top:4px;}
 .voorbereiding-taak .dl-soort{margin-left:8px;}
+
+/* Voorbereidingsregel onder de titel van een college op de vakpagina */
+.hfd-voor{display:block;font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}

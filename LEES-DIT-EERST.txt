@@ -1,4 +1,4 @@
-SSMS-leeromgeving — update (service worker v17)
+SSMS-leeromgeving — update (service worker v19)
 
 Vervang deze vijf bestanden in de root van je repo:
 
@@ -10,37 +10,39 @@ Vervang deze vijf bestanden in de root van je repo:
 
 Wat er in deze update zit
 -------------------------
-1. Bug: 74 keer \\u00b7 en 132 keer \\n stonden dubbel geescaped in
-   ssms-inhoud.js. Daardoor stond er letterlijke tekst in plaats van
-   een punt of een witregel, en klopte de groepering op de vakpagina
-   niet. Allemaal omgezet naar echte tekens.
+1. De omhulsels "Les · vr 11 sep" die rooster.js zelf maakte zijn
+   overal weg. Elk vak met een programma in de Year 1 manual krijgt
+   in plaats daarvan een onderdeel per sessie:
 
-2. Twee oude registratieblokken voor Intro to Safety & Security die
-   elkaar overschreven zijn verwijderd. De registratie staat nu op
-   een plek: onderaan ssms-inhoud.js bij COLLEGES en BOEK.
+     Sessie 2 · Safety- en securityinterventies
+     Bieder H1 en H2 gelezen
 
-3. Groepskopjes op de vakpagina komen nu uit het veld 'groep' van
-   een les, niet meer uit de lestitel. Ontbreekt dat veld, dan heet
-   de groep 'Onderdelen'.
+   De datum en de zaal uit je rooster blijven behouden: sessie 1
+   krijgt je eerste college van dat vak, sessie 2 het tweede, enzovoort.
 
-4. De knop 'Open de course manual (pdf)' was wit op wit en dus
-   onzichtbaar. Opgelost in styles.css.
+2. Je eigen deadlines waren van het homescreen verdwenen doordat de
+   zes nieuwe voorbereidingsregels het lijstje van zes vulden. Jouw
+   deadlines en toetsen gaan nu altijd voor; er komen hoogstens twee
+   voorbereidingsregels bij.
 
-5. VAK_VOORBEREIDING dekt nu alle zes vakken, per sessie met het
-   onderwerp uit de module manual en de voorbereiding. Op de
-   vakpagina staat dat bovenaan het deadlineblok als 'Volgende les'.
-   In app.js is alleen het teruggegeven object uitgebreid met
-   'onderwerp' en 'sessie'. De sessieberekening zelf is onaangeroerd.
+3. Regels als "Geen leeswerk vooraf" staan niet meer als deadline op
+   je homescreen, alleen nog op de vakpagina onder "Volgende les".
 
-6. Nieuw: Society & Politics college 1, uit je eigen Lecture 1-slides.
+Hoe je dit aanpast
+------------------
+Het programma staat op een plek: VAK_VOORBEREIDING in ssms-inhoud.js.
+Pas je een sessie daar aan, dan verandert zowel het onderdeel op de
+vakpagina als de voorbereiding op je homescreen mee.
 
-7. Nieuw: course-manualblokken voor Governance & Policy, Society &
-   Politics en Fundamentals of Academic Writing, uit de Y1-manual.
+Lesstof schrijf je onder LESSTOF['<vakId>/college-N']. Zodra die
+bestaat verdwijnt het label "nog leeg".
+
+Handmatig gezette onderdelen blijven staan: de elf boekhoofdstukken
+van Intro staan onder "Boek", de opdrachten van Professional Skills
+onder "Opdrachten", enzovoort.
 
 Nog te doen door jou
 --------------------
 Zet de module manual in de map 'manuals' onder precies deze naam:
 
   Y1_Semester_1_Manual_SSMS_20262027.pdf
-
-Dan werkt de pdf-knop bij Intro to Safety & Security.

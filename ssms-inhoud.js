@@ -3731,11 +3731,11 @@ var VAK_VOORBEREIDING = {
      leeswerk staan er ook in, zodat je altijd ziet wat eraan komt. */
 
   'intro-to-safety-security': {
-    1:  { onderwerp: 'Introductie: de opleiding en het vakgebied', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    1:  { onderwerp: 'Introductie: de opleiding en het vakgebied', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
     2:  { onderwerp: 'Safety- en securityinterventies', titel: 'Bieder H1 en H2 gelezen', lesIds: ['h1', 'h2'] },
-    3:  { onderwerp: 'Communication matters', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    3:  { onderwerp: 'Communication matters', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
     4:  { onderwerp: 'Stakeholders, actoren en cultuur', titel: 'Bieder H3 en H5 gelezen', lesIds: ['h3', 'h5'] },
-    5:  { onderwerp: 'Safety en security managen', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    5:  { onderwerp: 'Safety en security managen', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
     6:  { onderwerp: 'Resilience in safety en security', titel: 'Bieder H7 en H9 gelezen', lesIds: ['h7', 'h9'] },
     7:  { onderwerp: 'Tales from the field (alumnus)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
     8:  { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Bieder H10 gelezen · daarna de midterm', lesIds: ['h10'] },
@@ -3743,7 +3743,7 @@ var VAK_VOORBEREIDING = {
     10: { onderwerp: 'Crime, safety en security (Matczak)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
     11: { onderwerp: 'AI in security risk (Voss)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
     12: { onderwerp: 'De human security approach (De Ryck)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
-    13: { onderwerp: 'Nog te bepalen', titel: 'Onderwerp staat nog niet vast', lesIds: [] },
+    13: { onderwerp: 'Nog te bepalen', titel: 'Onderwerp staat nog niet vast', leeg: true, lesIds: [] },
     14: { onderwerp: 'Industrial safety in action (Ren)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
     15: { onderwerp: 'Applied security risk management (Ekici)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
     16: { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Daarna de eindtoets (mondeling)', lesIds: [] }
@@ -3759,12 +3759,12 @@ var VAK_VOORBEREIDING = {
     7:  { onderwerp: 'Public governance: een casestudy', titel: 'Huberts, Kaptein & De Koning (2022) lezen', lesIds: [] },
     8:  { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Daarna de midterm en de POP-week', lesIds: [] },
     9:  { onderwerp: 'Introductie besluitvorming', titel: 'Allison & Zelikow lezen, p. 1-12', lesIds: [] },
-    10: { onderwerp: 'Agendasetting', titel: 'Geen leeswerk vooraf', lesIds: [] },
-    11: { onderwerp: 'Beleidsformulering', titel: 'Geen leeswerk vooraf', lesIds: [] },
-    12: { onderwerp: 'Beleidsimplementatie 1', titel: 'Geen leeswerk vooraf', lesIds: [] },
-    13: { onderwerp: 'Beleidsimplementatie 2', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    10: { onderwerp: 'Agendasetting', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
+    11: { onderwerp: 'Beleidsformulering', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
+    12: { onderwerp: 'Beleidsimplementatie 1', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
+    13: { onderwerp: 'Beleidsimplementatie 2', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
     14: { onderwerp: 'Beleidsevaluatie', titel: 'House (p. 618-627) en Weiss (p. 47-70) lezen', lesIds: [] },
-    15: { onderwerp: 'Beleid maken in de praktijk', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    15: { onderwerp: 'Beleid maken in de praktijk', titel: 'Geen leeswerk vooraf', leeg: true, lesIds: [] },
     16: { onderwerp: 'Overzicht en tentamenvoorbereiding', titel: 'Daarna de eindtoets', lesIds: [] }
   },
 
@@ -3794,7 +3794,7 @@ var VAK_VOORBEREIDING = {
     4:  { onderwerp: 'Het probleem begrijpen 1: 6W, begrippen en variabelen', titel: 'Brightspace checken', lesIds: ['ch3', 'ch4'] },
     5:  { onderwerp: 'Het probleem begrijpen 2: workshop 6W', titel: 'Brightspace checken', lesIds: [] },
     6:  { onderwerp: 'Het probleem begrijpen 3: quiz 2', titel: 'Quiz 2 over het 6W-raamwerk · voorbereiden op CT2', lesIds: ['ch5'] },
-    7:  { onderwerp: 'Herkansing quiz 1', titel: 'Alleen als je quiz 1 niet gehaald hebt', lesIds: [] },
+    7:  { onderwerp: 'Herkansing quiz 1', titel: 'Alleen als je quiz 1 niet gehaald hebt', leeg: true, lesIds: [] },
     8:  { onderwerp: 'Herkansing quiz 2', titel: 'Alleen als je quiz 2 niet gehaald hebt · daarna CT1', lesIds: [] },
     9:  { onderwerp: 'Onderzoek plannen 1: het ARD en beperkingen', titel: 'Brightspace checken', lesIds: ['ch5'] },
     10: { onderwerp: 'Onderzoek plannen 2: workshop ARD', titel: 'Brightspace checken', lesIds: [] },
@@ -5104,4 +5104,104 @@ LESSTOF['society-politics/college-1'] = [
         tekst: 'Colleges zijn niet verplicht maar sterk aanbevolen om het vak te halen. Schrijven is een vaardigheid die je moet oefenen, en de feedback op je taken is de enige plek waar je vooraf hoort wat er nog niet goed genoeg is.' }
     ]
   };
+})();
+
+/* ============================================================
+   Collegeomhulsels per vak, afgeleid uit het programma in de
+   Year 1 Semester 1 module manual.
+
+   Elk vak krijgt onder het kopje 'Colleges' een onderdeel per
+   sessie, met het onderwerp en de voorbereiding erbij. De sessies
+   komen uit VAK_VOORBEREIDING, zodat het programma maar op een
+   plek staat.
+
+   De omhulsels die rooster.js zelf maakt ('Les · vr 11 sep') worden
+   hierdoor vervangen. De datum uit je rooster blijft wel behouden:
+   sessie 1 krijgt de datum van je eerste college van dat vak,
+   sessie 2 die van het tweede, enzovoort.
+
+   Lesstof schrijf je onder LESSTOF['<vakId>/college-N'].
+   ============================================================ */
+(function(){
+  if (typeof DATA === 'undefined' || typeof VAK_VOORBEREIDING === 'undefined') return;
+
+  var STANDAARDDUUR = 45;
+
+  /* Een vak koppelen aan zijn programma: eerst op id, en anders op naam,
+     zodat het ook werkt als je rooster net iets anders spelt. */
+  function normaliseer(s){
+    return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
+  var OP_NAAM = {
+    introtosafetysecurity: 'intro-to-safety-security',
+    introtosafetyandsecurity: 'intro-to-safety-security',
+    governancepolicy: 'governance-policy',
+    governanceandpolicy: 'governance-policy',
+    societypolitics: 'society-politics',
+    societyandpolitics: 'society-politics',
+    demystifyingresearchmethods: 'demystifying-research-methods',
+    drm: 'demystifying-research-methods',
+    fundamentalsofacademicwriting: 'fundamentals-of-academic-writing',
+    academicwriting: 'fundamentals-of-academic-writing',
+    faw: 'fundamentals-of-academic-writing',
+    professionalskills: 'professional-skills'
+  };
+
+  function programmaVan(vak){
+    if (VAK_VOORBEREIDING[vak.id]) return vak.id;
+    var viaNaam = OP_NAAM[normaliseer(vak.naam)] || OP_NAAM[normaliseer(vak.id)];
+    return viaNaam && VAK_VOORBEREIDING[viaNaam] ? viaNaam : null;
+  }
+
+  /* Een onderdeel dat rooster.js zelf heeft gemaakt: het id is een
+     datumstempel als 20260911-1030 en er hangt een datum aan. */
+  function uitRooster(les){
+    return /^\d{8}-\d{4}$/.test(les.id || '') || (!les.groep && les.datum);
+  }
+
+  function colleges(vakId, roosterLessen){
+    var plan = VAK_VOORBEREIDING[vakId];
+    var opDatum = roosterLessen.slice().sort(function(a, b){
+      return String(a.datum) < String(b.datum) ? -1 : 1;
+    });
+    return Object.keys(plan)
+      .map(function(n){ return parseInt(n, 10); })
+      .sort(function(a, b){ return a - b; })
+      .map(function(n, i){
+        var p = plan[n];
+        var uitFeed = opDatum[i];
+        return {
+          id: 'college-' + n,
+          groep: 'Colleges',
+          titel: 'Sessie ' + n + ' \u00b7 ' + (p.onderwerp || 'Nog te bepalen'),
+          voorbereiding: p.leeg ? '' : p.titel,
+          duur: (uitFeed && uitFeed.duur) || STANDAARDDUUR,
+          plek: uitFeed && uitFeed.plek,
+          datum: uitFeed && uitFeed.datum
+        };
+      });
+  }
+
+  function zet(){
+    DATA.semesters.forEach(function(sem){
+      sem.vakken.forEach(function(vak){
+        var vakId = programmaVan(vak);
+        if (!vakId) return;
+
+        var oud = vak.lessen || [];
+        var roosterLessen = oud.filter(uitRooster);
+        /* Alles behouden wat hier met de hand is gezet: boekhoofdstukken,
+           opdrachten, naslag. Weg gaan de omhulsels uit je rooster en de
+           colleges van een vorige ronde van deze functie. */
+        var eigen = oud.filter(function(l){
+          return !uitRooster(l) && l.groep !== 'Colleges' && !/^college-\d+$/.test(l.id || '');
+        });
+
+        vak.lessen = colleges(vakId, roosterLessen).concat(eigen);
+      });
+    });
+  }
+
+  zet();
+  if (typeof opFeed === 'function') opFeed(zet);
 })();
