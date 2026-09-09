@@ -1,5 +1,5 @@
 /* Simpele offline-cache. Verhoog VERSIE na elke wijziging. */
-var VERSIE = 'ssms-v16';
+var VERSIE = 'ssms-v13';
 var BESTANDEN = ['./', './index.html', './les.html', './vak.html', './styles.css', './app.js',
   './rooster.js', './les.js', './lesextra.js', './vak.js', './lesblokken.js', './lesstof.js',
   './ssms-inhoud.js', './manifest.webmanifest'];
