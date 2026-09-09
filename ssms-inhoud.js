@@ -3948,3 +3948,257 @@ var VAK_MANUAL = {
 
 
 };
+
+/* ============================================================
+   Professional Skills — de drie opdrachten als aanpakles
+   (2026-27 PS Mid-term #1, Mid-term #2, End-term)
+
+   Doel: niet de opdracht uitvoeren, maar laten zien hoe je hem
+   aanpakt. Geen kant-en-klare voorbeeldantwoorden, wel de route:
+   welke theorie waar, in welke volgorde, en waar de rubric op let.
+   ============================================================ */
+
+LESSTOF['professional-skills/opdrachten'] = [
+  {
+    id: 'analyse', titel: 'Opdracht 1 · Communicatieanalyse',
+    blokken: [
+      { type: 'uitleg', titel: 'Waar dit om gaat',
+        tekst: 'Midterm, **groepsopdracht**, pass/fail. Je analyseert de verbale en non-verbale communicatie van een politicus of erkend safety/security-professional (ook uit een internationale of humanitaire organisatie) tijdens een speech, officiële bijeenkomst of onderhandeling.\\n\\n**Duur:** maximaal 15 minuten presenteren, plus 15 minuten voor vragen en feedback. Deadline: semester 1, week 10 (9 tot 11 november 2026). Herkansing: week 17, met een **nieuwe video** van een ander evenement of andere spreker(s).' },
+
+      { type: 'tabel', titel: 'Welke theorie hoort bij welk deel van je analyse',
+        kop: ['Onderdeel', 'Theorie', 'Wat je ermee doet'],
+        rijen: [
+          ['Publiek bepalen', 'Audience profiling model (Manning & Reece)', 'Bepaal wie het publiek van de spreker is'],
+          ['Aanpassingsgedrag', 'Communication Accommodation Theory (Giles)', 'Zoek voorbeelden van convergentie, divergentie en maintenance: past de spreker zich aan het publiek aan, juist niet, of houdt hij zijn eigen stijl vast?'],
+          ['Verbaal versus non-verbaal', '7/38/55-regel (Mehrabian, via Amsel)', 'Interpreteer de verhouding tussen woorden, toon en lichaamstaal in de impact van de boodschap'],
+          ['Cultuurverschillen', 'Hofstede\\u2019s Cultural Dimensions', 'Vergelijk hoe cultuur de communicatiestijl van de spreker beïnvloedt, vooral relevant bij internationale sprekers']
+        ] },
+
+      { type: 'stappen', titel: 'Aanpak in vijf stappen',
+        items: [
+          { titel: '1. Kies een video die genoeg oplevert',
+            tekst: 'Een landleider, politicus, of hooggeplaatste vertegenwoordiger van een internationale organisatie, tijdens een publieke speech, top of onderhandeling. **De rubric eist expliciet "genoeg data"**: één of twee gebaren of een paar accessoires is niet genoeg. Kies dus een fragment van een paar minuten met zichtbare mimiek, houding én hoorbare stem, niet een korte soundbite.' },
+          { titel: '2. Kijk minstens twee keer, met een ander doel per keer',
+            tekst: 'Eerste keer: alleen kijken, algemene indruk. Tweede keer: noteer per theorie uit de tabel hierboven wat je ziet. Noteer per observatie het **tijdstip in de video**, zodat je later een screenshot of clip kunt terugvinden voor je slides.' },
+          { titel: '3. Sorteer je observaties in sterk en zwak',
+            tekst: 'Maak twee kolommen. Vraag jezelf bij elke observatie: ondersteunt dit de boodschap, of verstoort het die? Een spreker kan sterk zijn in woordkeuze maar zwak in oogcontact; benoem dat apart, niet als één oordeel over "de spreker".' },
+          { titel: '4. Vertaal observaties naar conclusies én aanbevelingen',
+            tekst: 'Dit is de stap waar groepen vaak punten laten liggen. Een observatie ("hij kijkt veel naar zijn notities") is geen conclusie. Een conclusie legt uit **wat dat betekent voor het publiek of de onderhandeling** ("dit kan overkomen als onzekerheid, wat het vertrouwen van de tegenpartij kan schaden"). De rubric vraagt expliciet om **zowel waardering voor sterke punten als kritiek op zwakke punten**; sla het eerste niet over.' },
+          { titel: '5. Bouw de presentatie in de vereiste volgorde',
+            tekst: 'Korte inleiding, de communicatieanalyse zelf, conclusie met aanbevelingen, afsluiting. Gebruik screenshots, gifs of korte fragmenten uit de video om je observaties te tonen, niet alleen te vertellen. Verdeel de spreektijd gelijk over de groep.' }
+        ] },
+
+      { type: 'waarschuwing', titel: 'Waar groepen op struikelen',
+        tekst: '**Te weinig data.** De rubric wijst dit met naam: 1 tot 2 gebaren of accessoires analyseren is onvoldoende.\\n\\n**Observaties zonder theorie.** "Hij communiceerde slecht" is geen analyse. Elke observatie moet je kunnen koppelen aan een van de vier theorieën uit de tabel.\\n\\n**Alleen kritiek, geen waardering, of andersom.** Beide moeten in je conclusie zitten.\\n\\n**Ongelijke spreektijd.** Dit is een apart rubriccriterium, dus plan het net zo bewust als de inhoud.' },
+
+      { type: 'checklist', titel: 'Kun je dit straks laten zien?',
+        tekst: 'Gebaseerd op de 17 criteria uit het beoordelingsformulier, gegroepeerd. Je slaagt bij minimaal 9 van de 17, met minstens 1 per sectie. Vink alleen af wat je groep daadwerkelijk kan laten zien.',
+        items: [
+          { doel: 'De presentatie dekt alle onderdelen van de opdracht en bespreekt zwakke én sterke aspecten grondig',
+            uitleg: 'Loop je vier theorieën uit de tabel langs: staat elke theorie zichtbaar in je slides, met minstens één voorbeeld?' },
+          { doel: 'Elke conclusie is onderbouwd met een concreet voorbeeld uit de video',
+            uitleg: 'Check per conclusie: heb ik een screenshot, tijdstip of citaat erbij staan, of beweer ik het alleen?' },
+          { doel: 'De groep kan vragen beantwoorden met uitleg, niet alleen met een kort antwoord',
+            uitleg: 'Oefen dit vooraf: laat iemand buiten je groep een lastige vraag stellen over je zwakste observatie.' },
+          { doel: 'De presentatie is helder gestructureerd en de tijd is gelijk verdeeld',
+            uitleg: 'Zet een klok tijdens het oefenen. Verdeel niet alleen de tijd maar ook de onderdelen vooraf op naam.' },
+          { doel: 'Jullie houden oogcontact, variëren in volume en tempo, en gebruiken geen stopwoorden',
+            uitleg: 'Neem een oefenronde op en kijk terug; dit hoor je zelf niet altijd tijdens het presenteren.' },
+          { doel: 'De slides zijn consistent, leesbaar en ondersteunen het verhaal in plaats van het te herhalen',
+            uitleg: 'Test: zou iemand die alleen de slides ziet, zonder jullie stem, de kern nog snappen?' },
+          { doel: 'De reflectie op teamwork benoemt concrete verbeterpunten, niet alleen "het ging goed"',
+            uitleg: 'Bespreek dit als groep vóór de presentatie, niet pas als afsluitende zin die je er snel bij verzint.' }
+        ] }
+    ]
+  },
+
+  {
+    id: 'cv', titel: 'Opdracht 2 · Cv en motivatiebrief',
+    blokken: [
+      { type: 'uitleg', titel: 'Waar dit om gaat',
+        tekst: 'Midterm, **individuele opdracht**, pass/fail bij minimaal 7 van de 10 criteria. Je zoekt een echte vacature in het safety- of securityveld en schrijft daar een cv en motivatiebrief voor.\\n\\n**Deadline:** donderdag 12 november, vóór 23:59. Herkansing: maandag 11 januari 2027, vóór 23:59, met een **nieuwe vacature**.' },
+
+      { type: 'tabel', titel: 'Welke theorie hoort bij welk deel',
+        kop: ['Onderdeel', 'Theorie', 'Wat je ermee doet'],
+        rijen: [
+          ['Jezelf presenteren', 'Audience profiling model (Manning & Reece)', 'Bepaal wie je lezer is: de recruiter, de hiring manager, en wat die wil zien'],
+          ['Aansluiten op de werkgever', 'Communication Accommodation Theory (Giles)', 'Stem je toon en woordkeuze af op de communicatiestijl van de organisatie']
+        ] },
+
+      { type: 'stappen', titel: 'Aanpak in zes stappen',
+        items: [
+          { titel: '1. Vind een écht bestaande vacature',
+            tekst: 'In het safety- of securityveld, iets waar je tijdens of na je opleiding op zou kunnen solliciteren. Bewaar de volledige tekst; je moet die straks als platte tekst inleveren, geen weblink.' },
+          { titel: '2. Analyseer de functie-eisen',
+            tekst: 'Maak een lijstje van gevraagde kwalificaties en competenties. Dit lijstje gebruik je later om te checken of je cv ze allemaal raakt.' },
+          { titel: '3. Onderzoek de organisatiecultuur',
+            tekst: 'Bekijk de website, sociale media en advertenties van de werkgever. Is de toon formeel of informeel? Zakelijk of missiegedreven? Dit bepaalt de toon van je motivatiebrief, dus doe dit vóórdat je gaat schrijven, niet achteraf.' },
+          { titel: '4. Bouw je cv rond de functie-eisen',
+            tekst: 'Niet je hele geschiedenis, maar wat aansluit op stap 2. Gebruik waar mogelijk **kwantificeerbare resultaten**: cijfers, percentages, taalniveaus als A1/B2 of basic/fluent. Eén A4, met een sectie relevante vaardigheden (technisch én soft skills) in de taal van het vakgebied.' },
+          { titel: '5. Schrijf de motivatiebrief in drie delen',
+            tekst: 'Pakkende opening die je interesse in déze rol en dít bedrijf toont, met de bedrijfsnaam erin. Kern met concrete voorbeelden die aansluiten op de functie-eisen. Afsluiting die je geschiktheid samenvat, enthousiasme uitspreekt en een call to action bevat. 350 tot 400 woorden, niet meer, niet minder.' },
+          { titel: '6. Controleer tegen het inleverprotocol',
+            tekst: 'Dit is losstaand van de inhoud, maar een gemist vinkje bij het protocol betekent automatisch afwijzing, ongeacht hoe goed je cv is.' }
+        ] },
+
+      { type: 'waarschuwing', titel: 'Het inleverprotocol is hard, niet een suggestie',
+        tekst: 'Eén pdf-bestand met vacaturetekst, cv en motivatiebrief samengevoegd, allemaal in het Engels. Bestandsnaam: je naam plus de functietitel, bijvoorbeeld "T. Smith_junior consultant". Uploaden in de map Submission Point op Brightspace.\\n\\nEen **niet-aangevinkt vakje bij het protocol** in het beoordelingsformulier betekent dat je inzending wordt afgewezen, nog vóórdat er naar de inhoud wordt gekeken. Check dit dus als allerlaatste stap, apart van je inhoudelijke check.' },
+
+      { type: 'checklist', titel: 'Kun je dit straks laten zien?',
+        tekst: 'Gebaseerd op de 10 beoordelingscriteria. Je slaagt bij minimaal 7 van de 10.',
+        items: [
+          { doel: 'Mijn cv laat zien hoe mijn vaardigheden en ervaring aansluiten op déze specifieke vacature',
+            uitleg: 'Leg je lijstje uit stap 2 naast je cv. Staat elk gevraagd punt er expliciet in, of moet de lezer het zelf bedenken?' },
+          { doel: 'Mijn cv is overzichtelijk met kopjes en bullets, en de belangrijkste dingen springen eruit',
+            uitleg: 'Laat iemand anders 10 seconden naar je cv kijken en vraag wat ze zich herinneren.' },
+          { doel: 'Mijn cv bevat concrete, meetbare resultaten in plaats van alleen taken',
+            uitleg: 'Herschrijf elke taakomschrijving als een resultaat: niet "hielp bij X" maar "droeg bij aan X met resultaat Y".' },
+          { doel: 'Mijn cv en brief zijn foutloos in spelling, opmaak en lettertype, en gebruiken bij elkaar passende templates',
+            uitleg: 'Lees je brief hardop voor; foute zinsconstructies hoor je eerder dan je ze ziet.' },
+          { doel: 'Mijn brief is echt geschreven voor déze organisatie, met de bedrijfsnaam en een verwijzing naar de vacaturetekst',
+            uitleg: 'Zou deze brief ook passen bij een andere vacature? Zo ja, is hij nog niet specifiek genoeg.' },
+          { doel: 'Mijn brief heeft een duidelijke opbouw: inleiding, kern, conclusie met call to action',
+            uitleg: 'Streep elke alinea aan met welk van de drie doelen hij dient; een alinea zonder duidelijk doel schrap je.' },
+          { doel: 'De toon van mijn brief past bij de organisatiecultuur die ik heb onderzocht',
+            uitleg: 'Vergelijk je eigen woordkeuze met die op de website van het bedrijf: formeel tegenover informeel, zakelijk tegenover missiegedreven.' }
+        ] }
+    ]
+  },
+
+  {
+    id: 'eindproject', titel: 'Eindopdracht · Safe and sound for fun',
+    blokken: [
+      { type: 'uitleg', titel: 'Waar dit om gaat',
+        tekst: 'Eindtoets, **groepsopdracht**, cijfer 1-10 via gewogen criteria. Je bent ingehuurd door een organisatie (pretpark, dierentuin, safaripark, circus of casino, zelf te kiezen) om de belangrijkste risico\\u2019s te onderzoeken en veiligheidsmaatregelen voor personeel en bezoekers voor te stellen.\\n\\n**Publiek:** het management en de securityafdeling van de organisatie. **Duur:** maximaal 25 minuten, plus 15 minuten voor feedback. Deadline: semester 1, week 20 (1 tot 3 februari 2027). Herkansing: semester 2, week 4, met een **ander object**.' },
+
+      { type: 'tabel', titel: 'Welke theorie hoort bij welk deel',
+        kop: ['Onderdeel', 'Theorie', 'Wat je ermee doet'],
+        rijen: [
+          ['Communicatie van de maatregelen', 'McLuhan, "The medium is the message"', 'Kies communicatiekanalen die passen bij wat je communiceert, niet zomaar vijf kanalen op een rijtje'],
+          ['Risico-analyse', 'Risk Breakdown Structure', 'Structureer de risico\\u2019s van je gekozen locatie hiërarchisch, van hoofdcategorieën naar specifieke risico\\u2019s'],
+          ['Klantrelatie en advies', 'Peter Block, consulting model (of vergelijkbaar)', 'Positioneer jezelf als adviseur van het park, niet als buitenstaander die alleen kritiek levert'],
+          ['Leiderschap (indien van toepassing)', 'Full Range Leadership Model (Avolio & Bass, of vergelijkbaar)', 'Als je een groepsleider had, benoem welke leiderschapsstijl je hebt ervaren']
+        ] },
+
+      { type: 'stappen', titel: 'Aanpak in zeven stappen',
+        items: [
+          { titel: '1. Kies je object en verdeel rollen',
+            tekst: 'Pretpark, aquapark, safaripark, dierentuin, circus, casino, of een vergelijkbare attractie. Verdeel taken binnen de groep zodat iedereen een duidelijk onderdeel heeft.' },
+          { titel: '2. Verzamel data over risico\\u2019s',
+            tekst: 'Via media-berichten en statistieken over incidenten bij vergelijkbare locaties, of door zelf een bezoek te brengen en observaties te verzamelen. De bronnenlijst in de manual is een startpunt, geen verplichte literatuur.' },
+          { titel: '3. Analyseer met een Risk Breakdown Structure',
+            tekst: 'Zet de verzamelde data om in een hiërarchische structuur: hoofdcategorieën van risico (bijvoorbeeld attractieveiligheid, publieksstromen, dierenwelzijn bij een dierentuin) met daaronder specifieke risico\\u2019s per categorie.' },
+          { titel: '4. Formuleer maatregelen',
+            tekst: 'Voor zowel personeel als bezoekers. Staat er al iets over veiligheid op de officiële website van je gekozen locatie, bouw daar dan op voort met iets nieuws of een verbetering, in plaats van te herhalen wat er al staat.' },
+          { titel: '5. Kies minstens vijf communicatiekanalen',
+            tekst: 'Waarmee je die maatregelen effectief overbrengt op personeel én bezoekers. Denk aan het verschil tussen een boodschap voor personeel (interne kanalen) en voor bezoekers (publieke kanalen), en waarom het ene kanaal beter past dan het andere.' },
+          { titel: '6. Reflecteer op je eigen proces',
+            tekst: 'Drie concrete verbeterpunten en drie dingen die goed gingen, over zowel de uitvoering van het project als het teamwork zelf.' },
+          { titel: '7. Bouw de presentatie in de vaste, verplichte volgorde',
+            tekst: 'Introductie van de groep en taakverdeling, korte introductie van de organisatie, data en voorbeelden van incidenten, de risicoanalyse, de voorgestelde maatregelen, de communicatiekanalen, en de reflectie op teamwork. Deze volgorde staat vast in de opdracht; sla geen onderdeel over.' }
+        ] },
+
+      { type: 'waarschuwing', titel: 'Waar groepen op struikelen',
+        tekst: 'De **presentatiestructuur is verplicht**, niet een suggestie: alle zeven onderdelen moeten erin, in die volgorde. Ontbreekt er één, dan mis je punten op "Content / Organisatie", het zwaarst wegende criterium (40%).\\n\\nDe **bronnenlijst in de manual is optioneel**, geen verplichte literatuur; gebruik hem alleen als startpunt voor je eigen onderzoek.\\n\\nVeiligheidsmaatregelen die je alleen **herhaalt** van de officiële website leveren geen punten op; het moet iets nieuws zijn of een verbetering.' },
+
+      { type: 'tabel', titel: 'Waar de punten zitten',
+        kop: ['Criterium', 'Weging', 'Kernvraag om jezelf te stellen'],
+        rijen: [
+          ['Content, organisatie en Q&A', '40%', 'Staan alle verplichte onderdelen erin, onderbouwd met bewijs, en kunnen we vragen beantwoorden met uitleg?'],
+          ['Delivery', '25%', 'Houden we oogcontact, variëren we in volume en tempo, is de tijd gelijk verdeeld, kleden we ons professioneel?'],
+          ['Slides: layout, design en taal', '20%', 'Zijn de visuals consistent en ondersteunend, is er geen spel- of grammaticafout blijven staan?'],
+          ['Projectmanagement, teamwork en feedback', '15%', 'Is de bijdrage van elk groepslid zichtbaar, en is onze reflectie concreet in plaats van vrijblijvend?']
+        ],
+        noot: 'Dit is een gewogen cijfer, geen pass/fail: elk criterium krijgt een cijfer 1-10, en de gewogen som is je eindcijfer.' }
+    ]
+  }
+];
+
+/* ============================================================
+   Course manual — Professional Skills, in dezelfde vorm als
+   Demystifying Research Methods hierboven.
+   ============================================================ */
+(function(){
+  if (typeof VAK_MANUAL === 'undefined') return;
+
+  VAK_MANUAL['professional-skills'] = {
+    pdf: 'manuals/2026-27_Professional_Skills_Course_Manual.pdf',
+    pdfNaam: 'Professional Skills course manual (2026-27)',
+    studiegids: 'skills',
+    intro: 'Praktijkgericht vak naast de theorievakken: communicatie, public speaking, personal branding, conflictoplossing, teamwork, leiderschap, consultancy en projectmanagement, getoetst met twee groepspresentaties en één individuele opdracht.',
+    regels: [
+      { label: 'Code',        waarde: 'SSMS-1S1-23' },
+      { label: 'Docenten',    waarde: 'Gohar Baghdasaryan (coördinator), Andrew Pearce, Boudewijn Wisse, Jonathan Corr, Siddik Ekici' },
+      { label: 'Studiepunten', waarde: '5 ECTS \\u00b7 35 contacturen \\u00b7 105 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'Geen aanschaf nodig; teksten via weblinks op Brightspace' },
+      { label: 'Midterm groep',   waarde: 'Communicatieanalyse, pass/fail \\u00b7 25% \\u00b7 week 10' },
+      { label: 'Midterm individueel', waarde: 'Cv en motivatiebrief, pass/fail \\u00b7 25% \\u00b7 week 10' },
+      { label: 'Eindtoets',   waarde: 'Groepspresentatie "Safe and sound for fun", gewogen cijfer \\u00b7 50% \\u00b7 week 20' },
+      { label: 'Let op',      waarde: 'Te laat bij een toetsmoment betekent automatisch zakken voor dat onderdeel, direct naar de herkansing' }
+    ],
+    samenvatting: [
+      { titel: 'Wat je hier leert',
+        tekst: 'Naast je analytische en academische vakken heb je vaardigheden nodig om **effectief om te gaan met mensen op alle niveaus** in een organisatie: communiceren, presenteren, jezelf presenteren, conflicten oplossen, samenwerken, leiden, adviseren en projecten managen.',
+        punten: [
+          'Constructief samenwerken met uiteenlopende stakeholders en achtergronden',
+          'Je communicatiestijl aanpassen aan doelgroep, situatie en doel',
+          'Digitale tools, inclusief AI, gebruiken voor professionele producten',
+          'Projecten en teams leiden met zelfregulatie en professionaliteit',
+          'Activiteiten en middelen omzetten in een uitvoerbaar plan'
+        ] },
+
+      { titel: 'Drie toetsmomenten, drie vormen',
+        tekst: 'Twee **groepspresentaties** (pass/fail bij de midterm, gewogen cijfer bij de eindtoets) en één **individuele schriftelijke opdracht** (pass/fail). Alle drie hebben een eigen aanpakles hiernaast, met de theorie, de stappen en de rubriccriteria als checklist.',
+        punten: [
+          'Opdracht 1 \\u00b7 communicatieanalyse van een politicus of professional \\u00b7 groep \\u00b7 week 10',
+          'Opdracht 2 \\u00b7 cv en motivatiebrief bij een echte vacature \\u00b7 individueel \\u00b7 week 10',
+          'Eindopdracht \\u00b7 "Safe and sound for fun"-project \\u00b7 groep \\u00b7 week 20'
+        ] },
+
+      { titel: 'Te laat is direct zakken',
+        tekst: 'Dit vak is strenger dan de theorievakken over deadlines. Studenten of werkgroepen die te laat zijn bij een toetsmoment, presentatie of online inlevering, **zakken voor dat onderdeel** en gaan direct naar de herkansing. Er is geen coulance.' },
+
+      { titel: 'De AI-paradox met DRM',
+        tekst: 'Leerdoel 3 vraagt letterlijk om digitale tools **inclusief AI** te gebruiken voor professionele producten. Bij Demystifying Research Methods geldt AI-gebruik bij individuele opdrachten juist als schending van de academische integriteit. Geen tegenspraak, wel iets om per vak en per opdracht scherp te houden.' }
+    ]
+  };
+})();
+
+/* ============================================================
+   Het vak registreren, net als Intro to Safety & Security en DRM:
+   één les "Opdrachten" met de drie assignments als tabbladen,
+   die de losse collegeplekken uit het rooster vervangt.
+   ============================================================ */
+(function(){
+  if (typeof DATA === 'undefined') return;
+
+  var LESSEN_SKILLS = [
+    { id: 'opdrachten', titel: 'De drie opdrachten \\u00b7 aanpak per opdracht', duur: 30 }
+  ];
+
+  function isSkills(vak){
+    if (!vak) return false;
+    if (vak.id === 'professional-skills') return true;
+    var naam = (vak.naam || '').toLowerCase();
+    return naam.indexOf('professional skills') > -1;
+  }
+
+  function zetSkills(){
+    DATA.semesters.forEach(function(sem){
+      var gevonden = false;
+      sem.vakken.forEach(function(vak){
+        if (isSkills(vak)) { vak.lessen = LESSEN_SKILLS; gevonden = true; }
+      });
+      if (!gevonden && sem.id === DATA.actiefSemester) {
+        sem.vakken.push({
+          id: 'professional-skills',
+          naam: 'Professional Skills',
+          lessen: LESSEN_SKILLS
+        });
+      }
+    });
+  }
+
+  zetSkills();
+  if (typeof opFeed === 'function') opFeed(zetSkills);
+})();
