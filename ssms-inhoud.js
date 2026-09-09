@@ -4492,7 +4492,7 @@ LESSTOF['fundamentals-of-academic-writing/oefening-1'] = [
    de rode draad, de tekst vult in wat de docent erbij vertelt.
    ============================================================ */
 
-LESSTOF['intro-to-safety-security/college-1'] = [
+LESSTOF['intro-to-safety-security/slides-1'] = [
   {
     id: 'voor', titel: 'Voorbereiding',
     blokken: [
@@ -4702,21 +4702,20 @@ LESSTOF['intro-to-safety-security/college-1'] = [
 ];
 
 /* ============================================================
-   De lessenlijst van Intro to Safety & Security opnieuw zetten,
-   nu met een aparte groep "Lecture slides" vóór de boekhoofdstukken.
+   De boekhoofdstukken van Intro to Safety & Security.
 
-   De groepsnaam komt uit het deel vóór ' · ' in de titel, dus
-   'Lecture slides · Sessie 1 ...' verschijnt als eigen uitklapper
-   naast 'The Coupling of Safety and Security'.
+   De colleges van dit vak komen niet hier vandaan maar uit het
+   programmablok onderaan dit bestand, dat ze uit VAK_VOORBEREIDING
+   haalt en de datum en zaal uit je rooster overneemt.
 
-   Nieuw college erbij? Voeg een regel toe aan COLLEGES hieronder
-   en zet de lesstof onder LESSTOF['intro-to-safety-security/college-N'].
+   Lesstof voor een college schrijf je onder
+   LESSTOF['intro-to-safety-security/college-N'].
    ============================================================ */
 (function(){
   if (typeof DATA === 'undefined') return;
 
-  var COLLEGES = [
-    { id: 'college-1', groep: 'Lecture slides', titel: 'Sessie 1 · SSMS & what it’s all about', duur: 45 }
+  var SLIDES = [
+    { id: 'slides-1', groep: 'Lecture slides', titel: 'Sessie 1 \u00b7 SSMS & what it’s all about', duur: 45 }
   ];
 
   var BOEK = [
@@ -4733,12 +4732,18 @@ LESSTOF['intro-to-safety-security/college-1'] = [
     { id: 'h11', groep: 'Boek', titel: 'H11 Onderzoeks- en managementuitdagingen',  duur: 60 }
   ];
 
+  /* Alleen de boekhoofdstukken zetten. De colleges komen uit het
+     programmablok onderaan dit bestand, dat de datums uit je rooster
+     overneemt; die zouden hier verloren gaan. */
   function zetIss(){
     DATA.semesters.forEach(function(sem){
       var gevonden = false;
       sem.vakken.forEach(function(vak){
         if (vak.id === 'intro-to-safety-security') {
-          vak.lessen = COLLEGES.concat(BOEK);
+          var rest = (vak.lessen || []).filter(function(l){
+            return l.groep !== 'Boek' && l.groep !== 'Lecture slides';
+          });
+          vak.lessen = rest.concat(SLIDES).concat(BOEK);
           gevonden = true;
         }
       });
@@ -4746,7 +4751,7 @@ LESSTOF['intro-to-safety-security/college-1'] = [
         sem.vakken.push({
           id: 'intro-to-safety-security',
           naam: 'Intro to Safety & Security',
-          lessen: COLLEGES.concat(BOEK)
+          lessen: SLIDES.concat(BOEK)
         });
       }
     });
@@ -4766,7 +4771,7 @@ LESSTOF['intro-to-safety-security/college-1'] = [
    Toepassen, Checken.
    ============================================================ */
 
-LESSTOF['society-politics/college-1'] = [
+LESSTOF['society-politics/slides-1'] = [
   {
     id: 'voor', titel: 'Voorbereiding',
     blokken: [
@@ -4954,7 +4959,7 @@ LESSTOF['society-politics/college-1'] = [
         { apa: 'Macionis, J. J., & Plummer, K. (2012). Sociology: A global introduction (5th ed., Ch. 1, 2, 4). Pearson Education.' }
       ]},
 
-      { type: 'preview', titel: 'Volgende keer', vakId: 'society-politics', lesId: 'college-1',
+      { type: 'preview', titel: 'Volgende keer', vakId: 'society-politics', lesId: 'slides-1',
         tekst: 'Hoofdstuk 7: de sociale constructie van het dagelijks leven. Daar wordt het microniveau van vandaag uitgewerkt: hoe de werkelijkheid die zo vanzelfsprekend voelt, in interactie wordt gemaakt.',
         punten: ['Lees Macionis & Plummer hoofdstuk 7', 'De opdracht over de toepassing van sociologische perspectieven hoort bij die week'] }
     ]
@@ -4967,7 +4972,7 @@ LESSTOF['society-politics/college-1'] = [
   if (typeof DATA === 'undefined') return;
 
   var LESSEN_SP = [
-    { id: 'college-1', groep: 'Lecture slides', titel: 'Sessie 1 \u00b7 Introductie en sociologische perspectieven', duur: 60 }
+    { id: 'slides-1', groep: 'Lecture slides', titel: 'Sessie 1 \u00b7 Introductie en sociologische perspectieven', duur: 60 }
   ];
 
   function isSp(vak){
@@ -5161,9 +5166,22 @@ LESSTOF['society-politics/college-1'] = [
 
   function colleges(vakId, roosterLessen){
     var plan = VAK_VOORBEREIDING[vakId];
-    var opDatum = roosterLessen.slice().sort(function(a, b){
+    /* Momenten van voor de start van het semester, zoals de introductiedag,
+       horen bij geen enkele sessie. Zelfde grens als in app.js. */
+    var start = typeof sessieStart === 'function' ? sessieStart(vakId) : new Date(0);
+    var opDatum = roosterLessen.filter(function(l){
+      return !l.datum || new Date(l.datum) >= start;
+    }).sort(function(a, b){
       return String(a.datum) < String(b.datum) ? -1 : 1;
     });
+    /* Twee momenten op dezelfde dag zijn samen een sessie, net als in app.js. */
+    var perDag = [];
+    opDatum.forEach(function(l){
+      var dag = l.datum ? new Date(l.datum).toDateString() : '';
+      if (dag && perDag.length && perDag[perDag.length - 1].dag === dag) return;
+      perDag.push({ dag: dag, les: l });
+    });
+    opDatum = perDag.map(function(x){ return x.les; });
     return Object.keys(plan)
       .map(function(n){ return parseInt(n, 10); })
       .sort(function(a, b){ return a - b; })

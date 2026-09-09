@@ -239,11 +239,13 @@
         '<div class="bron-inhoud">' + rijen + '</div></details>';
     }).join('');
 
-    var af = vak.lessen.filter(function(l){ return isAf(vak, l); }).length;
-    var pct = Math.round(af / vak.lessen.length * 100);
+    /* Collegeslides tellen niet mee voor de balk; zie teltMee in app.js. */
+    var mee = typeof telbaar === 'function' ? telbaar(vak) : vak.lessen;
+    var af = mee.filter(function(l){ return isAf(vak, l); }).length;
+    var pct = mee.length ? Math.round(af / mee.length * 100) : 0;
     document.getElementById('vakBalk').style.width = pct + '%';
     document.getElementById('vakVoortgang').textContent =
-      af + ' van ' + vak.lessen.length + ' onderdelen afgerond · ' + pct + '%';
+      af + ' van ' + mee.length + ' onderdelen afgerond · ' + pct + '%';
   }
 
   /* ---------- opstarten ---------- */
@@ -258,7 +260,7 @@
     document.getElementById('vakKicker').textContent = sem.naam || 'Semester';
     document.getElementById('vakTitel').textContent = vak.naam;
     document.getElementById('vakMeta').innerHTML =
-      '<span class="pil">' + vak.lessen.length + ' onderdelen</span>';
+      '<span class="pil">' + (typeof telbaar === 'function' ? telbaar(vak).length : vak.lessen.length) + ' onderdelen</span>';
 
     toonHoofdstukken();
     toonDeadlines();

@@ -62,6 +62,21 @@ function handmatigeDeadlines(nu){
    Het leesschema staat per vak in VAK_VOORBEREIDING (ssms-inhoud.js), op
    sessienummer. Welk sessienummer eraan komt, leiden we af uit je rooster.
    Per vak tonen we er hoogstens één, anders wordt het een waslijst. */
+/* Het semester begint op maandag 7 september 2026. Roostermomenten van
+   daarvoor, zoals de introductiedag, tellen niet mee als sessie: anders
+   loopt het sessienummer van elk vak een te hoog.
+
+   Begint een vak later dan de rest, dan zet je dat vak hieronder apart
+   met een eigen startdatum. Verder hoef je hier niets aan te raken. */
+var SEMESTER_START = new Date(2026, 8, 7);
+var VAK_START = {
+  // 'demystifying-research-methods': new Date(2026, 8, 14)
+};
+
+function sessieStart(vakId){
+  return VAK_START[vakId] || SEMESTER_START;
+}
+
 function voorbereidingDeadlines(nu){
   if (typeof VAK_VOORBEREIDING === 'undefined') return [];
   if (typeof ROOSTER_FEED === 'undefined' || !ROOSTER_FEED) return [];
@@ -77,8 +92,9 @@ function voorbereidingDeadlines(nu){
        loopt het sessienummer te snel op en zie je het leesschema van een
        latere sessie. */
     var sessies = [];
+    var start = sessieStart(vakId);
     ROOSTER_FEED.filter(function(e){
-      return e.vakId === vakId && soortUit(e.titel) !== 'toets';
+      return e.vakId === vakId && soortUit(e.titel) !== 'toets' && e.start >= start;
     }).sort(function(a, b){ return a.start - b.start; })
       .forEach(function(e){
         var dag = new Date(e.start).toDateString();
@@ -310,8 +326,12 @@ var RING = 163.4;
 function sleutel(vak, les){ return 'ssms-les-' + vak.id + '-' + les.id; }
 function isAf(vak, les){ try { return localStorage.getItem(sleutel(vak, les)) === 'af'; } catch(e){ return false; } }
 function zetAf(vak, les, waarde){ try { localStorage.setItem(sleutel(vak, les), waarde ? 'af' : 'open'); } catch(e){} }
-function aantalAf(vak){ var c = 0; vak.lessen.forEach(function(l){ if (isAf(vak, l)) c++; }); return c; }
-function procent(vak){ return vak.lessen.length ? Math.round(aantalAf(vak) / vak.lessen.length * 100) : 0; }
+/* Collegeslides zijn naslag, geen studietaak: ze tellen niet mee voor de
+   voortgangsbalken. Alle andere onderdelen wel. */
+function teltMee(les){ return les.groep !== 'Lecture slides'; }
+function telbaar(vak){ return (vak.lessen || []).filter(teltMee); }
+function aantalAf(vak){ var c = 0; telbaar(vak).forEach(function(l){ if (isAf(vak, l)) c++; }); return c; }
+function procent(vak){ var n = telbaar(vak).length; return n ? Math.round(aantalAf(vak) / n * 100) : 0; }
 function volgendeLes(vak){
   for (var i = 0; i < vak.lessen.length; i++) if (!isAf(vak, vak.lessen[i])) return vak.lessen[i];
   return vak.lessen[vak.lessen.length - 1] || null;
@@ -358,7 +378,7 @@ function render(){
   var bezigMetOphalen = typeof ROOSTER_STATUS !== 'undefined' && ROOSTER_STATUS.staat === 'laden';
 
   var totAf = 0, totAl = 0;
-  alleVakken().forEach(function(x){ totAf += aantalAf(x.vak); totAl += x.vak.lessen.length; });
+  alleVakken().forEach(function(x){ totAf += aantalAf(x.vak); totAl += telbaar(x.vak).length; });
   var totPct = totAl ? Math.round(totAf / totAl * 100) : 0;
 
   document.getElementById('datum').textContent = datum;
