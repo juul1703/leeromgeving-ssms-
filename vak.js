@@ -199,13 +199,13 @@
   function toonHoofdstukken(){
     var el = document.getElementById('hoofdstukken');
     if (!vak.lessen || !vak.lessen.length) {
-      el.innerHTML = '<p class="noot" style="margin:0;">Dit vak heeft nog geen hoofdstukken.</p>';
+      el.innerHTML = '<p class="noot" style="margin:0;">Dit vak heeft nog geen onderdelen.</p>';
       return;
     }
     var groepen = [];
     vak.lessen.forEach(function(l, i){
       var deel = l.titel.split(' \u00b7 ');
-      var bron = deel.length > 1 ? deel[0] : 'Hoofdstukken';
+      var bron = deel.length > 1 ? deel[0] : 'Oefeningen';
       var kort = deel.length > 1 ? deel.slice(1).join(' \u00b7 ') : l.titel;
       var g = groepen.filter(function(x){ return x.bron === bron; })[0];
       if (!g) { g = { bron: bron, items: [] }; groepen.push(g); }
@@ -232,7 +232,7 @@
     var pct = Math.round(af / vak.lessen.length * 100);
     document.getElementById('vakBalk').style.width = pct + '%';
     document.getElementById('vakVoortgang').textContent =
-      af + ' van ' + vak.lessen.length + ' hoofdstukken afgerond · ' + pct + '%';
+      af + ' van ' + vak.lessen.length + ' onderdelen afgerond · ' + pct + '%';
   }
 
   /* ---------- opstarten ---------- */
@@ -247,7 +247,7 @@
     document.getElementById('vakKicker').textContent = sem.naam || 'Semester';
     document.getElementById('vakTitel').textContent = vak.naam;
     document.getElementById('vakMeta').innerHTML =
-      '<span class="pil">' + vak.lessen.length + ' hoofdstukken</span>';
+      '<span class="pil">' + vak.lessen.length + ' onderdelen</span>';
 
     toonHoofdstukken();
     toonDeadlines();

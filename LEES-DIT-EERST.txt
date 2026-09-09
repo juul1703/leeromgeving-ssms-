@@ -1,0 +1,67 @@
+SSMS LEEROMGEVING — update van 9 september 2026
+===============================================
+
+WAT JE MOET DOEN
+----------------
+Vervang in je repo (juul1703/leeromgeving-ssms-) deze 5 bestanden
+in de HOOFDMAP, naast index.html:
+
+  app.js
+  ssms-inhoud.js
+  vak.js
+  vak.html
+  sw.js
+
+De map 'manuals' staat al goed in je repo. De twee pdf's zitten hier
+alleen voor de zekerheid bij, voor als je ze ooit opnieuw nodig hebt.
+Je hoeft ze NIET opnieuw te uploaden.
+
+Wacht na het uploaden ongeveer een minuut, en ververs daarna de pagina
+een paar keer (de service worker staat nu op v16 en moet de oude cache
+opruimen).
+
+
+WAT ER IS VERANDERD
+-------------------
+
+1. VOORBEREIDING (app.js)
+   Twee fouten opgelost. Het sessienummer werd verkeerd geteld als er
+   twee roosteritems op dezelfde dag stonden, en de app sprong door naar
+   een latere sessie als de eerstvolgende geen leeswerk had. Daardoor
+   stond H3/H5 te vroeg op je scherm.
+   Nu: voor sessie 1 verschijnt niets, na sessie 1 verschijnt
+   "Bieder H1 en H2 gelezen" met datum 16 september.
+
+2. NAMEN OP DE VAKPAGINA (vak.js, vak.html)
+   "Hoofdstukken" heet nu "Vak informatie".
+   De naamloze groep heet nu "Oefeningen".
+   De teller zegt "onderdelen" in plaats van "hoofdstukken".
+
+3. PROFESSIONAL SKILLS (ssms-inhoud.js)
+   Course manual toegevoegd met knop naar de pdf.
+   Drie opdrachten als aparte tabbladen, in aanpakvorm:
+   communicatieanalyse, cv en motivatiebrief, en het eindproject.
+
+4. FUNDAMENTALS OF ACADEMIC WRITING (ssms-inhoud.js)
+   Drie nieuwe lessen:
+   - Naslagwerk Engels academisch schrijven (opbouw, cohesie, stijl, lay-out)
+   - De beoordelingsrubric met omrekentabel
+   - Oefening bij het cocaine-artikel, als aanpak
+
+5. INTRO TO SAFETY & SECURITY (ssms-inhoud.js)
+   Nieuwe groep "Lecture slides" boven de boekhoofdstukken.
+   Sessie 1 volledig uitgeschreven als college:
+   voorbereiding, kernstof, toepassen (5 oefeningen), checken (quiz).
+
+
+VOLGENDE COLLEGES TOEVOEGEN
+---------------------------
+Stuur de slides, dan schrijf ik de les. In ssms-inhoud.js staat
+onderaan een lijst COLLEGES waar elk nieuw college een regel bij krijgt.
+
+
+NOG OPEN
+--------
+De datum van de midterm staat op de slides als dinsdag 10 november 2026
+en de eindtoets op 3-4 februari 2027 (met een sterretje). De studiegids
+noemt alleen de maand. Controleer dit op Brightspace/MyTimetable.

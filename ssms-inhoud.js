@@ -4202,3 +4202,519 @@ LESSTOF['professional-skills/opdrachten'] = [
   zetSkills();
   if (typeof opFeed === 'function') opFeed(zetSkills);
 })();
+
+/* ============================================================
+   Fundamentals of Academic Writing (FAW) — drie lessen naast
+   de studiegidspagina studiegids/writing:
+   1. naslagwerk  — algemene regels voor Engels academisch schrijven
+   2. rubric      — de beoordelingsrubric zelf, kort en praktisch
+   3. oefening-1  — het cocaïne-artikel als aanpakoefening
+
+   Bronnen: FAW 2025-2026 Rubric and Conversion Chart, Dimensions of
+   Rubric Explained, en de meegeleverde schrijfopdracht met artikel.
+   ============================================================ */
+
+LESSTOF['fundamentals-of-academic-writing/naslagwerk'] = [
+  {
+    id: 'opbouw', titel: 'Opbouw',
+    blokken: [
+      { type: 'uitleg', titel: 'Waarom dit een apart naslagwerk is',
+        tekst: 'Bij dit vak telt maar **één criterium van de vijf** rechtstreeks over grammatica; de andere vier gaan over hoe je een tekst **opbouwt en formuleert**. Dat is precies het soort kennis dat je niet één keer leest en onthoudt, maar telkens even terugzoekt. Dit naslagwerk zet het overzichtelijk op een rijtje: opbouw, zinsniveau, cohesie, en lay-out. Gebruik het als naslag tijdens het schrijven, niet als iets om in één keer uit je hoofd te leren.\\n\\nDe voorbeelden staan in het Engels, want dat is de taal waarin je dit moet kunnen **toepassen**, niet alleen herkennen.' },
+
+      { type: 'begrippen', titel: 'Coherence versus cohesion: het verschil dat je moet kennen',
+        items: [
+          { begrip: 'Coherence (macro-niveau)',
+            definitie: 'gaat over de retorische opbouw van de hele tekst: is er een heldere paragraafindeling, heeft elke alinea een topic sentence, worden argumenten uitgewerkt en onderbouwd, en is duidelijk wat het doel en publiek van de tekst is? Coherence is de vraag "klopt de logica van dit stuk als geheel?"' },
+          { begrip: 'Cohesion (micro-niveau)',
+            definitie: 'gaat over de expliciete verbindingen tussen zinnen en alinea\\u2019s: verwijswoorden, synoniemen, signaalwoorden. Cohesion is de vraag "zie ik hoe deze zin aan de vorige vastzit?"' }
+        ] },
+
+      { type: 'stappen', titel: 'Een alinea opbouwen die aan coherence voldoet',
+        items: [
+          { titel: '1. Begin met een topic sentence',
+            tekst: 'De eerste zin van een alinea zegt waar die alinea over gaat. Een lezer die alleen de eerste zin van elke alinea leest, moet de structuur van je hele tekst kunnen volgen.' },
+          { titel: '2. Werk het idee uit, herhaal het niet',
+            tekst: 'De zinnen na de topic sentence onderbouwen, verklaren of illustreren die zin. Een alinea die alleen hetzelfde idee herhaalt in andere woorden, voegt niets toe.' },
+          { titel: '3. Houd één onderwerp per alinea aan',
+            tekst: 'Zodra je overstapt naar een nieuw idee, begint een nieuwe alinea. Dit is de meest voorkomende coherence-fout: te veel in één alinea proppen.' },
+          { titel: '4. Zorg dat de volgorde van je alinea\\u2019s een logica volgt',
+            tekst: 'Bijvoorbeeld van algemeen naar specifiek, van oorzaak naar gevolg, of chronologisch. De lezer moet nooit terug hoeven te bladeren om een verband te snappen.' }
+        ] }
+    ]
+  },
+
+  {
+    id: 'cohesie', titel: 'Cohesie',
+    blokken: [
+      { type: 'uitleg', titel: 'Zeven manieren om zinnen aan elkaar te knopen',
+        tekst: 'Cohesion-technieken zorgen dat een lezer de verbanden tussen zinnen ziet zonder dat jij het met zoveel woorden hoeft te zeggen. Hieronder dezelfde voorbeeldtekst, telkens geannoteerd op één techniek. In de brontekst is elke techniek gemarkeerd binnen dezelfde vier zinnen, zodat je ziet dat ze **tegelijk** in één lopende tekst voorkomen, niet als losse trucjes.' },
+
+      { type: 'voorbeeld', titel: 'De basiszin',
+        tekst: '"Last Sunday, in a carriage of an idle passenger train in a railway depot in Nijmegen, there was a serious explosion. It blew out doors and windows of the carriage, and one man, who may have caused the blast himself, was killed. However, it is uncertain if the incident was a suicide attempt."' },
+
+      { type: 'tabel', titel: 'Wat er onder de motorkap gebeurt',
+        kop: ['Techniek', 'Waar je op let'],
+        rijen: [
+          ['Verwijswoorden (reference)', '"It" in de tweede zin verwijst duidelijk terug naar "explosion" uit de eerste zin, zonder dat woord te herhalen'],
+          ['Synoniemen', '"explosion" en "the blast" verwijzen naar hetzelfde, met een ander woord, zodat de tekst niet eentonig wordt'],
+          ['Lexicale ketens', 'woorden uit hetzelfde betekenisveld lopen door de tekst: carriage, doors, windows, train, depot horen allemaal bij "spoorwegongeval"'],
+          ['Nieuwe versus bekende informatie', 'elke zin herhaalt kort iets bekends (het ongeval) voordat hij iets nieuws toevoegt (wie er stierf, of het opzet was), zodat de lezer nooit de draad kwijtraakt'],
+          ['Grammatica: lidwoorden', '"a serious explosion" (nieuw, onbepaald lidwoord) wordt in de volgende zin "the blast" (bekend, bepaald lidwoord)'],
+          ['Signaalwoorden (discourse markers)', '"however" aan het begin van de derde zin kondigt een tegenstelling aan: wat je net las wordt genuanceerd'],
+          ['Samenvattende woorden', 'een woord als "incident" in de laatste zin vat de hele gebeurtenis in één term samen']
+        ],
+        noot: 'Dit lijstje is niet compleet, maar wel de kern. Check bij het herlezen van je eigen tekst: kan een lezer bij elke "it", "this" of "however" meteen zeggen waar dat naar terugwijst?' }
+    ]
+  },
+
+  {
+    id: 'stijl', titel: 'Formele stijl',
+    blokken: [
+      { type: 'uitleg', titel: 'Wat "academisch" op zinsniveau betekent',
+        tekst: 'Dit is het rijtje waar studenten in de praktijk de meeste punten laten liggen bij het criterium **Style**, omdat het gaat om gewoontes die je in spreektaal juist aanleert. Elke regel hieronder komt letterlijk uit het cursusmateriaal.' },
+
+      { type: 'vergelijking', titel: 'Informeel tegenover academisch',
+        links: { titel: 'Vermijd dit',
+          punten: [
+            'Persoonlijke toon: "I think", "we can see"',
+            'De lezer aanspreken: "you will notice that..."',
+            'Frasale werkwoorden: "get rid of"',
+            'Vage woorden: "a big problem", "good", "bad", "interesting"',
+            'Samentrekkingen: "won\\u2019t", "it\\u2019s"',
+            'Retorische vragen: "Is dit niet precies het probleem?"',
+            '"Opgeblazen" taal zonder onderbouwing: "an infinite number of"',
+            '"Get"-constructies: "get tired"',
+            'Stopwoorden: "really", "basically", "quite", "totally"',
+            '"Etc." aan het einde van een opsomming',
+            'Clichés: "last but not least", "in a nutshell"',
+            'Niet-genderneutrale taal: "the CEO... he..."',
+            'Zinnen die beginnen met And, But, Because, So',
+            'Informele signaalwoorden: "Besides", "So", "Luckily"'
+          ] },
+        rechts: { titel: 'Gebruik dit',
+          punten: [
+            'Onpersoonlijke, geanonimiseerde toon',
+            'Neutrale formuleringen zonder directe aanspreekvorm',
+            'Eén werkwoord: "eliminate"',
+            'Specifieke woorden: "a serious problem"',
+            'Voluit geschreven vormen: "will not", "it is"',
+            'Declaratieve zinnen die de conclusie direct stellen',
+            'Onderbouwde, concrete claims',
+            'Eén werkwoord: "to tire"',
+            'Weglaten, of vervangen door een concreet woord',
+            '"including" of een volledige opsomming',
+            'Directe, concrete formuleringen',
+            'Meervoud of herformulering: "CEOs... they..."',
+            'Herformuleer zodat de zin op het onderwerp begint',
+            'Formele verbindingswoorden: "Moreover", "Therefore", "Fortunately"'
+          ] } },
+
+      { type: 'tekst', titel: 'Vaktermen: wél gebruiken, mits toegankelijk',
+        tekst: 'Anders dan de rest van dit lijstje is vakjargon in academisch schrijven juist **gewenst**, mits het voor een geïnteresseerde buitenstaander te volgen blijft. De rubric noemt dit expliciet bij het criterium Paraphrasing: consistent professioneel vocabulaire gebruiken telt mee als sterk punt, mits de rest van de zin nog steeds jouw eigen formulering is.' }
+    ]
+  },
+
+  {
+    id: 'layout', titel: 'Lay-out',
+    blokken: [
+      { type: 'tekst', titel: 'Wat wél bij dit vak hoort',
+        tekst: 'Voor een academische samenvatting zoals je die bij dit vak schrijft, gelden een paar vaste lay-outafspraken:\\n\\n- **Lopende alinea\\u2019s, geen kopjes.** De opdrachten in dit vak zijn expliciet: "there should be no headings". Je tekst moet zijn logica tonen via topic sentences en signaalwoorden, niet via opgeknipte kopjes.\\n- **Consistente alinea-afstand.** Of je nu inspringt of een witregel gebruikt tussen alinea\\u2019s, kies één systeem en houd dat de hele tekst vol.\\n- **Woordentelling is hard.** Bij de voorbeeldopdracht staat een bandbreedte van 500 tot 600 woorden; dat is geen richtlijn maar een harde eis waarop je wordt beoordeeld.' },
+
+      { type: 'waarschuwing', titel: 'Wat hier bewust niet in staat',
+        tekst: 'Een **aanhef** (zoals "Dear...") of een afsluitende groet hoort niet bij dit vak. De schrijfvorm hier is een doorlopende academische tekst, geen brief of e-mail. Wil je juist weten hoe je een professionele brief of motivatiebrief opbouwt, inclusief aanhef en afsluiting, kijk dan bij Professional Skills; daar staat die aanpak uitgewerkt bij de cv-opdracht.' }
+    ]
+  }
+];
+
+/* ---------------------------------------------------------- */
+
+LESSTOF['fundamentals-of-academic-writing/rubric'] = [
+  {
+    id: 'rubric', titel: 'Rubric en puntentelling',
+    blokken: [
+      { type: 'uitleg', titel: 'Hoe je precies wordt beoordeeld',
+        tekst: 'Vijf criteria, elk 1 tot 4 punten, dus maximaal 20. Om te slagen mag je **nergens een 1** scoren, ongeacht je totaal. Dat betekent dat je zwakste criterium belangrijker is dan je gemiddelde.' },
+
+      { type: 'tabel', titel: 'De vijf criteria: wat scheelt een 1 van een 4',
+        kop: ['Criterium', 'Een 1 betekent', 'Een 4 betekent'],
+        rijen: [
+          ['Content', 'De samenvatting mist de kern of de hoofdpunten van de originele tekst', 'Volledig, accuraat begrip; alle belangrijke punten zijn geïdentificeerd en gepresenteerd'],
+          ['Paraphrasing', 'Veel letterlijk gekopieerde zinnen of onbegrijpelijke parafrases; nauwelijks vakjargon', 'De tekst wijkt inhoudelijk significant af van het origineel maar draagt dezelfde ideeën over; consistent vakjargon'],
+          ['Paragraphs (coherence & cohesion)', 'Geen duidelijke alineastructuur, geen topic sentences, lastig te volgen', 'Duidelijke, logische alinea\\u2019s met effectieve topic sentences; de tekst loopt naadloos'],
+          ['Sentence structure, grammar & accuracy', 'Beperkte zinsvariatie, veel grammatica-, interpunctie- en spelfouten', 'Brede variatie aan zinsstructuren, vrijwel foutloos'],
+          ['Style', 'Informele schrijfstijl, veel informeel taalgebruik', 'Consistent formeel en academisch, geen informeel taalgebruik']
+        ] },
+
+      { type: 'tabel', titel: 'Omrekentabel', toetsstof: true,
+        kop: ['Punten', 'Cijfer', 'Punten', 'Cijfer'],
+        rijen: [
+          ['20', '10', '12', '6'],
+          ['19', '9,5', '11', '5,5 (net voldoende)'],
+          ['18', '9', '10', '5,1'],
+          ['17', '8,5', '9', '4,7'],
+          ['16', '8', '8', '4,3'],
+          ['15', '7,5', '7', '3,9'],
+          ['14', '7', '6', '3,5'],
+          ['13', '6,5', '5', '3']
+        ] },
+
+      { type: 'preview', titel: 'De achtergrond bij elk criterium',
+        vakId: 'fundamentals-of-academic-writing', lesId: 'naslagwerk',
+        tekst: 'Deze rubric zegt wát er wordt beoordeeld. Het naslagwerk hiernaast laat zien hóé je daar met je tekst aan voldoet: opbouw, cohesie en formele stijl, met voorbeelden.' }
+    ]
+  }
+];
+
+/* ---------------------------------------------------------- */
+
+LESSTOF['fundamentals-of-academic-writing/oefening-1'] = [
+  {
+    id: 'aanpak', titel: 'Oefening · "Europe\\u2019s cocaine problem"',
+    blokken: [
+      { type: 'uitleg', titel: 'De opdracht',
+        tekst: 'Lees het artikel "How big is Europe\\u2019s cocaine problem, and what is the human cost?" (The Guardian, Annie Kelly, 11 juni 2024) en schrijf een samenvatting van **500 tot 600 woorden**.\\n\\nExplicieate eisen uit de opdracht:\\n\\n- Academische stijl, lopende alinea\\u2019s, **geen kopjes**\\n- **Geen** geciteerd materiaal uit het origineel\\n- Begrijpelijk voor iemand die het origineel niet heeft gelezen\\n- **Bovenaan je samenvatting: het hoofdpunt van elke alinea, apart genoemd**\\n\\nDeze les helpt je met de aanpak. Je krijgt geen uitgewerkt voorbeeld, want dat zou precies het parafraseren zijn dat de opdracht van jou vraagt.' },
+
+      { type: 'stappen', titel: 'Aanpak in zeven stappen',
+        items: [
+          { titel: '1. Lees actief, niet passief',
+            tekst: 'Lees het artikel één keer helemaal door zonder te noteren. Lees het daarna een tweede keer en markeer per sub-kopje (het artikel heeft er zelf een aantal, zoals "How much cocaine is coming to Europe?") wat de kernclaim van dat stuk is.' },
+          { titel: '2. Maak een lijst van hoofdpunten per onderdeel',
+            tekst: 'Het artikel is zelf al opgedeeld in vraag-onderdelen: waar komt cocaïne vandaan, hoeveel komt er binnen, hoe komt het Europa in, wat kost het, wat zijn de gevolgen. Vat elk onderdeel in **één zin** samen, in je eigen woorden. Dit wordt de basis voor je alinea-indeling én voor het verplichte lijstje bovenaan.' },
+          { titel: '3. Bepaal je alinea-indeling vóór je gaat schrijven',
+            tekst: 'Niet elk sub-onderdeel van het artikel hoeft een eigen alinea te worden; sommige kun je samenvoegen. Beslis dit bewust, en schrijf per geplande alinea eerst de topic sentence, vóórdat je de rest invult.' },
+          { titel: '4. Parafraseer op zinsniveau, niet op woordniveau',
+            tekst: 'Een veelgemaakte fout is losse woorden vervangen door synoniemen terwijl de zinsstructuur van het origineel intact blijft; de rubric herkent dat als onvoldoende parafrase. Herschrijf in plaats daarvan de **hele gedachte** in je eigen zinsopbouw: verander waar nodig de volgorde van hoofd- en bijzin, of zet een actieve zin om in een passieve, of andersom.' },
+          { titel: '5. Bouw cohesie tussen je alinea\\u2019s',
+            tekst: 'Gebruik de technieken uit het naslagwerk: signaalwoorden tussen alinea\\u2019s, verwijswoorden binnen een alinea, en een bewuste opbouw van bekend naar nieuw. Het artikel zelf springt nogal tussen onderwerpen; jouw samenvatting hoeft die sprongen niet te kopiëren als jij een logischer volgorde ziet.' },
+          { titel: '6. Check je stijl tegen het naslagwerk',
+            tekst: 'Loop specifiek na: geen "you", geen samentrekkingen, geen vage woorden als "big" of "serious problem" zonder concretisering, geen zin die begint met "And" of "But".' },
+          { titel: '7. Tel je woorden en schrijf het verplichte lijstje',
+            tekst: 'Bovenaan de samenvatting: één regel per alinea met het hoofdpunt. Dit schrijf je pas als laatste, als je alinea-indeling definitief vaststaat, anders moet je het toch weer aanpassen.' }
+        ] },
+
+      { type: 'waarschuwing', titel: 'De cijfers uit het artikel zijn een valkuil op zich',
+        tekst: 'Het artikel staat vol specifieke cijfers: 21% van de wereldwijde cocaïnegebruikers, 117 ton per jaar in het VK, 323 ton in beslag genomen door de EU in 2022, een prijsverschil tussen $1.000 in Colombia en €35.000 in Europa.\\n\\nDeze cijfers zijn feiten, geen quotes; je mag en moet ze overnemen. Maar **de zin eromheen moet wel je eigen formulering zijn**. "The UK\\u2019s National Crime Agency (NCA) estimates that 117 tonnes of cocaine a year is consumed in England, Scotland and Wales" mag niet letterlijk overgenomen worden, ook al staat het getal daarin vast.' },
+
+      { type: 'checklist', titel: 'Check je concept tegen de rubric',
+        tekst: 'Loop dit na vóórdat je je samenvatting als af beschouwt.',
+        items: [
+          { doel: 'Elk hoofdonderdeel van het artikel (herkomst, omvang, transportroutes, kosten, gevolgen) komt terug in mijn samenvatting',
+            uitleg: 'Leg je stap 2-lijstje naast je concept: mist er een onderdeel, of heb je er per ongeluk twee samengevoegd tot één te dunne alinea?' },
+          { doel: 'Geen enkele zin is direct overgenomen uit het artikel',
+            uitleg: 'Zoek in je concept naar zinnen die je nog herkent uit het origineel qua opbouw, ook als je losse woorden hebt vervangen; herschrijf die zin volledig.' },
+          { doel: 'Elke alinea heeft een topic sentence en blijft bij één onderwerp',
+            uitleg: 'Lees alleen de eerste zin van elke alinea achter elkaar; vertelt dat de kern van het hele artikel?' },
+          { doel: 'Mijn tekst gebruikt geen informele taal uit het stijl-overzicht',
+            uitleg: 'Zoek specifiek op "you", samentrekkingen, en zinnen die met And, But of So beginnen.' },
+          { doel: 'Mijn samenvatting is tussen de 500 en 600 woorden',
+            uitleg: 'Tel dit pas als laatste stap; eerder tellen leidt tot kunstmatig oprekken of inkorten.' },
+          { doel: 'Bovenaan staat het hoofdpunt per alinea, los van de samenvatting zelf',
+            uitleg: 'Dit is een expliciete eis uit de opdracht en een makkelijk punt om te vergeten.' }
+        ] }
+    ]
+  }
+];
+
+/* ============================================================
+   Het vak registreren, zelfde patroon als Intro to Safety &
+   Security, DRM en Professional Skills.
+   ============================================================ */
+(function(){
+  if (typeof DATA === 'undefined') return;
+
+  var LESSEN_FAW = [
+    { id: 'naslagwerk',  titel: 'Naslagwerk \\u00b7 Engels academisch schrijven', duur: 40 },
+    { id: 'rubric',      titel: 'De beoordelingsrubric',                          duur: 15 },
+    { id: 'oefening-1',  titel: 'Oefening \\u00b7 "Europe\\u2019s cocaine problem"', duur: 30 }
+  ];
+
+  function isFaw(vak){
+    if (!vak) return false;
+    if (vak.id === 'fundamentals-of-academic-writing') return true;
+    var naam = (vak.naam || '').toLowerCase();
+    return naam.indexOf('academic writing') > -1;
+  }
+
+  function zetFaw(){
+    DATA.semesters.forEach(function(sem){
+      var gevonden = false;
+      sem.vakken.forEach(function(vak){
+        if (isFaw(vak)) { vak.lessen = LESSEN_FAW; gevonden = true; }
+      });
+      if (!gevonden && sem.id === DATA.actiefSemester) {
+        sem.vakken.push({
+          id: 'fundamentals-of-academic-writing',
+          naam: 'Fundamentals of Academic Writing',
+          lessen: LESSEN_FAW
+        });
+      }
+    });
+  }
+
+  zetFaw();
+  if (typeof opFeed === 'function') opFeed(zetFaw);
+})();
+
+/* ============================================================
+   Intro to Safety & Security — Lecture slides
+   Sessie 1: "SSMS & what it's all about" (9 september 2026)
+   Corr & Gomez Llata Cazares
+
+   Uitgeschreven als college, niet als slidekopie: de slides geven
+   de rode draad, de tekst vult in wat de docent erbij vertelt.
+   ============================================================ */
+
+LESSTOF['intro-to-safety-security/college-1'] = [
+  {
+    id: 'voor', titel: 'Voorbereiding',
+    blokken: [
+      { type: 'leerdoelen', items: [
+        { doel: 'Uitleggen wat de vier officiële leerdoelen van dit vak zijn en waarop je wordt getoetst',
+          uitleg: 'Deze vier staan in de studiegids en keren terug in elk college. Ze zijn geen formaliteit: de mondelinge eindtoets is er letterlijk op gebouwd.' },
+        { doel: 'De drie werelden van SSMS benoemen en uitleggen waarom de opleiding ze samen behandelt',
+          uitleg: 'Public safety, industrial safety en international security. De vraag die het hele vak draagt: waarom horen die bij elkaar?' },
+        { doel: 'Het kernonderscheid tussen safety en security uitleggen aan de hand van menselijke intentie',
+          uitleg: 'Dit is het belangrijkste begrip van college 1 en komt terug in vrijwel elk hoofdstuk van Bieder.' },
+        { doel: 'Risico definiëren en het verschil uitleggen tussen "oude" en "moderne" risico\\u2019s',
+          uitleg: 'Risico is het begrip dat safety en security met elkaar verbindt. De oud-modern-tweedeling komt uit de risicosamenlevingstheorie.' },
+        { doel: 'De vier kerntaken van de safety- en securityprofessional opnoemen en in volgorde plaatsen',
+          uitleg: 'Analyseren, ontwerpen, implementeren, evalueren. Dit is de beroepscyclus waar je hele opleiding omheen is gebouwd.' }
+      ]},
+
+      { type: 'uitleg', titel: 'Waar dit college over gaat',
+        tekst: 'Dit is het openingscollege van de opleiding, en het heeft een dubbele functie. De helft gaat over **praktische zaken**: wie je docenten zijn, hoe het vak is opgebouwd, hoe je wordt getoetst. De andere helft is inhoudelijk en legt het fundament voor alles wat volgt.\\n\\nDat inhoudelijke deel bouwt een redenering op in vijf stappen: er zijn drie werelden van safety en security, die verschillen fundamenteel op één punt (menselijke intentie), maar ze delen wel één begrip (risico), dat begrip is de afgelopen decennia van karakter veranderd, en daarom bestaat jouw toekomstige beroep in de vorm waarin het nu bestaat.\\n\\nAls je maar één ding meeneemt uit dit college, laat het dan de vraag zijn die de docenten letterlijk op een slide zetten: **wat hebben al die soorten safety en security met elkaar gemeen?** Het antwoord, risico, is de spil van het hele curriculum.' },
+
+      { type: 'tekst', titel: 'Praktisch: je docenten en het vak',
+        tekst: '**Docenten.** Jonathan Michael Corr (J.M.Corr@hhs.nl), docent en academic advisor, met expertise in safety and security, consultancy, leadership, intelligence collection and analysis, en serious gaming. Enrique Gomez Llata Cazares (E.G.GomezLlataCazares@hhs.nl), docent, met expertise in globalisation processes, development studies, cultuur en politiek. Beiden zijn bereikbaar van maandag tot vrijdag, of dinsdag tot vrijdag afhankelijk van de docent.\\n\\n**Vakcode:** SSMS-1T1-24, 6 ECTS.\\n\\n**Literatuur:** Bieder, C. & Pettersen Gould, K. (red.) (2020). *The coupling of safety and security: Exploring interrelations in theory and practice.* Cham: Springer Nature. Het boek is **open access**, dus gratis legaal te downloaden via Springer.\\n\\n**Toetsing:** een midterm op dinsdag 10 november 2026, en een mondelinge eindtoets op 3 of 4 februari 2027 in de vorm van een individuele presentatie. Beide tellen voor 50%.' },
+
+      { type: 'waarschuwing', titel: 'Let op de datum van de midterm',
+        tekst: 'Op de slides van dit college staat de midterm op **dinsdag 10 november 2026**. In de studiegids staat alleen "november 2026" zonder dag.\\n\\nDe slides zijn hier specifieker, maar de handleiding zegt zelf dat het programma bij publicatie voorlopig was. Controleer de exacte datum dus in **MyTimetable en op Brightspace** voordat je iets vastlegt in je planning.\\n\\nHetzelfde geldt voor de eindtoets: de slides noemen 3 en 4 februari 2027, met een sterretje erbij dat aangeeft dat het nog niet definitief is.' }
+    ]
+  },
+
+  {
+    id: 'kern', titel: 'Kernstof',
+    blokken: [
+      { type: 'tekst', titel: '1. De vier leerdoelen van dit vak',
+        toetsstof: true,
+        tekst: 'De docenten zetten deze vier meteen in het openingscollege op tafel, en dat is niet toevallig. Ze bepalen precies waarop je in november en februari wordt beoordeeld.\\n\\n**1.** Je kunt de verschillende **domeinen** van safety en security die in het SSMS-programma aan bod komen conceptualiseren.\\n\\n**2.** Je kunt de relevantie en het belang uitleggen van verschillende **stakeholderbenaderingen** voor safety- en securitymanagement in verschillende internationale omgevingen.\\n\\n**3.** Je kunt de structuur en de hoofdgedachten van het SSMS-programma en het **multidisciplinaire karakter** ervan samenvatten.\\n\\n**4.** Je kunt uitleggen hoe geselecteerde elementen rond **risicomanagement en resilience** kunnen worden toegepast in de context van internationale safety en security.\\n\\nMerk op dat leerdoel 3 gaat over de **opleiding zelf**. Dat is ongebruikelijk, en het betekent dat dit college zelf toetsstof is. De structuur van SSMS die je hieronder ziet, moet je kunnen uitleggen.' },
+
+      { type: 'tekst', titel: '2. De drie werelden van SSMS',
+        toetsstof: true,
+        tekst: 'De opleiding positioneert zichzelf op het snijvlak van drie werelden die in de praktijk vaak strikt gescheiden zijn:\\n\\n**Public safety.** De wereld van politie, brandweer, ambulance, gemeenten en welzijnsorganisaties. Het publieke domein, waar de overheid verantwoordelijk is voor de veiligheid van burgers.\\n\\n**Industrial safety, oftewel corporate security.** De wereld van bedrijven: de veiligheid van productieprocessen, werknemers, bedrijfsmiddelen en bedrijfscontinuïteit. Hier valt ook SHEQ onder: safety, health, environment and quality.\\n\\n**International security.** De wereld van veiligheidsdiensten, inlichtingendiensten, het leger, internationale organisaties en ngo\\u2019s, consultancybureaus en denktanks.\\n\\nDe kernboodschap van het college is dat een SSMS-professional **in het midden** staat en tussen deze werelden kan bewegen. Iemand die alleen politiewerk begrijpt, of alleen bedrijfsveiligheid, mist de verbanden die in de praktijk juist het probleem vormen.' },
+
+      { type: 'uitleg', titel: 'Waarom dat midden een echte positie is, geen marketingpraatje',
+        tekst: 'Het klinkt als een brochure-zin, "wij leiden breed op", maar er zit een concrete redenering achter.\\n\\nNeem een cyberaanval op het elektriciteitsnet. Dat is tegelijk een **internationale securitykwestie** (wie zit erachter, is het een statelijke actor?), een **industriële safetykwestie** (wat gebeurt er met de installaties, vallen er gewonden?), en een **publieke veiligheidskwestie** (wat doet de gemeente als een wijk dagenlang zonder stroom zit?).\\n\\nDrie specialisten uit drie werelden zien elk een derde van het probleem. Wat er dan mist, is iemand die de drie beelden aan elkaar knoopt. Dat is de rol die SSMS claimt.\\n\\nDit is ook precies wat leerdoel 3 met "multidisciplinair karakter" bedoelt, en wat in het boek van Bieder terugkomt als de vraag of safety en security überhaupt met dezelfde begrippen te vatten zijn.' },
+
+      { type: 'tekst', titel: '3. Het kernonderscheid: menselijke intentie',
+        toetsstof: true,
+        tekst: 'Dit is het belangrijkste begrip van het hele college, en waarschijnlijk van het eerste deel van het vak.\\n\\nHet onderscheid tussen safety en security zit hem in **human intentionality**, menselijke intentie:\\n\\n**Safety management** richt zich op het tegengaan van natuurrampen, ongelukken, menselijke fouten en soortgelijke gebeurtenissen. Kenmerk: **er is geen kwaadwillende partij**. Niemand wil dat het misgaat.\\n\\n**Security management** richt zich op het tegengaan van opzettelijke tegenstanders, doelbewuste handelingen en criminaliteit. Kenmerk: **er is een actor die het expres doet**, en die zich aanpast aan jouw maatregelen.\\n\\nDat laatste is de scherpste consequentie. Een overstroming past zich niet aan je dijk aan. Een inbreker past zich wel aan je slot aan. Dat verschil bepaalt welke maatregelen zin hebben en hoe je ze moet blijven aanpassen.' },
+
+      { type: 'vergelijking', titel: 'Safety tegenover security in de praktijk',
+        links: { titel: 'Safety',
+          tekst: 'Geen kwaadwillende tegenstander.',
+          punten: [
+            'Oorzaken: natuurgeweld, technisch falen, menselijke fout',
+            'De dreiging past zich niet aan je maatregelen aan',
+            'Cultuur van openheid: incidenten melden maakt het systeem veiliger',
+            'Statistiek werkt goed: ongelukken volgen patronen',
+            'Voorbeeld: een brandalarm, een veiligheidsprocedure bij een machine'
+          ] },
+        rechts: { titel: 'Security',
+          tekst: 'Wel een kwaadwillende tegenstander.',
+          punten: [
+            'Oorzaken: opzet, criminaliteit, sabotage, aanslagen',
+            'De dreiging past zich juist wél aan je maatregelen aan',
+            'Cultuur van geheimhouding: informatie delen vergroot je kwetsbaarheid',
+            'Statistiek werkt beperkt: de tegenstander verandert zijn methode',
+            'Voorbeeld: toegangscontrole, screening van personeel'
+          ] } },
+
+      { type: 'tekst', titel: '4. Vier soorten safety en security, één gemene deler',
+        toetsstof: true,
+        tekst: 'De docenten geven vier definities die je uit je hoofd moet kennen, want ze zijn precies geformuleerd:\\n\\n**Physical safety.** De mate waarin mensen beschermd zijn, én zich beschermd voelen, tegen persoonlijk letsel door ongelukken en tegen rampen van niet-menselijke oorsprong.\\n\\n**Industrial safety.** Het voorkomen of verminderen van bedreigingen voor een onderneming, haar werknemers of haar omgeving, als gevolg van natuurlijke risico\\u2019s (bijvoorbeeld overstroming) en risico\\u2019s verbonden aan productieprocessen of logistiek (bijvoorbeeld infrastructuur).\\n\\n**Security** (corporate, internationaal, regionaal, fysiek, cyber, en zo verder). Het voorkomen of verminderen van het **moedwillig toebrengen van schade** aan burgers, werknemers, en publieke en private bezittingen.\\n\\n**Public security.** De mate waarin mensen beschermd zijn, én zich beschermd voelen, tegen persoonlijk letsel door criminaliteit, overtredingen en intimidatie door andere mensen.\\n\\nDe vraag die de docenten er meteen achteraan stellen: wat hebben deze vier gemeen? Het antwoord dat op de volgende slide verschijnt: **risico**.' },
+
+      { type: 'slimmer', titel: 'Let op het woordje "en zich beschermd voelen"',
+        tekst: 'Bij physical safety en public security staat er iets wat makkelijk over het hoofd wordt gezien: de mate waarin mensen beschermd zijn **én zich beschermd voelen**.\\n\\nDat is geen stijlbloempje. Het betekent dat veiligheid twee componenten heeft: een objectieve (hoeveel gebeurt er werkelijk) en een subjectieve (hoe veilig voelen mensen zich). Die twee lopen vaak uiteen. Criminaliteitscijfers kunnen dalen terwijl het onveiligheidsgevoel stijgt.\\n\\nVoor jouw toekomstige beroep is dat cruciaal: een maatregel die de statistiek verbetert maar het gevoel verslechtert, heeft maar half gewerkt. En bij industrial safety en security ontbreekt die gevoelscomponent in de definitie juist, wat op zich al iets zegt over hoe die velden naar hun taak kijken.' },
+
+      { type: 'tekst', titel: '5. Risico, en hoe het van karakter veranderde',
+        toetsstof: true,
+        tekst: 'De definitie die je moet kennen:\\n\\n**Risico is onzekerheid over een mogelijk negatieve uitkomst (van een beslissing).** Uitgedrukt als: **waarschijnlijkheid × impact**.\\n\\nTwee dingen aan die definitie zijn belangrijk. Ten eerste zit er **onzekerheid** in: bij volledige zekerheid spreek je niet meer van risico. Ten tweede staat er "van een beslissing" tussen haakjes, wat suggereert dat risico\\u2019s vaak voortkomen uit keuzes die iemand maakt, niet uit puur toeval.\\n\\nDaarna maken de docenten een onderscheid dat je moet kunnen uitleggen, tussen "oude" en "moderne" risico\\u2019s.' },
+
+      { type: 'tabel', titel: '"Oude" tegenover "moderne" risico\\u2019s',
+        toetsstof: true,
+        kop: ['', '"Oude" risico\\u2019s', '"Moderne" risico\\u2019s'],
+        rijen: [
+          ['Oorsprong', 'Natuurlijk, "god-given": aardbevingen, misoogsten, ziekten', 'Door mensen gemaakt, technologisch: kernenergie, cyberaanvallen, klimaatverandering'],
+          ['Schaal', 'Kleinschalig, lokaal begrensd', 'Grootschalig, en gepolitiseerd'],
+          ['Verdeling', 'Ongelijk verdeeld: trof de een wel en de ander niet', 'Gelijk verdeeld: raakt in principe iedereen, ongeacht positie']
+        ],
+        noot: 'De aanhalingstekens rond "oud" en "modern" staan er in het origineel ook. De docenten geven daarmee aan dat het geen strikte chronologie is: oude risico\\u2019s bestaan nog steeds.' },
+
+      { type: 'uitleg', titel: 'Waarom "gelijk verdeeld" de meest omstreden claim is',
+        tekst: 'Van de drie verschillen is dit degene waar je bij moet stilstaan, want hij is zowel het interessantst als het meest bekritiseerd.\\n\\nDe gedachte komt uit de risicosamenlevingstheorie van socioloog Ulrich Beck. Zijn stelling: bij een klassieke ramp, zoals een misoogst, waren de rijken beter beschermd dan de armen. Maar bij moderne risico\\u2019s zoals radioactieve neerslag of klimaatverandering helpt geld je maar tot op zekere hoogte. Beck vatte dat samen als: armoede is hiërarchisch, smog is democratisch.\\n\\nDe kritiek daarop is even belangrijk om te kennen: in de praktijk zijn moderne risico\\u2019s allesbehalve gelijk verdeeld. Klimaatverandering treft laaggelegen arme landen veel harder dan rijke. Wie zich verhuizing, verzekering of een generator kan veroorloven, staat er beter voor.\\n\\nHoud dat spanningsveld vast. Bij een mondelinge eindtoets is "ik ken de drie verschillen" een 5,5-antwoord; "ik ken ze én ik kan uitleggen waarom de derde omstreden is" is wat een hoger cijfer oplevert.' },
+
+      { type: 'tekst', titel: '6. Wat de professional feitelijk doet: de vier kerntaken',
+        toetsstof: true,
+        tekst: 'Dit is de beroepscyclus waar je hele opleiding op is gebouwd. Vier taken, in deze volgorde:\\n\\n**1. Identificeren, analyseren en beoordelen van risicosituaties.** Oftewel: risicoanalyses maken. Dit is waar je begint, en waar Demystifying Research Methods je de gereedschappen voor geeft.\\n\\n**2. Ontwerpen en aanbevelen van haalbare safety- en securityinterventies.** Denk aan plannen, beleid, regelgeving en strategieën. Let op het woord **haalbaar**: een technisch perfecte oplossing die niemand kan betalen of uitvoeren, is geen aanbeveling.\\n\\n**3. Implementeren en coördineren van interventies.** Tactieken en methoden uitvoeren, instrumenten inzetten, op basis van informatie.\\n\\n**4. Evalueren van interventies en oplossingen.** De kernvraag: heeft het gewerkt? Dit is de stap die in de praktijk het vaakst wordt overgeslagen.\\n\\nDe cyclus is rond: de evaluatie in stap 4 levert de informatie voor een nieuwe analyse in stap 1.' },
+
+      { type: 'tekst', titel: '7. Waar je dat mee doet: insecurities',
+        tekst: 'De docenten zetten hier bewust een korte, open slide neer. De professional heeft te maken met onzekerheden rond:\\n\\n- **mensen** — gedrag, fouten, motieven, opleiding\\n- **systemen** — hoe organisaties en processen zijn ingericht\\n- **technologie** — wat die mogelijk maakt en welke nieuwe kwetsbaarheden ze schept\\n- **overtuigingen** — wat mensen geloven over risico en veiligheid\\n- **cultuur** — hoe er in een organisatie of land met veiligheid wordt omgegaan\\n- **en veel meer**\\n\\nDe boodschap van die open opsomming is dat je vakgebied niet technisch is maar **sociotechnisch**: de techniek is zelden het lastigste deel, de mensen eromheen wel.' },
+
+      { type: 'tekst', titel: '8. Connecting the dots: het klimaatvoorbeeld',
+        toetsstof: true,
+        tekst: 'Het college sluit het inhoudelijke deel af met een schema uit onderzoek van Ljungqvist (2017) naar de menselijke en maatschappelijke dimensies van klimaatverandering in het verleden. Het laat een ketting zien:\\n\\n**Klimaatverandering** (temperatuur, neerslag, droogte) beïnvloedt de **landbouwproductiviteit**, wat de **voedselvoorziening per hoofd** beïnvloedt (beschikbaarheid en prijs). Dat leidt langs drie sporen verder: naar **sociale onrust** en vervolgens **gewapende conflicten**; naar **migratie**, oftewel klimaatvluchtelingen; en naar **voedseltekorten**, ondervoeding en hongersnood, die weer leiden tot **epidemieën** en **slechte voedingstoestand**. Dat alles slaat terug op de **bevolking**: groei, omvang, sterfte.\\n\\nWaarom dit schema in het openingscollege staat: het is de illustratie van "connecting the dots". Een klimaatverschijnsel eindigt via een keten van tussenstappen in een gewapend conflict. Wie alleen naar het begin of alleen naar het eind van die keten kijkt, snapt niet wat er gebeurt.\\n\\nDit is ook direct leerdoel 4 in actie: risicomanagement en resilience toegepast in een internationale context.' },
+
+      { type: 'begrippen', titel: 'Kernbegrippen uit college 1',
+        items: [
+          { begrip: 'Human intentionality', en: 'menselijke intentie',
+            definitie: 'het kernonderscheid tussen safety en security: bij safety ontbreekt een kwaadwillende actor, bij security is die er wel en past die zich aan je maatregelen aan.' },
+          { begrip: 'Risico', en: 'risk',
+            definitie: 'onzekerheid over een mogelijk negatieve uitkomst van een beslissing, uitgedrukt als waarschijnlijkheid maal impact.' },
+          { begrip: 'Physical safety',
+            definitie: 'de mate waarin mensen beschermd zijn en zich beschermd voelen tegen persoonlijk letsel door ongelukken en rampen van niet-menselijke oorsprong.' },
+          { begrip: 'Industrial safety',
+            definitie: 'het voorkomen of verminderen van bedreigingen voor een onderneming, haar werknemers of omgeving door natuurlijke risico\\u2019s en risico\\u2019s in productieprocessen of logistiek.' },
+          { begrip: 'Public security',
+            definitie: 'de mate waarin mensen beschermd zijn en zich beschermd voelen tegen persoonlijk letsel door criminaliteit, overtredingen en intimidatie door anderen.' },
+          { begrip: 'Security',
+            definitie: 'het voorkomen of verminderen van het moedwillig toebrengen van schade aan burgers, werknemers en publieke of private bezittingen.' },
+          { begrip: 'De drie werelden van SSMS',
+            definitie: 'public safety, industrial safety oftewel corporate security, en international security; SSMS positioneert zich in het midden daarvan.' },
+          { begrip: '"Moderne" risico\\u2019s',
+            definitie: 'door mensen gemaakte, technologische risico\\u2019s die grootschalig en gepolitiseerd zijn en in principe iedereen gelijk raken, tegenover natuurlijke, kleinschalige en ongelijk verdeelde "oude" risico\\u2019s.' },
+          { begrip: 'De vier kerntaken',
+            definitie: 'risico\\u2019s analyseren, interventies ontwerpen en aanbevelen, interventies implementeren en coördineren, en interventies evalueren op effectiviteit.' },
+          { begrip: 'SHEQ',
+            definitie: 'safety, health, environment and quality: de bundeling van veiligheidstaken zoals die binnen bedrijven vaak is georganiseerd.' }
+        ] }
+    ]
+  },
+
+  {
+    id: 'toepassen', titel: 'Toepassen',
+    blokken: [
+      { type: 'oefening', id: 'iss-c1-oef-1', niveau: 'basis',
+        vraag: 'Leg uit waarom het onderscheid tussen safety en security niet zit in **hoe ernstig** de gevolgen zijn, maar in menselijke intentie. Geef een voorbeeld van een ernstig safety-incident en een klein security-incident.',
+        antwoord: 'Het onderscheid ligt in de oorzaak, niet in de omvang van de schade. Bij safety gaat het om gebeurtenissen zonder kwaadwillende actor: natuurgeweld, technisch falen of menselijke fout. Bij security is er een partij die de schade doelbewust veroorzaakt. Die tweedeling zegt niets over ernst: een ontsnapping van giftige stoffen bij een chemische fabriek door een technische storing kan honderden slachtoffers maken en is een safety-incident, terwijl het stelen van een laptop uit een kantoorpand een security-incident is met beperkte schade.\n\nDe reden dat het onderscheid er toch toe doet, is dat het bepaalt welk type maatregel werkt. Bij safety kun je uitgaan van patronen: dezelfde technische storing gedraagt zich onder dezelfde omstandigheden hetzelfde, dus statistiek, standaardisatie en het delen van incidentinformatie maken het systeem veiliger. Bij security heb je te maken met een tegenstander die zich aanpast: zodra je een maatregel invoert, zoekt die naar een route eromheen. Daarom werkt openheid bij safety in je voordeel en bij security juist tegen je, en daarom moet een securitymaatregel voortdurend worden herzien terwijl een safetymaatregel langer meegaat.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-2', niveau: 'basis',
+        vraag: 'Neem een concreet incident naar keuze, bijvoorbeeld een grote stroomstoring, en laat zien hoe alle drie de werelden van SSMS erin terugkomen.',
+        antwoord: 'Neem een langdurige stroomstoring in een grote stad, veroorzaakt door een cyberaanval op de netbeheerder.\n\nDe internationale securitydimensie betreft de vraag wie erachter zit. Gaat het om criminelen die losgeld willen, om hacktivisten, of om een statelijke actor die de kwetsbaarheid van kritieke infrastructuur test? Dat bepaalt of dit een politiezaak is, een zaak voor de inlichtingendiensten, of zelfs een kwestie van internationale betrekkingen.\n\nDe industriële safetydimensie speelt bij de netbeheerder en bij aangesloten bedrijven. Vallen installaties op een gecontroleerde manier stil of ontstaat er gevaar bij het uitvallen van koeling, ventilatie of procesbesturing? Zijn er noodstroomvoorzieningen, en hoe lang houden die het vol? Hier gaat het om technische systemen en om de veiligheid van werknemers.\n\nDe publieke veiligheidsdimensie speelt bij gemeente en hulpdiensten. Verkeerslichten vallen uit, liften komen vast te zitten, mensen met thuiszorgapparatuur raken in de problemen, winkels kunnen niet pinnen, en na een tijd ontstaat er onrust of plundering. Dat vraagt om crisiscommunicatie, opvang en handhaving.\n\nWat het voorbeeld laat zien is dat geen van de drie specialisten het probleem in zijn geheel ziet. De netbeheerder denkt in installaties, de inlichtingendienst in daders, de gemeente in burgers. De coördinatie tussen die drie, en de vraag wie in de crisis waarover gaat, is precies het gat waar de SSMS-professional voor wordt opgeleid.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-3', niveau: 'gevorderd',
+        vraag: 'De docenten stellen dat moderne risico\\u2019s "gelijk verdeeld" zijn. Beargumenteer waarom die stelling verdedigbaar is, en waarom er stevige kritiek op mogelijk is.',
+        antwoord: 'De stelling is verdedigbaar omdat moderne risico\'s van karakter verschillen van klassieke rampen. Bij een misoogst of een lokale overstroming bepaalden bezit en positie in hoge mate of je getroffen werd: wie voorraden had of hoger woonde, ontsprong de dans. Bij radioactieve neerslag, luchtvervuiling, een pandemie of een systeemcrisis in het financiële stelsel werkt die bescherming veel minder goed. De uitstoot van een fabriek stopt niet bij de grens van een welvarende wijk, en een virus vraagt niet naar inkomen. Ulrich Beck vatte dat samen met de gedachte dat armoede hiërarchisch is maar smog democratisch. Daar komt bij dat moderne risico\'s door mensen zijn gemaakt en dus het gevolg zijn van collectieve keuzes, waardoor ze ook politiek van aard worden: er is altijd iemand aan te wijzen die de beslissing nam.\n\nDe kritiek is minstens zo sterk. In de praktijk blijken moderne risico\'s wel degelijk ongelijk te landen. Klimaatverandering treft laaggelegen en arme landen onevenredig hard, terwijl de uitstoot grotendeels elders is veroorzaakt. Binnen landen wonen armere bevolkingsgroepen vaker naast snelwegen, industrie of in overstromingsgevoelig gebied. En hoewel niemand immuun is, verschilt het vermogen om je aan te passen enorm: verzekeringen, verhuizen, medische zorg, een generator of een tweede woning zijn allemaal koopbaar. Dat verschuift de ongelijkheid van blootstelling naar veerkracht, maar heft haar niet op.\n\nDe genuanceerde conclusie is dat de stelling opgaat voor blootstelling maar niet voor kwetsbaarheid. Moderne risico\'s raken iedereen, maar ze raken niet iedereen even hard, en juist dat onderscheid is voor een safety- en securityprofessional relevant: het bepaalt waar je maatregelen het meeste effect hebben.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-4', niveau: 'gevorderd',
+        vraag: 'Loop de vier kerntaken van de professional langs voor een concrete casus: het toenemende aantal steekincidenten onder jongeren in een middelgrote stad. Wat doe je in elke stap?',
+        antwoord: 'Bij stap één, het identificeren, analyseren en beoordelen van de risicosituatie, begint het met feitelijk vaststellen wat er speelt. Hoeveel incidenten zijn er werkelijk, in welke wijken, op welke tijdstippen, met welke betrokkenen, en is er sprake van een stijging of van meer meldingsbereidheid? Daar hoort ook onderzoek naar achterliggende factoren bij: schooluitval, wapenbezit, groepsdynamiek, aanwezigheid van drugshandel. En het hoort te gaan over zowel objectieve veiligheid als het veiligheidsgevoel van bewoners, omdat die twee kunnen verschillen.\n\nBij stap twee, het ontwerpen en aanbevelen van haalbare interventies, komen de mogelijke maatregelen op tafel: preventieprogramma\'s op scholen, jongerenwerk, cameratoezicht op bepaalde plekken, wapencontroles, of samenwerking met ouders en sportverenigingen. Het woord haalbaar is hier het scherpst: elke maatregel kost geld, capaciteit en politiek draagvlak, en een voorstel dat de gemeente niet kan uitvoeren is geen advies. Ook moet je hier expliciet maken welke maatregel welk deel van het probleem aanpakt.\n\nBij stap drie, implementeren en coördineren, gaat het om de uitvoering: wie doet wat, in welke volgorde, met welke middelen, en hoe zorg je dat politie, gemeente, scholen en jongerenwerk niet langs elkaar heen werken. Hier blijkt vaak dat partijen verschillende doelen en verschillende informatie hebben.\n\nBij stap vier, evalueren, stel je vast of het gewerkt heeft. Dat is lastiger dan het lijkt: een daling in incidenten kan ook door iets anders komen, en een goede evaluatie probeert dat te onderscheiden. Bovendien meet je idealiter niet alleen de cijfers maar ook of bewoners zich veiliger voelen. De uitkomst voedt vervolgens weer een nieuwe analyse, waarmee de cyclus rond is.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-5', niveau: 'gevorderd',
+        vraag: 'Beschrijf het klimaatschema van Ljungqvist in je eigen woorden en leg uit waarom het in een introductiecollege over safety en security thuishoort.',
+        antwoord: 'Het schema laat een causale ketting zien die begint bij klimaatverandering, in de vorm van veranderingen in temperatuur, neerslag en droogte. Die veranderingen beïnvloeden de landbouwproductiviteit en daarmee de opbrengst van oogsten. Dat werkt door in de voedselvoorziening per hoofd van de bevolking, waarbij zowel beschikbaarheid als prijs een rol spelen. Vanaf dat punt splitst de keten zich. Eén lijn loopt via sociale onrust en wetteloosheid naar gewapende conflicten, rebellie en oorlog. Een tweede lijn loopt naar migratie, waarbij mensen wegtrekken uit gebieden die hun levensonderhoud niet meer bieden. Een derde lijn loopt via voedseltekorten en ondervoeding naar epidemieën en een verslechterde gezondheidstoestand. Al deze sporen slaan uiteindelijk terug op de bevolking zelf, in groeicijfers en omvang, wat de druk op het systeem opnieuw beïnvloedt.\n\nHet hoort in dit college thuis om drie redenen. Ten eerste is het de concrete invulling van wat de docenten connecting the dots noemen: geen enkele stap in de keten is op zichzelf een veiligheidsprobleem, maar de optelsom eindigt in gewapend conflict en massale migratie. Ten tweede laat het zien dat de scheiding tussen safety en security in de praktijk vervaagt. Het beginpunt is een klassiek safety-vraagstuk zonder kwaadwillende actor, terwijl het eindpunt onmiskenbaar security is, met intentie, geweld en tegenstanders. Ergens in de keten kantelt het van het één naar het ander, zonder dat er een duidelijk omslagpunt aan te wijzen valt. Ten derde illustreert het waarom de opleiding zich in het midden van drie werelden positioneert: een klimaatwetenschapper, een landbouwexpert en een veiligheidsanalist zien elk een deel van deze keten, en pas wie het geheel overziet begrijpt waarom een droogte jaren later in een conflict kan eindigen.' }
+    ]
+  },
+
+  {
+    id: 'checken', titel: 'Checken',
+    blokken: [
+      { type: 'quiz', titel: 'Check jezelf',
+        vragen: [
+          { vraag: 'Wat is volgens dit college het kernonderscheid tussen safety en security?',
+            opties: ['De ernst van de gevolgen', 'Menselijke intentie', 'Of het publiek of privaat is', 'De omvang van de schade'],
+            juist: 1,
+            uitleg: 'Human intentionality. Bij safety ontbreekt een kwaadwillende actor, bij security is die er wel. Ernst en omvang zeggen niets over het onderscheid: een technische storing kan rampzalig zijn en een diefstal klein.' },
+          { vraag: 'Hoe wordt risico in dit college gedefinieerd?',
+            opties: ['De kans dat er iets misgaat', 'Waarschijnlijkheid maal impact', 'De schade gedeeld door de kosten', 'Het aantal incidenten per jaar'],
+            juist: 1,
+            uitleg: 'Risico is onzekerheid over een mogelijk negatieve uitkomst van een beslissing, uitgedrukt als waarschijnlijkheid maal impact. Alleen de kans is niet genoeg: een zeer waarschijnlijke gebeurtenis met verwaarloosbare gevolgen is een klein risico.' },
+          { vraag: 'Welke drie werelden komen samen in SSMS?',
+            opties: ['Politie, leger en brandweer', 'Public safety, industrial safety en international security', 'Preventie, repressie en nazorg', 'Lokaal, nationaal en internationaal'],
+            juist: 1,
+            uitleg: 'Public safety (het publieke domein), industrial safety oftewel corporate security (bedrijven), en international security (veiligheids- en inlichtingendiensten, leger, ngo\u2019s). SSMS positioneert zich in het midden.' },
+          { vraag: 'Wat is volgens de indeling van "oude" en "moderne" risico\u2019s het kenmerk van moderne risico\u2019s?',
+            opties: ['Natuurlijk, kleinschalig, ongelijk verdeeld', 'Door mensen gemaakt, grootschalig, gelijk verdeeld', 'Zeldzaam maar zeer ernstig', 'Alleen in westerse landen aanwezig'],
+            juist: 1,
+            uitleg: 'Moderne risico\u2019s zijn door mensen gemaakt en technologisch, grootschalig en gepolitiseerd, en in principe gelijk verdeeld. Op dat laatste punt is overigens stevige kritiek mogelijk.' },
+          { vraag: 'Wat is de juiste volgorde van de vier kerntaken van de professional?',
+            opties: ['Implementeren, analyseren, evalueren, ontwerpen', 'Analyseren, ontwerpen, implementeren, evalueren', 'Ontwerpen, implementeren, analyseren, evalueren', 'Evalueren, analyseren, ontwerpen, implementeren'],
+            juist: 1,
+            uitleg: 'Eerst risico\u2019s identificeren, analyseren en beoordelen. Dan haalbare interventies ontwerpen en aanbevelen. Dan implementeren en coördineren. Tot slot evalueren op effectiviteit, waarna de cyclus opnieuw begint.' },
+          { vraag: 'Waarom werkt een cultuur van openheid wél bij safety maar niet bij security?',
+            opties: ['Omdat safety minder ernstig is', 'Omdat er bij security een tegenstander is die van gedeelde informatie profiteert', 'Omdat securitywetgeving het verbiedt', 'Omdat safety-incidenten vaker voorkomen'],
+            juist: 1,
+            uitleg: 'Bij safety maakt het melden en delen van incidenten het systeem veiliger, omdat niemand er baat bij heeft dat het misgaat. Bij security vergroot het delen van je kwetsbaarheden juist het risico, omdat een tegenstander die informatie kan gebruiken.' }
+        ] },
+
+      { type: 'checklist', titel: 'Kun je dit navertellen?',
+        tekst: 'De eindtoets van dit vak is **mondeling**. Vink alleen af wat je zonder aantekeningen hardop kunt uitleggen.',
+        items: [
+          { doel: 'Ik kan de vier leerdoelen van dit vak noemen',
+            uitleg: 'Domeinen conceptualiseren, stakeholderbenaderingen uitleggen, de structuur van SSMS samenvatten, en risicomanagement en resilience toepassen op internationale casussen.' },
+          { doel: 'Ik kan de drie werelden van SSMS benoemen en met een voorbeeld uitleggen waarom ze bij elkaar horen',
+            uitleg: 'Gebruik een casus waarin alle drie tegelijk spelen, zoals een cyberaanval op kritieke infrastructuur; dat is overtuigender dan een opsomming.' },
+          { doel: 'Ik kan het onderscheid safety en security uitleggen én uitleggen wat dat betekent voor maatregelen',
+            uitleg: 'Het tweede deel is waar het om gaat: de aanpassende tegenstander, en de tegenstelling tussen openheid en geheimhouding.' },
+          { doel: 'Ik kan risico definiëren en het verschil tussen oude en moderne risico\\u2019s uitleggen',
+            uitleg: 'Inclusief de kanttekening bij "gelijk verdeeld": dat onderscheid maakt je antwoord sterker.' },
+          { doel: 'Ik kan de vier definities van soorten safety en security uit mijn hoofd geven',
+            uitleg: 'Physical safety, industrial safety, security en public security. Let op het element "en zich beschermd voelen" bij de eerste en de laatste.' },
+          { doel: 'Ik kan de vier kerntaken in volgorde noemen en op een casus toepassen',
+            uitleg: 'Analyseren, ontwerpen, implementeren, evalueren. Oefen dit met een casus die je zelf kiest, niet alleen met de opsomming.' },
+          { doel: 'Ik kan uitleggen wat het klimaatschema laat zien en waarom het in dit vak staat',
+            uitleg: 'De ketting van klimaat naar conflict, en het feit dat die begint bij safety en eindigt bij security zonder duidelijk omslagpunt.' }
+        ] },
+
+      { type: 'preview', titel: 'Sessie 2 · Safety and security interventions',
+        vakId: 'intro-to-safety-security', lesId: 'h1',
+        tekst: 'Het volgende college gaat over interventies, en daarvoor moet je hoofdstuk 1 en 2 van Bieder gelezen hebben. Die hoofdstukken bouwen precies voort op het onderscheid en het risicobegrip uit dit college.' }
+    ]
+  }
+];
+
+/* ============================================================
+   De lessenlijst van Intro to Safety & Security opnieuw zetten,
+   nu met een aparte groep "Lecture slides" vóór de boekhoofdstukken.
+
+   De groepsnaam komt uit het deel vóór ' · ' in de titel, dus
+   'Lecture slides · Sessie 1 ...' verschijnt als eigen uitklapper
+   naast 'The Coupling of Safety and Security'.
+
+   Nieuw college erbij? Voeg een regel toe aan COLLEGES hieronder
+   en zet de lesstof onder LESSTOF['intro-to-safety-security/college-N'].
+   ============================================================ */
+(function(){
+  if (typeof DATA === 'undefined') return;
+
+  var COLLEGES = [
+    { id: 'college-1', titel: 'Lecture slides \\u00b7 Sessie 1 \\u00b7 SSMS & what it\\u2019s all about', duur: 45 }
+  ];
+
+  var BOEK = [
+    { id: 'h1',  titel: 'The Coupling of Safety and Security \\u00b7 H1 Safety en security samenbrengen',        duur: 60 },
+    { id: 'h2',  titel: 'The Coupling of Safety and Security \\u00b7 H2 Risico, safety en security als concept', duur: 75 },
+    { id: 'h3',  titel: 'The Coupling of Safety and Security \\u00b7 H3 Twee kanten van dezelfde medaille',      duur: 90 },
+    { id: 'h4',  titel: 'The Coupling of Safety and Security \\u00b7 H4 Safety versus security in de luchtvaart', duur: 90 },
+    { id: 'h5',  titel: 'The Coupling of Safety and Security \\u00b7 H5 Security- en safetycultuur',             duur: 75 },
+    { id: 'h6',  titel: 'The Coupling of Safety and Security \\u00b7 H6 Gebruikerservaring op de luchthaven',    duur: 60 },
+    { id: 'h7',  titel: 'The Coupling of Safety and Security \\u00b7 H7 De divergentie van safety en security',  duur: 75 },
+    { id: 'h8',  titel: 'The Coupling of Safety and Security \\u00b7 H8 Voorbereiden om verrast te worden',      duur: 75 },
+    { id: 'h9',  titel: 'The Coupling of Safety and Security \\u00b7 H9 Spanningen en synergie in management',   duur: 75 },
+    { id: 'h10', titel: 'The Coupling of Safety and Security \\u00b7 H10 Het snijvlak op de werkplek',           duur: 60 },
+    { id: 'h11', titel: 'The Coupling of Safety and Security \\u00b7 H11 Onderzoeks- en managementuitdagingen',  duur: 60 }
+  ];
+
+  function zetIss(){
+    DATA.semesters.forEach(function(sem){
+      sem.vakken.forEach(function(vak){
+        if (vak.id === 'intro-to-safety-security') {
+          vak.lessen = COLLEGES.concat(BOEK);
+        }
+      });
+    });
+  }
+
+  zetIss();
+  if (typeof opFeed === 'function') opFeed(zetIss);
+})();
