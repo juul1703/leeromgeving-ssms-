@@ -101,6 +101,7 @@ function voorbereidingDeadlines(nu){
       if (!klaar) {
         uit.push({
           titel: plan.titel, vak: hit.vak.naam, vakId: vakId, soort: 'voorbereiding',
+          onderwerp: plan.onderwerp || '', sessie: i + 1,
           datum: sessies[i].start,
           dagen: Math.ceil((sessies[i].start - nu) / 86400000)
         });

@@ -2354,77 +2354,9 @@ LESSTOF["intro-to-safety-security/h11"] = [
 ] }
 ];
 
-/* ============================================================
-   Het vak registreren
-
-   Dit blok zet het vak 'intro-to-safety-security' in semester 1
-   met een les per hoofdstuk, zodat de kaart op het homescreen
-   verschijnt ook als je rooster nog niet is opgehaald.
-
-   Staat het vak al in je rooster onder een ander id? Zet dan in
-   rooster.js bij KOPPELING:
-       'intro ssms': 'intro-to-safety-security',
-       'intro to safety': 'intro-to-safety-security'
-   ============================================================ */
-(function(){
-  if (typeof DATA === 'undefined') return;
-
-  var LESSEN = [
-    { id: 'h1',  titel: 'The Coupling of Safety and Security · H1 Safety en security samenbrengen',        duur: 60 },
-    { id: 'h2',  titel: 'The Coupling of Safety and Security · H2 Risico, safety en security als concept', duur: 75 },
-    { id: 'h3',  titel: 'The Coupling of Safety and Security · H3 Twee kanten van dezelfde medaille',      duur: 90 },
-    { id: 'h4',  titel: 'The Coupling of Safety and Security · H4 Safety versus security in de luchtvaart', duur: 90 },
-    { id: 'h5',  titel: 'The Coupling of Safety and Security · H5 Security- en safetycultuur',             duur: 75 },
-    { id: 'h6',  titel: 'The Coupling of Safety and Security · H6 Gebruikerservaring op de luchthaven',    duur: 60 },
-    { id: 'h7',  titel: 'The Coupling of Safety and Security · H7 De divergentie van safety en security',  duur: 75 },
-    { id: 'h8',  titel: 'The Coupling of Safety and Security · H8 Voorbereiden om verrast te worden',      duur: 75 },
-    { id: 'h9',  titel: 'The Coupling of Safety and Security · H9 Spanningen en synergie in management',   duur: 75 },
-    { id: 'h10', titel: 'The Coupling of Safety and Security · H10 Het snijvlak op de werkplek',           duur: 60 },
-    { id: 'h11', titel: 'The Coupling of Safety and Security · H11 Onderzoeks- en managementuitdagingen',  duur: 60 }
-  ];
-
-  var sem = DATA.semesters.filter(function(s){ return s.id === DATA.actiefSemester; })[0];
-  if (!sem) return;
-  var bestaat = sem.vakken.filter(function(v){ return v.id === 'intro-to-safety-security'; })[0];
-  if (bestaat) { bestaat.lessen = LESSEN; return; }
-
-  sem.vakken.push({
-    id: 'intro-to-safety-security',
-    naam: 'Intro to Safety & Security',
-    lessen: LESSEN
-  });
-})();
-
-/* Het rooster maakt per college een lege les aan ("Hoorcollege di 15 sep").
-   Die vervangen we door de hoofdstukken, ook nadat de feed binnen is. */
-(function(){
-  if (typeof DATA === 'undefined') return;
-
-  function perHoofdstuk(){
-    DATA.semesters.forEach(function(sem){
-      sem.vakken.forEach(function(vak){
-        if (vak.id === 'intro-to-safety-security') {
-          vak.lessen = [
-            { id: 'h1',  titel: 'The Coupling of Safety and Security · H1 Safety en security samenbrengen',           duur: 60 },
-            { id: 'h2',  titel: 'The Coupling of Safety and Security · H2 Risico, safety en security als concept',    duur: 75 },
-            { id: 'h3',  titel: 'The Coupling of Safety and Security · H3 Twee kanten van dezelfde medaille',         duur: 90 },
-            { id: 'h4',  titel: 'The Coupling of Safety and Security · H4 Safety versus security in de luchtvaart',   duur: 90 },
-            { id: 'h5',  titel: 'The Coupling of Safety and Security · H5 Security- en safetycultuur',                duur: 75 },
-            { id: 'h6',  titel: 'The Coupling of Safety and Security · H6 Gebruikerservaring op de luchthaven',       duur: 60 },
-            { id: 'h7',  titel: 'The Coupling of Safety and Security · H7 De divergentie van safety en security',     duur: 75 },
-            { id: 'h8',  titel: 'The Coupling of Safety and Security · H8 Voorbereiden om verrast te worden',         duur: 75 },
-            { id: 'h9',  titel: 'The Coupling of Safety and Security · H9 Spanningen en synergie in management',      duur: 75 },
-            { id: 'h10', titel: 'The Coupling of Safety and Security · H10 Het snijvlak op de werkplek',              duur: 60 },
-            { id: 'h11', titel: 'The Coupling of Safety and Security · H11 Onderzoeks- en managementuitdagingen',     duur: 60 }
-          ];
-        }
-      });
-    });
-  }
-
-  perHoofdstuk();
-  if (typeof opFeed === 'function') opFeed(perHoofdstuk);
-})();
+/* De registratie van Intro to Safety & Security staat onderaan dit bestand,
+   bij COLLEGES en BOEK. Twee oudere blokken die hier stonden deden hetzelfde
+   met langere titels en overschreven elkaar; die zijn verwijderd. */
 
 /* ============================================================
    Vakinfo — SSMS jaar 1, semester 1, modulehandleiding 2026-2027
@@ -3207,17 +3139,17 @@ LESSTOF['studiegids/regels'] = [
   if (typeof DATA === 'undefined') return;
 
   var ONDERWERPEN = [
-    { id: 'overzicht',    titel: 'Semesteroverzicht',                duur: 20 },
-    { id: 'intro',        titel: 'Intro to Safety & Security',       duur: 15 },
-    { id: 'governance',   titel: 'Governance & Policy',              duur: 15 },
-    { id: 'society',      titel: 'Society & Politics',               duur: 15 },
-    { id: 'drm',          titel: 'Demystifying Research Methods',    duur: 15 },
-    { id: 'writing',      titel: 'Fundamentals of Academic Writing', duur: 15 },
-    { id: 'skills',       titel: 'Professional Skills',              duur: 20 },
-    { id: 'deadlines',    titel: 'Alle toetsen en deadlines',        duur: 10 },
-    { id: 'competenties', titel: 'Competenties en leerdoelen',       duur: 20 },
-    { id: 'kalender',     titel: 'Academische kalender',             duur: 10 },
-    { id: 'regels',       titel: 'Regels, rubrics en doorstroom',    duur: 15 }
+    { id: 'overzicht',    groep: 'Het semester', titel: 'Semesteroverzicht',                duur: 20 },
+    { id: 'intro',        groep: 'Per vak',      titel: 'Intro to Safety & Security',       duur: 15 },
+    { id: 'governance',   groep: 'Per vak',      titel: 'Governance & Policy',              duur: 15 },
+    { id: 'society',      groep: 'Per vak',      titel: 'Society & Politics',               duur: 15 },
+    { id: 'drm',          groep: 'Per vak',      titel: 'Demystifying Research Methods',    duur: 15 },
+    { id: 'writing',      groep: 'Per vak',      titel: 'Fundamentals of Academic Writing', duur: 15 },
+    { id: 'skills',       groep: 'Per vak',      titel: 'Professional Skills',              duur: 20 },
+    { id: 'deadlines',    groep: 'Planning',     titel: 'Alle toetsen en deadlines',        duur: 10 },
+    { id: 'kalender',     groep: 'Planning',     titel: 'Academische kalender',             duur: 10 },
+    { id: 'competenties', groep: 'Regels',       titel: 'Competenties en leerdoelen',       duur: 20 },
+    { id: 'regels',       groep: 'Regels',       titel: 'Regels, rubrics en doorstroom',    duur: 15 }
   ];
 
   var sem = DATA.semesters.filter(function(s){ return s.id === DATA.actiefSemester; })[0];
@@ -3744,10 +3676,10 @@ LESSTOF['demystifying-research-methods/ch13'] = [
   if (typeof DATA === 'undefined') return;
 
   var LESSEN_DRM = [
-    { id: 'ch3',  titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H3 De achtergrond van je onderzoek',        duur: 45 },
-    { id: 'ch4',  titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H4 Centrale vraag en doelstelling',         duur: 60 },
-    { id: 'ch5',  titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H5 Begripsafbakening en modelbouw',         duur: 60 },
-    { id: 'ch13', titel: 'Aanvullende literatuur · Verhoeven, Doing Research · H13 Kwantitatieve data: voorbereiding',     duur: 45 }
+    { id: 'ch3',  groep: 'Boek', titel: 'H3 De achtergrond van je onderzoek',        duur: 45 },
+    { id: 'ch4',  groep: 'Boek', titel: 'H4 Centrale vraag en doelstelling',         duur: 60 },
+    { id: 'ch5',  groep: 'Boek', titel: 'H5 Begripsafbakening en modelbouw',         duur: 60 },
+    { id: 'ch13', groep: 'Boek', titel: 'H13 Kwantitatieve data: voorbereiding',     duur: 45 }
   ];
 
   function isDrm(vak){
@@ -3793,11 +3725,107 @@ LESSTOF['demystifying-research-methods/ch13'] = [
    ============================================================ */
 var VAK_VOORBEREIDING = {
 
+  /* Per sessie: het onderwerp van die les (uit de module manual) en wat je
+     ervoor moet doen. lesIds verwijzen naar de onderdelen van dit vak; staan
+     die allemaal afgevinkt, dan verdwijnt de regel vanzelf. Sessies zonder
+     leeswerk staan er ook in, zodat je altijd ziet wat eraan komt. */
+
   'intro-to-safety-security': {
-    2: { titel: 'Bieder H1 en H2 gelezen', lesIds: ['h1', 'h2'] },
-    4: { titel: 'Bieder H3 en H5 gelezen', lesIds: ['h3', 'h5'] },
-    6: { titel: 'Bieder H7 en H9 gelezen', lesIds: ['h7', 'h9'] },
-    8: { titel: 'Bieder H10 gelezen · daarna midterm', lesIds: ['h10'] }
+    1:  { onderwerp: 'Introductie: de opleiding en het vakgebied', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    2:  { onderwerp: 'Safety- en securityinterventies', titel: 'Bieder H1 en H2 gelezen', lesIds: ['h1', 'h2'] },
+    3:  { onderwerp: 'Communication matters', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    4:  { onderwerp: 'Stakeholders, actoren en cultuur', titel: 'Bieder H3 en H5 gelezen', lesIds: ['h3', 'h5'] },
+    5:  { onderwerp: 'Safety en security managen', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    6:  { onderwerp: 'Resilience in safety en security', titel: 'Bieder H7 en H9 gelezen', lesIds: ['h7', 'h9'] },
+    7:  { onderwerp: 'Tales from the field (alumnus)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    8:  { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Bieder H10 gelezen · daarna de midterm', lesIds: ['h10'] },
+    9:  { onderwerp: 'Tales from the field', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    10: { onderwerp: 'Crime, safety en security (Matczak)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    11: { onderwerp: 'AI in security risk (Voss)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    12: { onderwerp: 'De human security approach (De Ryck)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    13: { onderwerp: 'Nog te bepalen', titel: 'Onderwerp staat nog niet vast', lesIds: [] },
+    14: { onderwerp: 'Industrial safety in action (Ren)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    15: { onderwerp: 'Applied security risk management (Ekici)', titel: 'Gastcollege: aanwezigheid verplicht', lesIds: [] },
+    16: { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Daarna de eindtoets (mondeling)', lesIds: [] }
+  },
+
+  'governance-policy': {
+    1:  { onderwerp: 'Governance and policy: een introductie', titel: 'McCormick H1 lezen', lesIds: [] },
+    2:  { onderwerp: 'Executives en bureaucratieën', titel: 'McCormick H8 en H10 lezen', lesIds: [] },
+    3:  { onderwerp: 'Politieke participatie en partijen', titel: 'McCormick H13 en H15 lezen', lesIds: [] },
+    4:  { onderwerp: 'Belangengroepen en publiek beleid', titel: 'McCormick H16 en H17 lezen', lesIds: [] },
+    5:  { onderwerp: 'Van government naar governance', titel: 'Levi-Faur (2012) lezen, p. 3-18', lesIds: [] },
+    6:  { onderwerp: 'Democratie en bureaucratie: normen en waarden', titel: 'Buckwalter & Balfour lezen (Quality of Governance, H2)', lesIds: [] },
+    7:  { onderwerp: 'Public governance: een casestudy', titel: 'Huberts, Kaptein & De Koning (2022) lezen', lesIds: [] },
+    8:  { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Daarna de midterm en de POP-week', lesIds: [] },
+    9:  { onderwerp: 'Introductie besluitvorming', titel: 'Allison & Zelikow lezen, p. 1-12', lesIds: [] },
+    10: { onderwerp: 'Agendasetting', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    11: { onderwerp: 'Beleidsformulering', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    12: { onderwerp: 'Beleidsimplementatie 1', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    13: { onderwerp: 'Beleidsimplementatie 2', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    14: { onderwerp: 'Beleidsevaluatie', titel: 'House (p. 618-627) en Weiss (p. 47-70) lezen', lesIds: [] },
+    15: { onderwerp: 'Beleid maken in de praktijk', titel: 'Geen leeswerk vooraf', lesIds: [] },
+    16: { onderwerp: 'Overzicht en tentamenvoorbereiding', titel: 'Daarna de eindtoets', lesIds: [] }
+  },
+
+  'society-politics': {
+    1:  { onderwerp: 'Sociologische perspectieven en methoden', titel: 'Macionis H1 (p. 4-14, 21-25), H2 (p. 33-52), H4 (p. 106-116)', lesIds: [] },
+    2:  { onderwerp: 'Identiteit 1: sociale constructie van het dagelijks leven', titel: 'Macionis H7 lezen · opdracht sociologische perspectieven', lesIds: [] },
+    3:  { onderwerp: 'Identiteit 2: etniciteit en migratie', titel: 'Macionis H11 lezen', lesIds: [] },
+    4:  { onderwerp: 'Sociale orde 1: cultuur en sociale bewegingen', titel: 'Macionis H5 (p. 144-158) en H16 (p. 563-567) lezen', lesIds: [] },
+    5:  { onderwerp: 'Sociale orde 2: controle en deviantie', titel: 'Macionis H17 lezen', lesIds: [] },
+    6:  { onderwerp: 'Stratificatie 1: groepen, organisaties, netwerksamenleving', titel: 'Macionis H6 lezen', lesIds: [] },
+    7:  { onderwerp: 'Stratificatie 2: sociale scheidslijnen en klasse', titel: 'Macionis H8 lezen', lesIds: [] },
+    8:  { onderwerp: 'Risicosamenleving, steden en ruimte', titel: 'Macionis H23 (p. 795-797) en H24 (p. 830, 841-849, 855) lezen', lesIds: [] },
+    9:  { onderwerp: 'Politiek, staten en naties', titel: 'McCormick H3 lezen', lesIds: [] },
+    10: { onderwerp: 'Politieke cultuur en ideologieën', titel: 'McCormick H4 lezen', lesIds: [] },
+    11: { onderwerp: 'Democratisch bestuur', titel: 'McCormick H5 lezen', lesIds: [] },
+    12: { onderwerp: 'Democratische instituties: media en verkiezingen', titel: 'McCormick H12 en H14 lezen', lesIds: [] },
+    13: { onderwerp: 'Autoritair bestuur', titel: 'McCormick H6 lezen', lesIds: [] },
+    14: { onderwerp: 'Hybride regimes en democratisering', titel: 'Literatuur nog te bepalen', lesIds: [] },
+    15: { onderwerp: 'Politieke economie', titel: 'McCormick H18 lezen', lesIds: [] },
+    16: { onderwerp: 'Recap en tentamenvoorbereiding', titel: 'Daarna de eindtoets', lesIds: [] }
+  },
+
+  'demystifying-research-methods': {
+    1:  { onderwerp: 'Intro research methods 1: rol van toegepaste wetenschap', titel: 'Course manual doorlezen', lesIds: [] },
+    2:  { onderwerp: 'Intro research methods 2: workshop kernbegrippen', titel: 'Brightspace checken', lesIds: [] },
+    3:  { onderwerp: 'Intro research methods 3: quiz 1', titel: 'Quiz 1 over de kernbegrippen · voorbereiden op CT1', lesIds: ['ch3'] },
+    4:  { onderwerp: 'Het probleem begrijpen 1: 6W, begrippen en variabelen', titel: 'Brightspace checken', lesIds: ['ch3', 'ch4'] },
+    5:  { onderwerp: 'Het probleem begrijpen 2: workshop 6W', titel: 'Brightspace checken', lesIds: [] },
+    6:  { onderwerp: 'Het probleem begrijpen 3: quiz 2', titel: 'Quiz 2 over het 6W-raamwerk · voorbereiden op CT2', lesIds: ['ch5'] },
+    7:  { onderwerp: 'Herkansing quiz 1', titel: 'Alleen als je quiz 1 niet gehaald hebt', lesIds: [] },
+    8:  { onderwerp: 'Herkansing quiz 2', titel: 'Alleen als je quiz 2 niet gehaald hebt · daarna CT1', lesIds: [] },
+    9:  { onderwerp: 'Onderzoek plannen 1: het ARD en beperkingen', titel: 'Brightspace checken', lesIds: ['ch5'] },
+    10: { onderwerp: 'Onderzoek plannen 2: workshop ARD', titel: 'Brightspace checken', lesIds: [] },
+    11: { onderwerp: 'Onderzoek plannen 3: quiz 3', titel: 'Quiz 3 over het ARD en beperkingen · daarna CT2', lesIds: ['ch13'] },
+    12: { onderwerp: 'Het hele proces integreren', titel: 'Brightspace checken', lesIds: [] },
+    13: { onderwerp: 'Herkansing quiz 3', titel: 'Alleen als je quiz 3 niet gehaald hebt · daarna CT3', lesIds: [] }
+  },
+
+  'fundamentals-of-academic-writing': {
+    1: { onderwerp: 'Wat is een alinea? Wat is een topic sentence?', titel: 'Brightspace checken', lesIds: ['naslagwerk'] },
+    2: { onderwerp: '6 tips voor goede alinea\u2019s', titel: 'Task 1 inleveren op Brightspace', lesIds: [] },
+    3: { onderwerp: '10 kenmerken van formele, academische stijl', titel: 'Brightspace checken', lesIds: ['naslagwerk'] },
+    4: { onderwerp: '5 tips voor goede zinnen', titel: 'Brightspace checken', lesIds: [] },
+    5: { onderwerp: 'Oefenexamen in Remindo, op de campus', titel: 'Task 2 inleveren · oefenexamen 15 oktober', lesIds: ['rubric'] },
+    6: { onderwerp: 'Technieken om zinnen te combineren', titel: 'Task 3 inleveren', lesIds: ['oefening-1'] },
+    7: { onderwerp: 'Hoe je parafraseert', titel: 'Brightspace checken', lesIds: [] },
+    8: { onderwerp: 'Veelgemaakte fouten en review', titel: 'Daarna het examen (100%, 14 december)', lesIds: ['rubric'] }
+  },
+
+  'professional-skills': {
+    1:  { onderwerp: 'Kick-off: communicatie in safety en security', titel: 'Pease & Pease (2006) lezen · lichaamstaal', lesIds: [] },
+    2:  { onderwerp: 'Slecht nieuws communiceren', titel: 'Giles (2016) en Ohiagu (2022) lezen', lesIds: [] },
+    3:  { onderwerp: 'Je communicatiestijl, public speaking en presenteren', titel: 'Amsel (2019) lezen · de 7/38/55-mythe', lesIds: [] },
+    4:  { onderwerp: 'Interpersoonlijk conflictmanagement', titel: 'Slides en leeslinks checken', lesIds: [] },
+    5:  { onderwerp: 'Intro AI in safety en security (Wisse)', titel: 'Slides en leeslinks checken', lesIds: [] },
+    6:  { onderwerp: 'Personal branding als safety- en securityprofessional', titel: 'Żemojtel-Piotrowska & Piotrowski (2023) lezen · Hofstede', lesIds: ['opdrachten'] },
+    7:  { onderwerp: 'Sollicitaties en gesprekken (gastcollege)', titel: 'Gastcollege: aanwezigheid verplicht · daarna de midterm', lesIds: [] },
+    8:  { onderwerp: 'Leiderschapsvaardigheden (Pearce)', titel: 'Avolio & Bass (1991) lezen', lesIds: [] },
+    9:  { onderwerp: 'Consultancy skills (Corr)', titel: 'Block (2011) lezen', lesIds: [] },
+    10: { onderwerp: 'Projectmanagement 1 (Ekici)', titel: 'Slides en leeslinks checken', lesIds: ['opdrachten'] },
+    11: { onderwerp: 'Projectmanagement 2 (Ekici)', titel: 'Slides checken · daarna de eindpresentatie', lesIds: [] }
   }
 
 };
@@ -3811,7 +3839,7 @@ var VAK_MANUAL = {
 
   'intro-to-safety-security': {
     // Zet de pdf in de map 'manuals' naast je andere bestanden en pas de naam hier aan.
-    pdf: 'manuals/ssms-jaar1-semester1-handleiding.pdf',
+    pdf: 'manuals/Y1_Semester_1_Manual_SSMS_20262027.pdf',
     pdfNaam: 'Module manual Y1 Semester 1 (2026-2027)',
     studiegids: 'intro',
     intro: 'Funderingsvak dat de domeinen van safety en security introduceert, plus de stakeholderbenaderingen van de SSMS-professional.',
@@ -3847,7 +3875,7 @@ var VAK_MANUAL = {
       { titel: 'Toetsing',
         tekst: 'Midterm schriftelijk in Remindo (50%, november 2026) en een **mondelinge** eindtoets (50%, februari 2027). Beide moeten een 5,5 of hoger zijn. Toetsmateriaal is alle cursusliteratuur \u00e9n de collegeslides, dus ook die van gastcolleges.' },
       { titel: 'Aanwezigheid en regels',
-        tekst: 'Colleges zijn niet verplicht maar wel sterk aanbevolen. **Gastcolleges zijn wel verplicht.** Geplande data voor presentaties, workshops, opdrachten, toetsen en excursies zijn hard.' }
+        tekst: 'Colleges zijn niet verplicht maar wel sterk aanbevolen. **Gastcolleges zijn wel verplicht.** Geplande data voor presentaties, workshops, opdrachten, toetsen en excursies zijn hard.\n\nHet programma stond bij publicatie nog als voorlopig in de handleiding en kan veranderen, onder andere door de beschikbaarheid van gastdocenten. Houd Brightspace en MyTimetable bij.' }
     ]
   },
 
@@ -3963,7 +3991,7 @@ LESSTOF['professional-skills/opdrachten'] = [
     id: 'analyse', titel: 'Opdracht 1 · Communicatieanalyse',
     blokken: [
       { type: 'uitleg', titel: 'Waar dit om gaat',
-        tekst: 'Midterm, **groepsopdracht**, pass/fail. Je analyseert de verbale en non-verbale communicatie van een politicus of erkend safety/security-professional (ook uit een internationale of humanitaire organisatie) tijdens een speech, officiële bijeenkomst of onderhandeling.\\n\\n**Duur:** maximaal 15 minuten presenteren, plus 15 minuten voor vragen en feedback. Deadline: semester 1, week 10 (9 tot 11 november 2026). Herkansing: week 17, met een **nieuwe video** van een ander evenement of andere spreker(s).' },
+        tekst: 'Midterm, **groepsopdracht**, pass/fail. Je analyseert de verbale en non-verbale communicatie van een politicus of erkend safety/security-professional (ook uit een internationale of humanitaire organisatie) tijdens een speech, officiële bijeenkomst of onderhandeling.\n\n**Duur:** maximaal 15 minuten presenteren, plus 15 minuten voor vragen en feedback. Deadline: semester 1, week 10 (9 tot 11 november 2026). Herkansing: week 17, met een **nieuwe video** van een ander evenement of andere spreker(s).' },
 
       { type: 'tabel', titel: 'Welke theorie hoort bij welk deel van je analyse',
         kop: ['Onderdeel', 'Theorie', 'Wat je ermee doet'],
@@ -3971,7 +3999,7 @@ LESSTOF['professional-skills/opdrachten'] = [
           ['Publiek bepalen', 'Audience profiling model (Manning & Reece)', 'Bepaal wie het publiek van de spreker is'],
           ['Aanpassingsgedrag', 'Communication Accommodation Theory (Giles)', 'Zoek voorbeelden van convergentie, divergentie en maintenance: past de spreker zich aan het publiek aan, juist niet, of houdt hij zijn eigen stijl vast?'],
           ['Verbaal versus non-verbaal', '7/38/55-regel (Mehrabian, via Amsel)', 'Interpreteer de verhouding tussen woorden, toon en lichaamstaal in de impact van de boodschap'],
-          ['Cultuurverschillen', 'Hofstede\\u2019s Cultural Dimensions', 'Vergelijk hoe cultuur de communicatiestijl van de spreker beïnvloedt, vooral relevant bij internationale sprekers']
+          ['Cultuurverschillen', 'Hofstede’s Cultural Dimensions', 'Vergelijk hoe cultuur de communicatiestijl van de spreker beïnvloedt, vooral relevant bij internationale sprekers']
         ] },
 
       { type: 'stappen', titel: 'Aanpak in vijf stappen',
@@ -3989,7 +4017,7 @@ LESSTOF['professional-skills/opdrachten'] = [
         ] },
 
       { type: 'waarschuwing', titel: 'Waar groepen op struikelen',
-        tekst: '**Te weinig data.** De rubric wijst dit met naam: 1 tot 2 gebaren of accessoires analyseren is onvoldoende.\\n\\n**Observaties zonder theorie.** "Hij communiceerde slecht" is geen analyse. Elke observatie moet je kunnen koppelen aan een van de vier theorieën uit de tabel.\\n\\n**Alleen kritiek, geen waardering, of andersom.** Beide moeten in je conclusie zitten.\\n\\n**Ongelijke spreektijd.** Dit is een apart rubriccriterium, dus plan het net zo bewust als de inhoud.' },
+        tekst: '**Te weinig data.** De rubric wijst dit met naam: 1 tot 2 gebaren of accessoires analyseren is onvoldoende.\n\n**Observaties zonder theorie.** "Hij communiceerde slecht" is geen analyse. Elke observatie moet je kunnen koppelen aan een van de vier theorieën uit de tabel.\n\n**Alleen kritiek, geen waardering, of andersom.** Beide moeten in je conclusie zitten.\n\n**Ongelijke spreektijd.** Dit is een apart rubriccriterium, dus plan het net zo bewust als de inhoud.' },
 
       { type: 'checklist', titel: 'Kun je dit straks laten zien?',
         tekst: 'Gebaseerd op de 17 criteria uit het beoordelingsformulier, gegroepeerd. Je slaagt bij minimaal 9 van de 17, met minstens 1 per sectie. Vink alleen af wat je groep daadwerkelijk kan laten zien.',
@@ -4016,7 +4044,7 @@ LESSTOF['professional-skills/opdrachten'] = [
     id: 'cv', titel: 'Opdracht 2 · Cv en motivatiebrief',
     blokken: [
       { type: 'uitleg', titel: 'Waar dit om gaat',
-        tekst: 'Midterm, **individuele opdracht**, pass/fail bij minimaal 7 van de 10 criteria. Je zoekt een echte vacature in het safety- of securityveld en schrijft daar een cv en motivatiebrief voor.\\n\\n**Deadline:** donderdag 12 november, vóór 23:59. Herkansing: maandag 11 januari 2027, vóór 23:59, met een **nieuwe vacature**.' },
+        tekst: 'Midterm, **individuele opdracht**, pass/fail bij minimaal 7 van de 10 criteria. Je zoekt een echte vacature in het safety- of securityveld en schrijft daar een cv en motivatiebrief voor.\n\n**Deadline:** donderdag 12 november, vóór 23:59. Herkansing: maandag 11 januari 2027, vóór 23:59, met een **nieuwe vacature**.' },
 
       { type: 'tabel', titel: 'Welke theorie hoort bij welk deel',
         kop: ['Onderdeel', 'Theorie', 'Wat je ermee doet'],
@@ -4042,7 +4070,7 @@ LESSTOF['professional-skills/opdrachten'] = [
         ] },
 
       { type: 'waarschuwing', titel: 'Het inleverprotocol is hard, niet een suggestie',
-        tekst: 'Eén pdf-bestand met vacaturetekst, cv en motivatiebrief samengevoegd, allemaal in het Engels. Bestandsnaam: je naam plus de functietitel, bijvoorbeeld "T. Smith_junior consultant". Uploaden in de map Submission Point op Brightspace.\\n\\nEen **niet-aangevinkt vakje bij het protocol** in het beoordelingsformulier betekent dat je inzending wordt afgewezen, nog vóórdat er naar de inhoud wordt gekeken. Check dit dus als allerlaatste stap, apart van je inhoudelijke check.' },
+        tekst: 'Eén pdf-bestand met vacaturetekst, cv en motivatiebrief samengevoegd, allemaal in het Engels. Bestandsnaam: je naam plus de functietitel, bijvoorbeeld "T. Smith_junior consultant". Uploaden in de map Submission Point op Brightspace.\n\nEen **niet-aangevinkt vakje bij het protocol** in het beoordelingsformulier betekent dat je inzending wordt afgewezen, nog vóórdat er naar de inhoud wordt gekeken. Check dit dus als allerlaatste stap, apart van je inhoudelijke check.' },
 
       { type: 'checklist', titel: 'Kun je dit straks laten zien?',
         tekst: 'Gebaseerd op de 10 beoordelingscriteria. Je slaagt bij minimaal 7 van de 10.',
@@ -4069,13 +4097,13 @@ LESSTOF['professional-skills/opdrachten'] = [
     id: 'eindproject', titel: 'Eindopdracht · Safe and sound for fun',
     blokken: [
       { type: 'uitleg', titel: 'Waar dit om gaat',
-        tekst: 'Eindtoets, **groepsopdracht**, cijfer 1-10 via gewogen criteria. Je bent ingehuurd door een organisatie (pretpark, dierentuin, safaripark, circus of casino, zelf te kiezen) om de belangrijkste risico\\u2019s te onderzoeken en veiligheidsmaatregelen voor personeel en bezoekers voor te stellen.\\n\\n**Publiek:** het management en de securityafdeling van de organisatie. **Duur:** maximaal 25 minuten, plus 15 minuten voor feedback. Deadline: semester 1, week 20 (1 tot 3 februari 2027). Herkansing: semester 2, week 4, met een **ander object**.' },
+        tekst: 'Eindtoets, **groepsopdracht**, cijfer 1-10 via gewogen criteria. Je bent ingehuurd door een organisatie (pretpark, dierentuin, safaripark, circus of casino, zelf te kiezen) om de belangrijkste risico’s te onderzoeken en veiligheidsmaatregelen voor personeel en bezoekers voor te stellen.\n\n**Publiek:** het management en de securityafdeling van de organisatie. **Duur:** maximaal 25 minuten, plus 15 minuten voor feedback. Deadline: semester 1, week 20 (1 tot 3 februari 2027). Herkansing: semester 2, week 4, met een **ander object**.' },
 
       { type: 'tabel', titel: 'Welke theorie hoort bij welk deel',
         kop: ['Onderdeel', 'Theorie', 'Wat je ermee doet'],
         rijen: [
           ['Communicatie van de maatregelen', 'McLuhan, "The medium is the message"', 'Kies communicatiekanalen die passen bij wat je communiceert, niet zomaar vijf kanalen op een rijtje'],
-          ['Risico-analyse', 'Risk Breakdown Structure', 'Structureer de risico\\u2019s van je gekozen locatie hiërarchisch, van hoofdcategorieën naar specifieke risico\\u2019s'],
+          ['Risico-analyse', 'Risk Breakdown Structure', 'Structureer de risico’s van je gekozen locatie hiërarchisch, van hoofdcategorieën naar specifieke risico’s'],
           ['Klantrelatie en advies', 'Peter Block, consulting model (of vergelijkbaar)', 'Positioneer jezelf als adviseur van het park, niet als buitenstaander die alleen kritiek levert'],
           ['Leiderschap (indien van toepassing)', 'Full Range Leadership Model (Avolio & Bass, of vergelijkbaar)', 'Als je een groepsleider had, benoem welke leiderschapsstijl je hebt ervaren']
         ] },
@@ -4084,10 +4112,10 @@ LESSTOF['professional-skills/opdrachten'] = [
         items: [
           { titel: '1. Kies je object en verdeel rollen',
             tekst: 'Pretpark, aquapark, safaripark, dierentuin, circus, casino, of een vergelijkbare attractie. Verdeel taken binnen de groep zodat iedereen een duidelijk onderdeel heeft.' },
-          { titel: '2. Verzamel data over risico\\u2019s',
+          { titel: '2. Verzamel data over risico’s',
             tekst: 'Via media-berichten en statistieken over incidenten bij vergelijkbare locaties, of door zelf een bezoek te brengen en observaties te verzamelen. De bronnenlijst in de manual is een startpunt, geen verplichte literatuur.' },
           { titel: '3. Analyseer met een Risk Breakdown Structure',
-            tekst: 'Zet de verzamelde data om in een hiërarchische structuur: hoofdcategorieën van risico (bijvoorbeeld attractieveiligheid, publieksstromen, dierenwelzijn bij een dierentuin) met daaronder specifieke risico\\u2019s per categorie.' },
+            tekst: 'Zet de verzamelde data om in een hiërarchische structuur: hoofdcategorieën van risico (bijvoorbeeld attractieveiligheid, publieksstromen, dierenwelzijn bij een dierentuin) met daaronder specifieke risico’s per categorie.' },
           { titel: '4. Formuleer maatregelen',
             tekst: 'Voor zowel personeel als bezoekers. Staat er al iets over veiligheid op de officiële website van je gekozen locatie, bouw daar dan op voort met iets nieuws of een verbetering, in plaats van te herhalen wat er al staat.' },
           { titel: '5. Kies minstens vijf communicatiekanalen',
@@ -4099,7 +4127,7 @@ LESSTOF['professional-skills/opdrachten'] = [
         ] },
 
       { type: 'waarschuwing', titel: 'Waar groepen op struikelen',
-        tekst: 'De **presentatiestructuur is verplicht**, niet een suggestie: alle zeven onderdelen moeten erin, in die volgorde. Ontbreekt er één, dan mis je punten op "Content / Organisatie", het zwaarst wegende criterium (40%).\\n\\nDe **bronnenlijst in de manual is optioneel**, geen verplichte literatuur; gebruik hem alleen als startpunt voor je eigen onderzoek.\\n\\nVeiligheidsmaatregelen die je alleen **herhaalt** van de officiële website leveren geen punten op; het moet iets nieuws zijn of een verbetering.' },
+        tekst: 'De **presentatiestructuur is verplicht**, niet een suggestie: alle zeven onderdelen moeten erin, in die volgorde. Ontbreekt er één, dan mis je punten op "Content / Organisatie", het zwaarst wegende criterium (40%).\n\nDe **bronnenlijst in de manual is optioneel**, geen verplichte literatuur; gebruik hem alleen als startpunt voor je eigen onderzoek.\n\nVeiligheidsmaatregelen die je alleen **herhaalt** van de officiële website leveren geen punten op; het moet iets nieuws zijn of een verbetering.' },
 
       { type: 'tabel', titel: 'Waar de punten zitten',
         kop: ['Criterium', 'Weging', 'Kernvraag om jezelf te stellen'],
@@ -4129,11 +4157,11 @@ LESSTOF['professional-skills/opdrachten'] = [
     regels: [
       { label: 'Code',        waarde: 'SSMS-1S1-23' },
       { label: 'Docenten',    waarde: 'Gohar Baghdasaryan (coördinator), Andrew Pearce, Boudewijn Wisse, Jonathan Corr, Siddik Ekici' },
-      { label: 'Studiepunten', waarde: '5 ECTS \\u00b7 35 contacturen \\u00b7 105 uur zelfstudie' },
+      { label: 'Studiepunten', waarde: '5 ECTS · 35 contacturen · 105 uur zelfstudie' },
       { label: 'Literatuur',  waarde: 'Geen aanschaf nodig; teksten via weblinks op Brightspace' },
-      { label: 'Midterm groep',   waarde: 'Communicatieanalyse, pass/fail \\u00b7 25% \\u00b7 week 10' },
-      { label: 'Midterm individueel', waarde: 'Cv en motivatiebrief, pass/fail \\u00b7 25% \\u00b7 week 10' },
-      { label: 'Eindtoets',   waarde: 'Groepspresentatie "Safe and sound for fun", gewogen cijfer \\u00b7 50% \\u00b7 week 20' },
+      { label: 'Midterm groep',   waarde: 'Communicatieanalyse, pass/fail · 25% · week 10' },
+      { label: 'Midterm individueel', waarde: 'Cv en motivatiebrief, pass/fail · 25% · week 10' },
+      { label: 'Eindtoets',   waarde: 'Groepspresentatie "Safe and sound for fun", gewogen cijfer · 50% · week 20' },
       { label: 'Let op',      waarde: 'Te laat bij een toetsmoment betekent automatisch zakken voor dat onderdeel, direct naar de herkansing' }
     ],
     samenvatting: [
@@ -4150,9 +4178,9 @@ LESSTOF['professional-skills/opdrachten'] = [
       { titel: 'Drie toetsmomenten, drie vormen',
         tekst: 'Twee **groepspresentaties** (pass/fail bij de midterm, gewogen cijfer bij de eindtoets) en één **individuele schriftelijke opdracht** (pass/fail). Alle drie hebben een eigen aanpakles hiernaast, met de theorie, de stappen en de rubriccriteria als checklist.',
         punten: [
-          'Opdracht 1 \\u00b7 communicatieanalyse van een politicus of professional \\u00b7 groep \\u00b7 week 10',
-          'Opdracht 2 \\u00b7 cv en motivatiebrief bij een echte vacature \\u00b7 individueel \\u00b7 week 10',
-          'Eindopdracht \\u00b7 "Safe and sound for fun"-project \\u00b7 groep \\u00b7 week 20'
+          'Opdracht 1 · communicatieanalyse van een politicus of professional · groep · week 10',
+          'Opdracht 2 · cv en motivatiebrief bij een echte vacature · individueel · week 10',
+          'Eindopdracht · "Safe and sound for fun"-project · groep · week 20'
         ] },
 
       { titel: 'Te laat is direct zakken',
@@ -4173,7 +4201,7 @@ LESSTOF['professional-skills/opdrachten'] = [
   if (typeof DATA === 'undefined') return;
 
   var LESSEN_SKILLS = [
-    { id: 'opdrachten', titel: 'De drie opdrachten \\u00b7 aanpak per opdracht', duur: 30 }
+    { id: 'opdrachten', groep: 'Opdrachten', titel: 'De drie opdrachten · aanpak per opdracht', duur: 30 }
   ];
 
   function isSkills(vak){
@@ -4201,4 +4229,879 @@ LESSTOF['professional-skills/opdrachten'] = [
 
   zetSkills();
   if (typeof opFeed === 'function') opFeed(zetSkills);
+})();
+
+/* ============================================================
+   Fundamentals of Academic Writing (FAW) — drie lessen naast
+   de studiegidspagina studiegids/writing:
+   1. naslagwerk  — algemene regels voor Engels academisch schrijven
+   2. rubric      — de beoordelingsrubric zelf, kort en praktisch
+   3. oefening-1  — het cocaïne-artikel als aanpakoefening
+
+   Bronnen: FAW 2025-2026 Rubric and Conversion Chart, Dimensions of
+   Rubric Explained, en de meegeleverde schrijfopdracht met artikel.
+   ============================================================ */
+
+LESSTOF['fundamentals-of-academic-writing/naslagwerk'] = [
+  {
+    id: 'opbouw', titel: 'Opbouw',
+    blokken: [
+      { type: 'uitleg', titel: 'Waarom dit een apart naslagwerk is',
+        tekst: 'Bij dit vak telt maar **één criterium van de vijf** rechtstreeks over grammatica; de andere vier gaan over hoe je een tekst **opbouwt en formuleert**. Dat is precies het soort kennis dat je niet één keer leest en onthoudt, maar telkens even terugzoekt. Dit naslagwerk zet het overzichtelijk op een rijtje: opbouw, zinsniveau, cohesie, en lay-out. Gebruik het als naslag tijdens het schrijven, niet als iets om in één keer uit je hoofd te leren.\n\nDe voorbeelden staan in het Engels, want dat is de taal waarin je dit moet kunnen **toepassen**, niet alleen herkennen.' },
+
+      { type: 'begrippen', titel: 'Coherence versus cohesion: het verschil dat je moet kennen',
+        items: [
+          { begrip: 'Coherence (macro-niveau)',
+            definitie: 'gaat over de retorische opbouw van de hele tekst: is er een heldere paragraafindeling, heeft elke alinea een topic sentence, worden argumenten uitgewerkt en onderbouwd, en is duidelijk wat het doel en publiek van de tekst is? Coherence is de vraag "klopt de logica van dit stuk als geheel?"' },
+          { begrip: 'Cohesion (micro-niveau)',
+            definitie: 'gaat over de expliciete verbindingen tussen zinnen en alinea’s: verwijswoorden, synoniemen, signaalwoorden. Cohesion is de vraag "zie ik hoe deze zin aan de vorige vastzit?"' }
+        ] },
+
+      { type: 'stappen', titel: 'Een alinea opbouwen die aan coherence voldoet',
+        items: [
+          { titel: '1. Begin met een topic sentence',
+            tekst: 'De eerste zin van een alinea zegt waar die alinea over gaat. Een lezer die alleen de eerste zin van elke alinea leest, moet de structuur van je hele tekst kunnen volgen.' },
+          { titel: '2. Werk het idee uit, herhaal het niet',
+            tekst: 'De zinnen na de topic sentence onderbouwen, verklaren of illustreren die zin. Een alinea die alleen hetzelfde idee herhaalt in andere woorden, voegt niets toe.' },
+          { titel: '3. Houd één onderwerp per alinea aan',
+            tekst: 'Zodra je overstapt naar een nieuw idee, begint een nieuwe alinea. Dit is de meest voorkomende coherence-fout: te veel in één alinea proppen.' },
+          { titel: '4. Zorg dat de volgorde van je alinea’s een logica volgt',
+            tekst: 'Bijvoorbeeld van algemeen naar specifiek, van oorzaak naar gevolg, of chronologisch. De lezer moet nooit terug hoeven te bladeren om een verband te snappen.' }
+        ] }
+    ]
+  },
+
+  {
+    id: 'cohesie', titel: 'Cohesie',
+    blokken: [
+      { type: 'uitleg', titel: 'Zeven manieren om zinnen aan elkaar te knopen',
+        tekst: 'Cohesion-technieken zorgen dat een lezer de verbanden tussen zinnen ziet zonder dat jij het met zoveel woorden hoeft te zeggen. Hieronder dezelfde voorbeeldtekst, telkens geannoteerd op één techniek. In de brontekst is elke techniek gemarkeerd binnen dezelfde vier zinnen, zodat je ziet dat ze **tegelijk** in één lopende tekst voorkomen, niet als losse trucjes.' },
+
+      { type: 'voorbeeld', titel: 'De basiszin',
+        tekst: '"Last Sunday, in a carriage of an idle passenger train in a railway depot in Nijmegen, there was a serious explosion. It blew out doors and windows of the carriage, and one man, who may have caused the blast himself, was killed. However, it is uncertain if the incident was a suicide attempt."' },
+
+      { type: 'tabel', titel: 'Wat er onder de motorkap gebeurt',
+        kop: ['Techniek', 'Waar je op let'],
+        rijen: [
+          ['Verwijswoorden (reference)', '"It" in de tweede zin verwijst duidelijk terug naar "explosion" uit de eerste zin, zonder dat woord te herhalen'],
+          ['Synoniemen', '"explosion" en "the blast" verwijzen naar hetzelfde, met een ander woord, zodat de tekst niet eentonig wordt'],
+          ['Lexicale ketens', 'woorden uit hetzelfde betekenisveld lopen door de tekst: carriage, doors, windows, train, depot horen allemaal bij "spoorwegongeval"'],
+          ['Nieuwe versus bekende informatie', 'elke zin herhaalt kort iets bekends (het ongeval) voordat hij iets nieuws toevoegt (wie er stierf, of het opzet was), zodat de lezer nooit de draad kwijtraakt'],
+          ['Grammatica: lidwoorden', '"a serious explosion" (nieuw, onbepaald lidwoord) wordt in de volgende zin "the blast" (bekend, bepaald lidwoord)'],
+          ['Signaalwoorden (discourse markers)', '"however" aan het begin van de derde zin kondigt een tegenstelling aan: wat je net las wordt genuanceerd'],
+          ['Samenvattende woorden', 'een woord als "incident" in de laatste zin vat de hele gebeurtenis in één term samen']
+        ],
+        noot: 'Dit lijstje is niet compleet, maar wel de kern. Check bij het herlezen van je eigen tekst: kan een lezer bij elke "it", "this" of "however" meteen zeggen waar dat naar terugwijst?' }
+    ]
+  },
+
+  {
+    id: 'stijl', titel: 'Formele stijl',
+    blokken: [
+      { type: 'uitleg', titel: 'Wat "academisch" op zinsniveau betekent',
+        tekst: 'Dit is het rijtje waar studenten in de praktijk de meeste punten laten liggen bij het criterium **Style**, omdat het gaat om gewoontes die je in spreektaal juist aanleert. Elke regel hieronder komt letterlijk uit het cursusmateriaal.' },
+
+      { type: 'vergelijking', titel: 'Informeel tegenover academisch',
+        links: { titel: 'Vermijd dit',
+          punten: [
+            'Persoonlijke toon: "I think", "we can see"',
+            'De lezer aanspreken: "you will notice that..."',
+            'Frasale werkwoorden: "get rid of"',
+            'Vage woorden: "a big problem", "good", "bad", "interesting"',
+            'Samentrekkingen: "won’t", "it’s"',
+            'Retorische vragen: "Is dit niet precies het probleem?"',
+            '"Opgeblazen" taal zonder onderbouwing: "an infinite number of"',
+            '"Get"-constructies: "get tired"',
+            'Stopwoorden: "really", "basically", "quite", "totally"',
+            '"Etc." aan het einde van een opsomming',
+            'Clichés: "last but not least", "in a nutshell"',
+            'Niet-genderneutrale taal: "the CEO... he..."',
+            'Zinnen die beginnen met And, But, Because, So',
+            'Informele signaalwoorden: "Besides", "So", "Luckily"'
+          ] },
+        rechts: { titel: 'Gebruik dit',
+          punten: [
+            'Onpersoonlijke, geanonimiseerde toon',
+            'Neutrale formuleringen zonder directe aanspreekvorm',
+            'Eén werkwoord: "eliminate"',
+            'Specifieke woorden: "a serious problem"',
+            'Voluit geschreven vormen: "will not", "it is"',
+            'Declaratieve zinnen die de conclusie direct stellen',
+            'Onderbouwde, concrete claims',
+            'Eén werkwoord: "to tire"',
+            'Weglaten, of vervangen door een concreet woord',
+            '"including" of een volledige opsomming',
+            'Directe, concrete formuleringen',
+            'Meervoud of herformulering: "CEOs... they..."',
+            'Herformuleer zodat de zin op het onderwerp begint',
+            'Formele verbindingswoorden: "Moreover", "Therefore", "Fortunately"'
+          ] } },
+
+      { type: 'tekst', titel: 'Vaktermen: wél gebruiken, mits toegankelijk',
+        tekst: 'Anders dan de rest van dit lijstje is vakjargon in academisch schrijven juist **gewenst**, mits het voor een geïnteresseerde buitenstaander te volgen blijft. De rubric noemt dit expliciet bij het criterium Paraphrasing: consistent professioneel vocabulaire gebruiken telt mee als sterk punt, mits de rest van de zin nog steeds jouw eigen formulering is.' }
+    ]
+  },
+
+  {
+    id: 'layout', titel: 'Lay-out',
+    blokken: [
+      { type: 'tekst', titel: 'Wat wél bij dit vak hoort',
+        tekst: 'Voor een academische samenvatting zoals je die bij dit vak schrijft, gelden een paar vaste lay-outafspraken:\n\n- **Lopende alinea’s, geen kopjes.** De opdrachten in dit vak zijn expliciet: "there should be no headings". Je tekst moet zijn logica tonen via topic sentences en signaalwoorden, niet via opgeknipte kopjes.\n- **Consistente alinea-afstand.** Of je nu inspringt of een witregel gebruikt tussen alinea’s, kies één systeem en houd dat de hele tekst vol.\n- **Woordentelling is hard.** Bij de voorbeeldopdracht staat een bandbreedte van 500 tot 600 woorden; dat is geen richtlijn maar een harde eis waarop je wordt beoordeeld.' },
+
+      { type: 'waarschuwing', titel: 'Wat hier bewust niet in staat',
+        tekst: 'Een **aanhef** (zoals "Dear...") of een afsluitende groet hoort niet bij dit vak. De schrijfvorm hier is een doorlopende academische tekst, geen brief of e-mail. Wil je juist weten hoe je een professionele brief of motivatiebrief opbouwt, inclusief aanhef en afsluiting, kijk dan bij Professional Skills; daar staat die aanpak uitgewerkt bij de cv-opdracht.' }
+    ]
+  }
+];
+
+/* ---------------------------------------------------------- */
+
+LESSTOF['fundamentals-of-academic-writing/rubric'] = [
+  {
+    id: 'rubric', titel: 'Rubric en puntentelling',
+    blokken: [
+      { type: 'uitleg', titel: 'Hoe je precies wordt beoordeeld',
+        tekst: 'Vijf criteria, elk 1 tot 4 punten, dus maximaal 20. Om te slagen mag je **nergens een 1** scoren, ongeacht je totaal. Dat betekent dat je zwakste criterium belangrijker is dan je gemiddelde.' },
+
+      { type: 'tabel', titel: 'De vijf criteria: wat scheelt een 1 van een 4',
+        kop: ['Criterium', 'Een 1 betekent', 'Een 4 betekent'],
+        rijen: [
+          ['Content', 'De samenvatting mist de kern of de hoofdpunten van de originele tekst', 'Volledig, accuraat begrip; alle belangrijke punten zijn geïdentificeerd en gepresenteerd'],
+          ['Paraphrasing', 'Veel letterlijk gekopieerde zinnen of onbegrijpelijke parafrases; nauwelijks vakjargon', 'De tekst wijkt inhoudelijk significant af van het origineel maar draagt dezelfde ideeën over; consistent vakjargon'],
+          ['Paragraphs (coherence & cohesion)', 'Geen duidelijke alineastructuur, geen topic sentences, lastig te volgen', 'Duidelijke, logische alinea’s met effectieve topic sentences; de tekst loopt naadloos'],
+          ['Sentence structure, grammar & accuracy', 'Beperkte zinsvariatie, veel grammatica-, interpunctie- en spelfouten', 'Brede variatie aan zinsstructuren, vrijwel foutloos'],
+          ['Style', 'Informele schrijfstijl, veel informeel taalgebruik', 'Consistent formeel en academisch, geen informeel taalgebruik']
+        ] },
+
+      { type: 'tabel', titel: 'Omrekentabel', toetsstof: true,
+        kop: ['Punten', 'Cijfer', 'Punten', 'Cijfer'],
+        rijen: [
+          ['20', '10', '12', '6'],
+          ['19', '9,5', '11', '5,5 (net voldoende)'],
+          ['18', '9', '10', '5,1'],
+          ['17', '8,5', '9', '4,7'],
+          ['16', '8', '8', '4,3'],
+          ['15', '7,5', '7', '3,9'],
+          ['14', '7', '6', '3,5'],
+          ['13', '6,5', '5', '3']
+        ] },
+
+      { type: 'preview', titel: 'De achtergrond bij elk criterium',
+        vakId: 'fundamentals-of-academic-writing', lesId: 'naslagwerk',
+        tekst: 'Deze rubric zegt wát er wordt beoordeeld. Het naslagwerk hiernaast laat zien hóé je daar met je tekst aan voldoet: opbouw, cohesie en formele stijl, met voorbeelden.' }
+    ]
+  }
+];
+
+/* ---------------------------------------------------------- */
+
+LESSTOF['fundamentals-of-academic-writing/oefening-1'] = [
+  {
+    id: 'aanpak', titel: 'Oefening · "Europe’s cocaine problem"',
+    blokken: [
+      { type: 'uitleg', titel: 'De opdracht',
+        tekst: 'Lees het artikel "How big is Europe’s cocaine problem, and what is the human cost?" (The Guardian, Annie Kelly, 11 juni 2024) en schrijf een samenvatting van **500 tot 600 woorden**.\n\nExplicieate eisen uit de opdracht:\n\n- Academische stijl, lopende alinea’s, **geen kopjes**\n- **Geen** geciteerd materiaal uit het origineel\n- Begrijpelijk voor iemand die het origineel niet heeft gelezen\n- **Bovenaan je samenvatting: het hoofdpunt van elke alinea, apart genoemd**\n\nDeze les helpt je met de aanpak. Je krijgt geen uitgewerkt voorbeeld, want dat zou precies het parafraseren zijn dat de opdracht van jou vraagt.' },
+
+      { type: 'stappen', titel: 'Aanpak in zeven stappen',
+        items: [
+          { titel: '1. Lees actief, niet passief',
+            tekst: 'Lees het artikel één keer helemaal door zonder te noteren. Lees het daarna een tweede keer en markeer per sub-kopje (het artikel heeft er zelf een aantal, zoals "How much cocaine is coming to Europe?") wat de kernclaim van dat stuk is.' },
+          { titel: '2. Maak een lijst van hoofdpunten per onderdeel',
+            tekst: 'Het artikel is zelf al opgedeeld in vraag-onderdelen: waar komt cocaïne vandaan, hoeveel komt er binnen, hoe komt het Europa in, wat kost het, wat zijn de gevolgen. Vat elk onderdeel in **één zin** samen, in je eigen woorden. Dit wordt de basis voor je alinea-indeling én voor het verplichte lijstje bovenaan.' },
+          { titel: '3. Bepaal je alinea-indeling vóór je gaat schrijven',
+            tekst: 'Niet elk sub-onderdeel van het artikel hoeft een eigen alinea te worden; sommige kun je samenvoegen. Beslis dit bewust, en schrijf per geplande alinea eerst de topic sentence, vóórdat je de rest invult.' },
+          { titel: '4. Parafraseer op zinsniveau, niet op woordniveau',
+            tekst: 'Een veelgemaakte fout is losse woorden vervangen door synoniemen terwijl de zinsstructuur van het origineel intact blijft; de rubric herkent dat als onvoldoende parafrase. Herschrijf in plaats daarvan de **hele gedachte** in je eigen zinsopbouw: verander waar nodig de volgorde van hoofd- en bijzin, of zet een actieve zin om in een passieve, of andersom.' },
+          { titel: '5. Bouw cohesie tussen je alinea’s',
+            tekst: 'Gebruik de technieken uit het naslagwerk: signaalwoorden tussen alinea’s, verwijswoorden binnen een alinea, en een bewuste opbouw van bekend naar nieuw. Het artikel zelf springt nogal tussen onderwerpen; jouw samenvatting hoeft die sprongen niet te kopiëren als jij een logischer volgorde ziet.' },
+          { titel: '6. Check je stijl tegen het naslagwerk',
+            tekst: 'Loop specifiek na: geen "you", geen samentrekkingen, geen vage woorden als "big" of "serious problem" zonder concretisering, geen zin die begint met "And" of "But".' },
+          { titel: '7. Tel je woorden en schrijf het verplichte lijstje',
+            tekst: 'Bovenaan de samenvatting: één regel per alinea met het hoofdpunt. Dit schrijf je pas als laatste, als je alinea-indeling definitief vaststaat, anders moet je het toch weer aanpassen.' }
+        ] },
+
+      { type: 'waarschuwing', titel: 'De cijfers uit het artikel zijn een valkuil op zich',
+        tekst: 'Het artikel staat vol specifieke cijfers: 21% van de wereldwijde cocaïnegebruikers, 117 ton per jaar in het VK, 323 ton in beslag genomen door de EU in 2022, een prijsverschil tussen $1.000 in Colombia en €35.000 in Europa.\n\nDeze cijfers zijn feiten, geen quotes; je mag en moet ze overnemen. Maar **de zin eromheen moet wel je eigen formulering zijn**. "The UK’s National Crime Agency (NCA) estimates that 117 tonnes of cocaine a year is consumed in England, Scotland and Wales" mag niet letterlijk overgenomen worden, ook al staat het getal daarin vast.' },
+
+      { type: 'checklist', titel: 'Check je concept tegen de rubric',
+        tekst: 'Loop dit na vóórdat je je samenvatting als af beschouwt.',
+        items: [
+          { doel: 'Elk hoofdonderdeel van het artikel (herkomst, omvang, transportroutes, kosten, gevolgen) komt terug in mijn samenvatting',
+            uitleg: 'Leg je stap 2-lijstje naast je concept: mist er een onderdeel, of heb je er per ongeluk twee samengevoegd tot één te dunne alinea?' },
+          { doel: 'Geen enkele zin is direct overgenomen uit het artikel',
+            uitleg: 'Zoek in je concept naar zinnen die je nog herkent uit het origineel qua opbouw, ook als je losse woorden hebt vervangen; herschrijf die zin volledig.' },
+          { doel: 'Elke alinea heeft een topic sentence en blijft bij één onderwerp',
+            uitleg: 'Lees alleen de eerste zin van elke alinea achter elkaar; vertelt dat de kern van het hele artikel?' },
+          { doel: 'Mijn tekst gebruikt geen informele taal uit het stijl-overzicht',
+            uitleg: 'Zoek specifiek op "you", samentrekkingen, en zinnen die met And, But of So beginnen.' },
+          { doel: 'Mijn samenvatting is tussen de 500 en 600 woorden',
+            uitleg: 'Tel dit pas als laatste stap; eerder tellen leidt tot kunstmatig oprekken of inkorten.' },
+          { doel: 'Bovenaan staat het hoofdpunt per alinea, los van de samenvatting zelf',
+            uitleg: 'Dit is een expliciete eis uit de opdracht en een makkelijk punt om te vergeten.' }
+        ] }
+    ]
+  }
+];
+
+/* ============================================================
+   Het vak registreren, zelfde patroon als Intro to Safety &
+   Security, DRM en Professional Skills.
+   ============================================================ */
+(function(){
+  if (typeof DATA === 'undefined') return;
+
+  var LESSEN_FAW = [
+    { id: 'naslagwerk',  groep: 'Naslag',  titel: 'Engels academisch schrijven', duur: 40 },
+    { id: 'rubric',      groep: 'Naslag',  titel: 'De beoordelingsrubric',        duur: 15 },
+    { id: 'oefening-1',  groep: 'Oefenen', titel: '"Europe’s cocaine problem"',   duur: 30 }
+  ];
+
+  function isFaw(vak){
+    if (!vak) return false;
+    if (vak.id === 'fundamentals-of-academic-writing') return true;
+    var naam = (vak.naam || '').toLowerCase();
+    return naam.indexOf('academic writing') > -1;
+  }
+
+  function zetFaw(){
+    DATA.semesters.forEach(function(sem){
+      var gevonden = false;
+      sem.vakken.forEach(function(vak){
+        if (isFaw(vak)) { vak.lessen = LESSEN_FAW; gevonden = true; }
+      });
+      if (!gevonden && sem.id === DATA.actiefSemester) {
+        sem.vakken.push({
+          id: 'fundamentals-of-academic-writing',
+          naam: 'Fundamentals of Academic Writing',
+          lessen: LESSEN_FAW
+        });
+      }
+    });
+  }
+
+  zetFaw();
+  if (typeof opFeed === 'function') opFeed(zetFaw);
+})();
+
+/* ============================================================
+   Intro to Safety & Security — Lecture slides
+   Sessie 1: "SSMS & what it's all about" (9 september 2026)
+   Corr & Gomez Llata Cazares
+
+   Uitgeschreven als college, niet als slidekopie: de slides geven
+   de rode draad, de tekst vult in wat de docent erbij vertelt.
+   ============================================================ */
+
+LESSTOF['intro-to-safety-security/college-1'] = [
+  {
+    id: 'voor', titel: 'Voorbereiding',
+    blokken: [
+      { type: 'leerdoelen', items: [
+        { doel: 'Uitleggen wat de vier officiële leerdoelen van dit vak zijn en waarop je wordt getoetst',
+          uitleg: 'Deze vier staan in de studiegids en keren terug in elk college. Ze zijn geen formaliteit: de mondelinge eindtoets is er letterlijk op gebouwd.' },
+        { doel: 'De drie werelden van SSMS benoemen en uitleggen waarom de opleiding ze samen behandelt',
+          uitleg: 'Public safety, industrial safety en international security. De vraag die het hele vak draagt: waarom horen die bij elkaar?' },
+        { doel: 'Het kernonderscheid tussen safety en security uitleggen aan de hand van menselijke intentie',
+          uitleg: 'Dit is het belangrijkste begrip van college 1 en komt terug in vrijwel elk hoofdstuk van Bieder.' },
+        { doel: 'Risico definiëren en het verschil uitleggen tussen "oude" en "moderne" risico’s',
+          uitleg: 'Risico is het begrip dat safety en security met elkaar verbindt. De oud-modern-tweedeling komt uit de risicosamenlevingstheorie.' },
+        { doel: 'De vier kerntaken van de safety- en securityprofessional opnoemen en in volgorde plaatsen',
+          uitleg: 'Analyseren, ontwerpen, implementeren, evalueren. Dit is de beroepscyclus waar je hele opleiding omheen is gebouwd.' }
+      ]},
+
+      { type: 'uitleg', titel: 'Waar dit college over gaat',
+        tekst: 'Dit is het openingscollege van de opleiding, en het heeft een dubbele functie. De helft gaat over **praktische zaken**: wie je docenten zijn, hoe het vak is opgebouwd, hoe je wordt getoetst. De andere helft is inhoudelijk en legt het fundament voor alles wat volgt.\n\nDat inhoudelijke deel bouwt een redenering op in vijf stappen: er zijn drie werelden van safety en security, die verschillen fundamenteel op één punt (menselijke intentie), maar ze delen wel één begrip (risico), dat begrip is de afgelopen decennia van karakter veranderd, en daarom bestaat jouw toekomstige beroep in de vorm waarin het nu bestaat.\n\nAls je maar één ding meeneemt uit dit college, laat het dan de vraag zijn die de docenten letterlijk op een slide zetten: **wat hebben al die soorten safety en security met elkaar gemeen?** Het antwoord, risico, is de spil van het hele curriculum.' },
+
+      { type: 'tekst', titel: 'Praktisch: je docenten en het vak',
+        tekst: '**Docenten.** Jonathan Michael Corr (J.M.Corr@hhs.nl), docent en academic advisor, met expertise in safety and security, consultancy, leadership, intelligence collection and analysis, en serious gaming. Enrique Gomez Llata Cazares (E.G.GomezLlataCazares@hhs.nl), docent, met expertise in globalisation processes, development studies, cultuur en politiek. Beiden zijn bereikbaar van maandag tot vrijdag, of dinsdag tot vrijdag afhankelijk van de docent.\n\n**Vakcode:** SSMS-1T1-24, 6 ECTS.\n\n**Literatuur:** Bieder, C. & Pettersen Gould, K. (red.) (2020). *The coupling of safety and security: Exploring interrelations in theory and practice.* Cham: Springer Nature. Het boek is **open access**, dus gratis legaal te downloaden via Springer.\n\n**Toetsing:** een midterm op dinsdag 10 november 2026, en een mondelinge eindtoets op 3 of 4 februari 2027 in de vorm van een individuele presentatie. Beide tellen voor 50%.' },
+
+      { type: 'waarschuwing', titel: 'Let op de datum van de midterm',
+        tekst: 'Op de slides van dit college staat de midterm op **dinsdag 10 november 2026**. In de studiegids staat alleen "november 2026" zonder dag.\n\nDe slides zijn hier specifieker, maar de handleiding zegt zelf dat het programma bij publicatie voorlopig was. Controleer de exacte datum dus in **MyTimetable en op Brightspace** voordat je iets vastlegt in je planning.\n\nHetzelfde geldt voor de eindtoets: de slides noemen 3 en 4 februari 2027, met een sterretje erbij dat aangeeft dat het nog niet definitief is.' }
+    ]
+  },
+
+  {
+    id: 'kern', titel: 'Kernstof',
+    blokken: [
+      { type: 'tekst', titel: '1. De vier leerdoelen van dit vak',
+        toetsstof: true,
+        tekst: 'De docenten zetten deze vier meteen in het openingscollege op tafel, en dat is niet toevallig. Ze bepalen precies waarop je in november en februari wordt beoordeeld.\n\n**1.** Je kunt de verschillende **domeinen** van safety en security die in het SSMS-programma aan bod komen conceptualiseren.\n\n**2.** Je kunt de relevantie en het belang uitleggen van verschillende **stakeholderbenaderingen** voor safety- en securitymanagement in verschillende internationale omgevingen.\n\n**3.** Je kunt de structuur en de hoofdgedachten van het SSMS-programma en het **multidisciplinaire karakter** ervan samenvatten.\n\n**4.** Je kunt uitleggen hoe geselecteerde elementen rond **risicomanagement en resilience** kunnen worden toegepast in de context van internationale safety en security.\n\nMerk op dat leerdoel 3 gaat over de **opleiding zelf**. Dat is ongebruikelijk, en het betekent dat dit college zelf toetsstof is. De structuur van SSMS die je hieronder ziet, moet je kunnen uitleggen.' },
+
+      { type: 'tekst', titel: '2. De drie werelden van SSMS',
+        toetsstof: true,
+        tekst: 'De opleiding positioneert zichzelf op het snijvlak van drie werelden die in de praktijk vaak strikt gescheiden zijn:\n\n**Public safety.** De wereld van politie, brandweer, ambulance, gemeenten en welzijnsorganisaties. Het publieke domein, waar de overheid verantwoordelijk is voor de veiligheid van burgers.\n\n**Industrial safety, oftewel corporate security.** De wereld van bedrijven: de veiligheid van productieprocessen, werknemers, bedrijfsmiddelen en bedrijfscontinuïteit. Hier valt ook SHEQ onder: safety, health, environment and quality.\n\n**International security.** De wereld van veiligheidsdiensten, inlichtingendiensten, het leger, internationale organisaties en ngo’s, consultancybureaus en denktanks.\n\nDe kernboodschap van het college is dat een SSMS-professional **in het midden** staat en tussen deze werelden kan bewegen. Iemand die alleen politiewerk begrijpt, of alleen bedrijfsveiligheid, mist de verbanden die in de praktijk juist het probleem vormen.' },
+
+      { type: 'uitleg', titel: 'Waarom dat midden een echte positie is, geen marketingpraatje',
+        tekst: 'Het klinkt als een brochure-zin, "wij leiden breed op", maar er zit een concrete redenering achter.\n\nNeem een cyberaanval op het elektriciteitsnet. Dat is tegelijk een **internationale securitykwestie** (wie zit erachter, is het een statelijke actor?), een **industriële safetykwestie** (wat gebeurt er met de installaties, vallen er gewonden?), en een **publieke veiligheidskwestie** (wat doet de gemeente als een wijk dagenlang zonder stroom zit?).\n\nDrie specialisten uit drie werelden zien elk een derde van het probleem. Wat er dan mist, is iemand die de drie beelden aan elkaar knoopt. Dat is de rol die SSMS claimt.\n\nDit is ook precies wat leerdoel 3 met "multidisciplinair karakter" bedoelt, en wat in het boek van Bieder terugkomt als de vraag of safety en security überhaupt met dezelfde begrippen te vatten zijn.' },
+
+      { type: 'tekst', titel: '3. Het kernonderscheid: menselijke intentie',
+        toetsstof: true,
+        tekst: 'Dit is het belangrijkste begrip van het hele college, en waarschijnlijk van het eerste deel van het vak.\n\nHet onderscheid tussen safety en security zit hem in **human intentionality**, menselijke intentie:\n\n**Safety management** richt zich op het tegengaan van natuurrampen, ongelukken, menselijke fouten en soortgelijke gebeurtenissen. Kenmerk: **er is geen kwaadwillende partij**. Niemand wil dat het misgaat.\n\n**Security management** richt zich op het tegengaan van opzettelijke tegenstanders, doelbewuste handelingen en criminaliteit. Kenmerk: **er is een actor die het expres doet**, en die zich aanpast aan jouw maatregelen.\n\nDat laatste is de scherpste consequentie. Een overstroming past zich niet aan je dijk aan. Een inbreker past zich wel aan je slot aan. Dat verschil bepaalt welke maatregelen zin hebben en hoe je ze moet blijven aanpassen.' },
+
+      { type: 'vergelijking', titel: 'Safety tegenover security in de praktijk',
+        links: { titel: 'Safety',
+          tekst: 'Geen kwaadwillende tegenstander.',
+          punten: [
+            'Oorzaken: natuurgeweld, technisch falen, menselijke fout',
+            'De dreiging past zich niet aan je maatregelen aan',
+            'Cultuur van openheid: incidenten melden maakt het systeem veiliger',
+            'Statistiek werkt goed: ongelukken volgen patronen',
+            'Voorbeeld: een brandalarm, een veiligheidsprocedure bij een machine'
+          ] },
+        rechts: { titel: 'Security',
+          tekst: 'Wel een kwaadwillende tegenstander.',
+          punten: [
+            'Oorzaken: opzet, criminaliteit, sabotage, aanslagen',
+            'De dreiging past zich juist wél aan je maatregelen aan',
+            'Cultuur van geheimhouding: informatie delen vergroot je kwetsbaarheid',
+            'Statistiek werkt beperkt: de tegenstander verandert zijn methode',
+            'Voorbeeld: toegangscontrole, screening van personeel'
+          ] } },
+
+      { type: 'tekst', titel: '4. Vier soorten safety en security, één gemene deler',
+        toetsstof: true,
+        tekst: 'De docenten geven vier definities die je uit je hoofd moet kennen, want ze zijn precies geformuleerd:\n\n**Physical safety.** De mate waarin mensen beschermd zijn, én zich beschermd voelen, tegen persoonlijk letsel door ongelukken en tegen rampen van niet-menselijke oorsprong.\n\n**Industrial safety.** Het voorkomen of verminderen van bedreigingen voor een onderneming, haar werknemers of haar omgeving, als gevolg van natuurlijke risico’s (bijvoorbeeld overstroming) en risico’s verbonden aan productieprocessen of logistiek (bijvoorbeeld infrastructuur).\n\n**Security** (corporate, internationaal, regionaal, fysiek, cyber, en zo verder). Het voorkomen of verminderen van het **moedwillig toebrengen van schade** aan burgers, werknemers, en publieke en private bezittingen.\n\n**Public security.** De mate waarin mensen beschermd zijn, én zich beschermd voelen, tegen persoonlijk letsel door criminaliteit, overtredingen en intimidatie door andere mensen.\n\nDe vraag die de docenten er meteen achteraan stellen: wat hebben deze vier gemeen? Het antwoord dat op de volgende slide verschijnt: **risico**.' },
+
+      { type: 'slimmer', titel: 'Let op het woordje "en zich beschermd voelen"',
+        tekst: 'Bij physical safety en public security staat er iets wat makkelijk over het hoofd wordt gezien: de mate waarin mensen beschermd zijn **én zich beschermd voelen**.\n\nDat is geen stijlbloempje. Het betekent dat veiligheid twee componenten heeft: een objectieve (hoeveel gebeurt er werkelijk) en een subjectieve (hoe veilig voelen mensen zich). Die twee lopen vaak uiteen. Criminaliteitscijfers kunnen dalen terwijl het onveiligheidsgevoel stijgt.\n\nVoor jouw toekomstige beroep is dat cruciaal: een maatregel die de statistiek verbetert maar het gevoel verslechtert, heeft maar half gewerkt. En bij industrial safety en security ontbreekt die gevoelscomponent in de definitie juist, wat op zich al iets zegt over hoe die velden naar hun taak kijken.' },
+
+      { type: 'tekst', titel: '5. Risico, en hoe het van karakter veranderde',
+        toetsstof: true,
+        tekst: 'De definitie die je moet kennen:\n\n**Risico is onzekerheid over een mogelijk negatieve uitkomst (van een beslissing).** Uitgedrukt als: **waarschijnlijkheid × impact**.\n\nTwee dingen aan die definitie zijn belangrijk. Ten eerste zit er **onzekerheid** in: bij volledige zekerheid spreek je niet meer van risico. Ten tweede staat er "van een beslissing" tussen haakjes, wat suggereert dat risico’s vaak voortkomen uit keuzes die iemand maakt, niet uit puur toeval.\n\nDaarna maken de docenten een onderscheid dat je moet kunnen uitleggen, tussen "oude" en "moderne" risico’s.' },
+
+      { type: 'tabel', titel: '"Oude" tegenover "moderne" risico’s',
+        toetsstof: true,
+        kop: ['', '"Oude" risico’s', '"Moderne" risico’s'],
+        rijen: [
+          ['Oorsprong', 'Natuurlijk, "god-given": aardbevingen, misoogsten, ziekten', 'Door mensen gemaakt, technologisch: kernenergie, cyberaanvallen, klimaatverandering'],
+          ['Schaal', 'Kleinschalig, lokaal begrensd', 'Grootschalig, en gepolitiseerd'],
+          ['Verdeling', 'Ongelijk verdeeld: trof de een wel en de ander niet', 'Gelijk verdeeld: raakt in principe iedereen, ongeacht positie']
+        ],
+        noot: 'De aanhalingstekens rond "oud" en "modern" staan er in het origineel ook. De docenten geven daarmee aan dat het geen strikte chronologie is: oude risico’s bestaan nog steeds.' },
+
+      { type: 'uitleg', titel: 'Waarom "gelijk verdeeld" de meest omstreden claim is',
+        tekst: 'Van de drie verschillen is dit degene waar je bij moet stilstaan, want hij is zowel het interessantst als het meest bekritiseerd.\n\nDe gedachte komt uit de risicosamenlevingstheorie van socioloog Ulrich Beck. Zijn stelling: bij een klassieke ramp, zoals een misoogst, waren de rijken beter beschermd dan de armen. Maar bij moderne risico’s zoals radioactieve neerslag of klimaatverandering helpt geld je maar tot op zekere hoogte. Beck vatte dat samen als: armoede is hiërarchisch, smog is democratisch.\n\nDe kritiek daarop is even belangrijk om te kennen: in de praktijk zijn moderne risico’s allesbehalve gelijk verdeeld. Klimaatverandering treft laaggelegen arme landen veel harder dan rijke. Wie zich verhuizing, verzekering of een generator kan veroorloven, staat er beter voor.\n\nHoud dat spanningsveld vast. Bij een mondelinge eindtoets is "ik ken de drie verschillen" een 5,5-antwoord; "ik ken ze én ik kan uitleggen waarom de derde omstreden is" is wat een hoger cijfer oplevert.' },
+
+      { type: 'tekst', titel: '6. Wat de professional feitelijk doet: de vier kerntaken',
+        toetsstof: true,
+        tekst: 'Dit is de beroepscyclus waar je hele opleiding op is gebouwd. Vier taken, in deze volgorde:\n\n**1. Identificeren, analyseren en beoordelen van risicosituaties.** Oftewel: risicoanalyses maken. Dit is waar je begint, en waar Demystifying Research Methods je de gereedschappen voor geeft.\n\n**2. Ontwerpen en aanbevelen van haalbare safety- en securityinterventies.** Denk aan plannen, beleid, regelgeving en strategieën. Let op het woord **haalbaar**: een technisch perfecte oplossing die niemand kan betalen of uitvoeren, is geen aanbeveling.\n\n**3. Implementeren en coördineren van interventies.** Tactieken en methoden uitvoeren, instrumenten inzetten, op basis van informatie.\n\n**4. Evalueren van interventies en oplossingen.** De kernvraag: heeft het gewerkt? Dit is de stap die in de praktijk het vaakst wordt overgeslagen.\n\nDe cyclus is rond: de evaluatie in stap 4 levert de informatie voor een nieuwe analyse in stap 1.' },
+
+      { type: 'tekst', titel: '7. Waar je dat mee doet: insecurities',
+        tekst: 'De docenten zetten hier bewust een korte, open slide neer. De professional heeft te maken met onzekerheden rond:\n\n- **mensen** — gedrag, fouten, motieven, opleiding\n- **systemen** — hoe organisaties en processen zijn ingericht\n- **technologie** — wat die mogelijk maakt en welke nieuwe kwetsbaarheden ze schept\n- **overtuigingen** — wat mensen geloven over risico en veiligheid\n- **cultuur** — hoe er in een organisatie of land met veiligheid wordt omgegaan\n- **en veel meer**\n\nDe boodschap van die open opsomming is dat je vakgebied niet technisch is maar **sociotechnisch**: de techniek is zelden het lastigste deel, de mensen eromheen wel.' },
+
+      { type: 'tekst', titel: '8. Connecting the dots: het klimaatvoorbeeld',
+        toetsstof: true,
+        tekst: 'Het college sluit het inhoudelijke deel af met een schema uit onderzoek van Ljungqvist (2017) naar de menselijke en maatschappelijke dimensies van klimaatverandering in het verleden. Het laat een ketting zien:\n\n**Klimaatverandering** (temperatuur, neerslag, droogte) beïnvloedt de **landbouwproductiviteit**, wat de **voedselvoorziening per hoofd** beïnvloedt (beschikbaarheid en prijs). Dat leidt langs drie sporen verder: naar **sociale onrust** en vervolgens **gewapende conflicten**; naar **migratie**, oftewel klimaatvluchtelingen; en naar **voedseltekorten**, ondervoeding en hongersnood, die weer leiden tot **epidemieën** en **slechte voedingstoestand**. Dat alles slaat terug op de **bevolking**: groei, omvang, sterfte.\n\nWaarom dit schema in het openingscollege staat: het is de illustratie van "connecting the dots". Een klimaatverschijnsel eindigt via een keten van tussenstappen in een gewapend conflict. Wie alleen naar het begin of alleen naar het eind van die keten kijkt, snapt niet wat er gebeurt.\n\nDit is ook direct leerdoel 4 in actie: risicomanagement en resilience toegepast in een internationale context.' },
+
+      { type: 'begrippen', titel: 'Kernbegrippen uit college 1',
+        items: [
+          { begrip: 'Human intentionality', en: 'menselijke intentie',
+            definitie: 'het kernonderscheid tussen safety en security: bij safety ontbreekt een kwaadwillende actor, bij security is die er wel en past die zich aan je maatregelen aan.' },
+          { begrip: 'Risico', en: 'risk',
+            definitie: 'onzekerheid over een mogelijk negatieve uitkomst van een beslissing, uitgedrukt als waarschijnlijkheid maal impact.' },
+          { begrip: 'Physical safety',
+            definitie: 'de mate waarin mensen beschermd zijn en zich beschermd voelen tegen persoonlijk letsel door ongelukken en rampen van niet-menselijke oorsprong.' },
+          { begrip: 'Industrial safety',
+            definitie: 'het voorkomen of verminderen van bedreigingen voor een onderneming, haar werknemers of omgeving door natuurlijke risico’s en risico’s in productieprocessen of logistiek.' },
+          { begrip: 'Public security',
+            definitie: 'de mate waarin mensen beschermd zijn en zich beschermd voelen tegen persoonlijk letsel door criminaliteit, overtredingen en intimidatie door anderen.' },
+          { begrip: 'Security',
+            definitie: 'het voorkomen of verminderen van het moedwillig toebrengen van schade aan burgers, werknemers en publieke of private bezittingen.' },
+          { begrip: 'De drie werelden van SSMS',
+            definitie: 'public safety, industrial safety oftewel corporate security, en international security; SSMS positioneert zich in het midden daarvan.' },
+          { begrip: '"Moderne" risico’s',
+            definitie: 'door mensen gemaakte, technologische risico’s die grootschalig en gepolitiseerd zijn en in principe iedereen gelijk raken, tegenover natuurlijke, kleinschalige en ongelijk verdeelde "oude" risico’s.' },
+          { begrip: 'De vier kerntaken',
+            definitie: 'risico’s analyseren, interventies ontwerpen en aanbevelen, interventies implementeren en coördineren, en interventies evalueren op effectiviteit.' },
+          { begrip: 'SHEQ',
+            definitie: 'safety, health, environment and quality: de bundeling van veiligheidstaken zoals die binnen bedrijven vaak is georganiseerd.' }
+        ] }
+    ]
+  },
+
+  {
+    id: 'toepassen', titel: 'Toepassen',
+    blokken: [
+      { type: 'oefening', id: 'iss-c1-oef-1', niveau: 'basis',
+        vraag: 'Leg uit waarom het onderscheid tussen safety en security niet zit in **hoe ernstig** de gevolgen zijn, maar in menselijke intentie. Geef een voorbeeld van een ernstig safety-incident en een klein security-incident.',
+        antwoord: 'Het onderscheid ligt in de oorzaak, niet in de omvang van de schade. Bij safety gaat het om gebeurtenissen zonder kwaadwillende actor: natuurgeweld, technisch falen of menselijke fout. Bij security is er een partij die de schade doelbewust veroorzaakt. Die tweedeling zegt niets over ernst: een ontsnapping van giftige stoffen bij een chemische fabriek door een technische storing kan honderden slachtoffers maken en is een safety-incident, terwijl het stelen van een laptop uit een kantoorpand een security-incident is met beperkte schade.\n\nDe reden dat het onderscheid er toch toe doet, is dat het bepaalt welk type maatregel werkt. Bij safety kun je uitgaan van patronen: dezelfde technische storing gedraagt zich onder dezelfde omstandigheden hetzelfde, dus statistiek, standaardisatie en het delen van incidentinformatie maken het systeem veiliger. Bij security heb je te maken met een tegenstander die zich aanpast: zodra je een maatregel invoert, zoekt die naar een route eromheen. Daarom werkt openheid bij safety in je voordeel en bij security juist tegen je, en daarom moet een securitymaatregel voortdurend worden herzien terwijl een safetymaatregel langer meegaat.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-2', niveau: 'basis',
+        vraag: 'Neem een concreet incident naar keuze, bijvoorbeeld een grote stroomstoring, en laat zien hoe alle drie de werelden van SSMS erin terugkomen.',
+        antwoord: 'Neem een langdurige stroomstoring in een grote stad, veroorzaakt door een cyberaanval op de netbeheerder.\n\nDe internationale securitydimensie betreft de vraag wie erachter zit. Gaat het om criminelen die losgeld willen, om hacktivisten, of om een statelijke actor die de kwetsbaarheid van kritieke infrastructuur test? Dat bepaalt of dit een politiezaak is, een zaak voor de inlichtingendiensten, of zelfs een kwestie van internationale betrekkingen.\n\nDe industriële safetydimensie speelt bij de netbeheerder en bij aangesloten bedrijven. Vallen installaties op een gecontroleerde manier stil of ontstaat er gevaar bij het uitvallen van koeling, ventilatie of procesbesturing? Zijn er noodstroomvoorzieningen, en hoe lang houden die het vol? Hier gaat het om technische systemen en om de veiligheid van werknemers.\n\nDe publieke veiligheidsdimensie speelt bij gemeente en hulpdiensten. Verkeerslichten vallen uit, liften komen vast te zitten, mensen met thuiszorgapparatuur raken in de problemen, winkels kunnen niet pinnen, en na een tijd ontstaat er onrust of plundering. Dat vraagt om crisiscommunicatie, opvang en handhaving.\n\nWat het voorbeeld laat zien is dat geen van de drie specialisten het probleem in zijn geheel ziet. De netbeheerder denkt in installaties, de inlichtingendienst in daders, de gemeente in burgers. De coördinatie tussen die drie, en de vraag wie in de crisis waarover gaat, is precies het gat waar de SSMS-professional voor wordt opgeleid.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-3', niveau: 'gevorderd',
+        vraag: 'De docenten stellen dat moderne risico’s "gelijk verdeeld" zijn. Beargumenteer waarom die stelling verdedigbaar is, en waarom er stevige kritiek op mogelijk is.',
+        antwoord: 'De stelling is verdedigbaar omdat moderne risico\'s van karakter verschillen van klassieke rampen. Bij een misoogst of een lokale overstroming bepaalden bezit en positie in hoge mate of je getroffen werd: wie voorraden had of hoger woonde, ontsprong de dans. Bij radioactieve neerslag, luchtvervuiling, een pandemie of een systeemcrisis in het financiële stelsel werkt die bescherming veel minder goed. De uitstoot van een fabriek stopt niet bij de grens van een welvarende wijk, en een virus vraagt niet naar inkomen. Ulrich Beck vatte dat samen met de gedachte dat armoede hiërarchisch is maar smog democratisch. Daar komt bij dat moderne risico\'s door mensen zijn gemaakt en dus het gevolg zijn van collectieve keuzes, waardoor ze ook politiek van aard worden: er is altijd iemand aan te wijzen die de beslissing nam.\n\nDe kritiek is minstens zo sterk. In de praktijk blijken moderne risico\'s wel degelijk ongelijk te landen. Klimaatverandering treft laaggelegen en arme landen onevenredig hard, terwijl de uitstoot grotendeels elders is veroorzaakt. Binnen landen wonen armere bevolkingsgroepen vaker naast snelwegen, industrie of in overstromingsgevoelig gebied. En hoewel niemand immuun is, verschilt het vermogen om je aan te passen enorm: verzekeringen, verhuizen, medische zorg, een generator of een tweede woning zijn allemaal koopbaar. Dat verschuift de ongelijkheid van blootstelling naar veerkracht, maar heft haar niet op.\n\nDe genuanceerde conclusie is dat de stelling opgaat voor blootstelling maar niet voor kwetsbaarheid. Moderne risico\'s raken iedereen, maar ze raken niet iedereen even hard, en juist dat onderscheid is voor een safety- en securityprofessional relevant: het bepaalt waar je maatregelen het meeste effect hebben.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-4', niveau: 'gevorderd',
+        vraag: 'Loop de vier kerntaken van de professional langs voor een concrete casus: het toenemende aantal steekincidenten onder jongeren in een middelgrote stad. Wat doe je in elke stap?',
+        antwoord: 'Bij stap één, het identificeren, analyseren en beoordelen van de risicosituatie, begint het met feitelijk vaststellen wat er speelt. Hoeveel incidenten zijn er werkelijk, in welke wijken, op welke tijdstippen, met welke betrokkenen, en is er sprake van een stijging of van meer meldingsbereidheid? Daar hoort ook onderzoek naar achterliggende factoren bij: schooluitval, wapenbezit, groepsdynamiek, aanwezigheid van drugshandel. En het hoort te gaan over zowel objectieve veiligheid als het veiligheidsgevoel van bewoners, omdat die twee kunnen verschillen.\n\nBij stap twee, het ontwerpen en aanbevelen van haalbare interventies, komen de mogelijke maatregelen op tafel: preventieprogramma\'s op scholen, jongerenwerk, cameratoezicht op bepaalde plekken, wapencontroles, of samenwerking met ouders en sportverenigingen. Het woord haalbaar is hier het scherpst: elke maatregel kost geld, capaciteit en politiek draagvlak, en een voorstel dat de gemeente niet kan uitvoeren is geen advies. Ook moet je hier expliciet maken welke maatregel welk deel van het probleem aanpakt.\n\nBij stap drie, implementeren en coördineren, gaat het om de uitvoering: wie doet wat, in welke volgorde, met welke middelen, en hoe zorg je dat politie, gemeente, scholen en jongerenwerk niet langs elkaar heen werken. Hier blijkt vaak dat partijen verschillende doelen en verschillende informatie hebben.\n\nBij stap vier, evalueren, stel je vast of het gewerkt heeft. Dat is lastiger dan het lijkt: een daling in incidenten kan ook door iets anders komen, en een goede evaluatie probeert dat te onderscheiden. Bovendien meet je idealiter niet alleen de cijfers maar ook of bewoners zich veiliger voelen. De uitkomst voedt vervolgens weer een nieuwe analyse, waarmee de cyclus rond is.' },
+
+      { type: 'oefening', id: 'iss-c1-oef-5', niveau: 'gevorderd',
+        vraag: 'Beschrijf het klimaatschema van Ljungqvist in je eigen woorden en leg uit waarom het in een introductiecollege over safety en security thuishoort.',
+        antwoord: 'Het schema laat een causale ketting zien die begint bij klimaatverandering, in de vorm van veranderingen in temperatuur, neerslag en droogte. Die veranderingen beïnvloeden de landbouwproductiviteit en daarmee de opbrengst van oogsten. Dat werkt door in de voedselvoorziening per hoofd van de bevolking, waarbij zowel beschikbaarheid als prijs een rol spelen. Vanaf dat punt splitst de keten zich. Eén lijn loopt via sociale onrust en wetteloosheid naar gewapende conflicten, rebellie en oorlog. Een tweede lijn loopt naar migratie, waarbij mensen wegtrekken uit gebieden die hun levensonderhoud niet meer bieden. Een derde lijn loopt via voedseltekorten en ondervoeding naar epidemieën en een verslechterde gezondheidstoestand. Al deze sporen slaan uiteindelijk terug op de bevolking zelf, in groeicijfers en omvang, wat de druk op het systeem opnieuw beïnvloedt.\n\nHet hoort in dit college thuis om drie redenen. Ten eerste is het de concrete invulling van wat de docenten connecting the dots noemen: geen enkele stap in de keten is op zichzelf een veiligheidsprobleem, maar de optelsom eindigt in gewapend conflict en massale migratie. Ten tweede laat het zien dat de scheiding tussen safety en security in de praktijk vervaagt. Het beginpunt is een klassiek safety-vraagstuk zonder kwaadwillende actor, terwijl het eindpunt onmiskenbaar security is, met intentie, geweld en tegenstanders. Ergens in de keten kantelt het van het één naar het ander, zonder dat er een duidelijk omslagpunt aan te wijzen valt. Ten derde illustreert het waarom de opleiding zich in het midden van drie werelden positioneert: een klimaatwetenschapper, een landbouwexpert en een veiligheidsanalist zien elk een deel van deze keten, en pas wie het geheel overziet begrijpt waarom een droogte jaren later in een conflict kan eindigen.' }
+    ]
+  },
+
+  {
+    id: 'checken', titel: 'Checken',
+    blokken: [
+      { type: 'quiz', titel: 'Check jezelf',
+        vragen: [
+          { vraag: 'Wat is volgens dit college het kernonderscheid tussen safety en security?',
+            opties: ['De ernst van de gevolgen', 'Menselijke intentie', 'Of het publiek of privaat is', 'De omvang van de schade'],
+            juist: 1,
+            uitleg: 'Human intentionality. Bij safety ontbreekt een kwaadwillende actor, bij security is die er wel. Ernst en omvang zeggen niets over het onderscheid: een technische storing kan rampzalig zijn en een diefstal klein.' },
+          { vraag: 'Hoe wordt risico in dit college gedefinieerd?',
+            opties: ['De kans dat er iets misgaat', 'Waarschijnlijkheid maal impact', 'De schade gedeeld door de kosten', 'Het aantal incidenten per jaar'],
+            juist: 1,
+            uitleg: 'Risico is onzekerheid over een mogelijk negatieve uitkomst van een beslissing, uitgedrukt als waarschijnlijkheid maal impact. Alleen de kans is niet genoeg: een zeer waarschijnlijke gebeurtenis met verwaarloosbare gevolgen is een klein risico.' },
+          { vraag: 'Welke drie werelden komen samen in SSMS?',
+            opties: ['Politie, leger en brandweer', 'Public safety, industrial safety en international security', 'Preventie, repressie en nazorg', 'Lokaal, nationaal en internationaal'],
+            juist: 1,
+            uitleg: 'Public safety (het publieke domein), industrial safety oftewel corporate security (bedrijven), en international security (veiligheids- en inlichtingendiensten, leger, ngo\u2019s). SSMS positioneert zich in het midden.' },
+          { vraag: 'Wat is volgens de indeling van "oude" en "moderne" risico\u2019s het kenmerk van moderne risico\u2019s?',
+            opties: ['Natuurlijk, kleinschalig, ongelijk verdeeld', 'Door mensen gemaakt, grootschalig, gelijk verdeeld', 'Zeldzaam maar zeer ernstig', 'Alleen in westerse landen aanwezig'],
+            juist: 1,
+            uitleg: 'Moderne risico\u2019s zijn door mensen gemaakt en technologisch, grootschalig en gepolitiseerd, en in principe gelijk verdeeld. Op dat laatste punt is overigens stevige kritiek mogelijk.' },
+          { vraag: 'Wat is de juiste volgorde van de vier kerntaken van de professional?',
+            opties: ['Implementeren, analyseren, evalueren, ontwerpen', 'Analyseren, ontwerpen, implementeren, evalueren', 'Ontwerpen, implementeren, analyseren, evalueren', 'Evalueren, analyseren, ontwerpen, implementeren'],
+            juist: 1,
+            uitleg: 'Eerst risico\u2019s identificeren, analyseren en beoordelen. Dan haalbare interventies ontwerpen en aanbevelen. Dan implementeren en coördineren. Tot slot evalueren op effectiviteit, waarna de cyclus opnieuw begint.' },
+          { vraag: 'Waarom werkt een cultuur van openheid wél bij safety maar niet bij security?',
+            opties: ['Omdat safety minder ernstig is', 'Omdat er bij security een tegenstander is die van gedeelde informatie profiteert', 'Omdat securitywetgeving het verbiedt', 'Omdat safety-incidenten vaker voorkomen'],
+            juist: 1,
+            uitleg: 'Bij safety maakt het melden en delen van incidenten het systeem veiliger, omdat niemand er baat bij heeft dat het misgaat. Bij security vergroot het delen van je kwetsbaarheden juist het risico, omdat een tegenstander die informatie kan gebruiken.' }
+        ] },
+
+      { type: 'checklist', titel: 'Kun je dit navertellen?',
+        tekst: 'De eindtoets van dit vak is **mondeling**. Vink alleen af wat je zonder aantekeningen hardop kunt uitleggen.',
+        items: [
+          { doel: 'Ik kan de vier leerdoelen van dit vak noemen',
+            uitleg: 'Domeinen conceptualiseren, stakeholderbenaderingen uitleggen, de structuur van SSMS samenvatten, en risicomanagement en resilience toepassen op internationale casussen.' },
+          { doel: 'Ik kan de drie werelden van SSMS benoemen en met een voorbeeld uitleggen waarom ze bij elkaar horen',
+            uitleg: 'Gebruik een casus waarin alle drie tegelijk spelen, zoals een cyberaanval op kritieke infrastructuur; dat is overtuigender dan een opsomming.' },
+          { doel: 'Ik kan het onderscheid safety en security uitleggen én uitleggen wat dat betekent voor maatregelen',
+            uitleg: 'Het tweede deel is waar het om gaat: de aanpassende tegenstander, en de tegenstelling tussen openheid en geheimhouding.' },
+          { doel: 'Ik kan risico definiëren en het verschil tussen oude en moderne risico’s uitleggen',
+            uitleg: 'Inclusief de kanttekening bij "gelijk verdeeld": dat onderscheid maakt je antwoord sterker.' },
+          { doel: 'Ik kan de vier definities van soorten safety en security uit mijn hoofd geven',
+            uitleg: 'Physical safety, industrial safety, security en public security. Let op het element "en zich beschermd voelen" bij de eerste en de laatste.' },
+          { doel: 'Ik kan de vier kerntaken in volgorde noemen en op een casus toepassen',
+            uitleg: 'Analyseren, ontwerpen, implementeren, evalueren. Oefen dit met een casus die je zelf kiest, niet alleen met de opsomming.' },
+          { doel: 'Ik kan uitleggen wat het klimaatschema laat zien en waarom het in dit vak staat',
+            uitleg: 'De ketting van klimaat naar conflict, en het feit dat die begint bij safety en eindigt bij security zonder duidelijk omslagpunt.' }
+        ] },
+
+      { type: 'preview', titel: 'Sessie 2 · Safety and security interventions',
+        vakId: 'intro-to-safety-security', lesId: 'h1',
+        tekst: 'Het volgende college gaat over interventies, en daarvoor moet je hoofdstuk 1 en 2 van Bieder gelezen hebben. Die hoofdstukken bouwen precies voort op het onderscheid en het risicobegrip uit dit college.' }
+    ]
+  }
+];
+
+/* ============================================================
+   De lessenlijst van Intro to Safety & Security opnieuw zetten,
+   nu met een aparte groep "Lecture slides" vóór de boekhoofdstukken.
+
+   De groepsnaam komt uit het deel vóór ' · ' in de titel, dus
+   'Lecture slides · Sessie 1 ...' verschijnt als eigen uitklapper
+   naast 'The Coupling of Safety and Security'.
+
+   Nieuw college erbij? Voeg een regel toe aan COLLEGES hieronder
+   en zet de lesstof onder LESSTOF['intro-to-safety-security/college-N'].
+   ============================================================ */
+(function(){
+  if (typeof DATA === 'undefined') return;
+
+  var COLLEGES = [
+    { id: 'college-1', groep: 'Lecture slides', titel: 'Sessie 1 · SSMS & what it’s all about', duur: 45 }
+  ];
+
+  var BOEK = [
+    { id: 'h1',  groep: 'Boek', titel: 'H1 Safety en security samenbrengen',        duur: 60 },
+    { id: 'h2',  groep: 'Boek', titel: 'H2 Risico, safety en security als concept', duur: 75 },
+    { id: 'h3',  groep: 'Boek', titel: 'H3 Twee kanten van dezelfde medaille',      duur: 90 },
+    { id: 'h4',  groep: 'Boek', titel: 'H4 Safety versus security in de luchtvaart', duur: 90 },
+    { id: 'h5',  groep: 'Boek', titel: 'H5 Security- en safetycultuur',             duur: 75 },
+    { id: 'h6',  groep: 'Boek', titel: 'H6 Gebruikerservaring op de luchthaven',    duur: 60 },
+    { id: 'h7',  groep: 'Boek', titel: 'H7 De divergentie van safety en security',  duur: 75 },
+    { id: 'h8',  groep: 'Boek', titel: 'H8 Voorbereiden om verrast te worden',      duur: 75 },
+    { id: 'h9',  groep: 'Boek', titel: 'H9 Spanningen en synergie in management',   duur: 75 },
+    { id: 'h10', groep: 'Boek', titel: 'H10 Het snijvlak op de werkplek',           duur: 60 },
+    { id: 'h11', groep: 'Boek', titel: 'H11 Onderzoeks- en managementuitdagingen',  duur: 60 }
+  ];
+
+  function zetIss(){
+    DATA.semesters.forEach(function(sem){
+      var gevonden = false;
+      sem.vakken.forEach(function(vak){
+        if (vak.id === 'intro-to-safety-security') {
+          vak.lessen = COLLEGES.concat(BOEK);
+          gevonden = true;
+        }
+      });
+      if (!gevonden && sem.id === DATA.actiefSemester) {
+        sem.vakken.push({
+          id: 'intro-to-safety-security',
+          naam: 'Intro to Safety & Security',
+          lessen: COLLEGES.concat(BOEK)
+        });
+      }
+    });
+  }
+
+  zetIss();
+  if (typeof opFeed === 'function') opFeed(zetIss);
+})();
+
+
+/* ============================================================
+   Society & Politics — collegeles sessie 1
+   Naar de eigen slides van Lecture 1 (Dr. Abanes), aangevuld met
+   Macionis & Plummer (2012), hoofdstuk 1, 2 en 4.
+
+   Zelfde opzet als de andere vakken: Voorbereiding, Kernstof,
+   Toepassen, Checken.
+   ============================================================ */
+
+LESSTOF['society-politics/college-1'] = [
+  {
+    id: 'voor', titel: 'Voorbereiding',
+    blokken: [
+      { type: 'leerdoelen', items: [
+        'Uitleggen wat sociologie is en waarom het een manier van kijken is, geen verzameling feiten',
+        'De vijf soorten samenleving van Lenski benoemen en zeggen wat er per stap verandert',
+        'Bergers "invitation to sociology" en Mills\u2019 sociological imagination uit elkaar houden en toepassen',
+        'Het verschil tussen een persoonlijke trouble en een publiek issue aanwijzen in een concreet geval',
+        'De drie klassieke perspectieven (functionalisme, conflicttheorie, symbolisch interactionisme) omschrijven, inclusief hun kritiek',
+        'Zeggen wat hedendaagse perspectieven daaraan toevoegen, en wat glocalisering betekent'
+      ]},
+
+      { type: 'uitleg', titel: 'Waar dit college over gaat',
+        tekst: 'Dit is het openingscollege van Society & Politics. Het bestaat uit twee helften die je niet door elkaar moet halen.\n\nDe **eerste helft van het semester is sociologie** (Dr. Abanes, boek Macionis & Plummer). De **tweede helft is politicologie** (Dr. Trigo de Sousa, boek McCormick, Hague & Harrop). De midterm gaat alleen over de sociologie.\n\nDit college legt het fundament: wat is sociologie, welke soorten samenleving zijn er, hoe leer je sociologisch kijken, en met welke drie brillen doe je dat.' },
+
+      { type: 'waarschuwing', titel: 'De datum die je nu al moet weten',
+        tekst: 'Op de slides staat de midterm op **13 november 2026**. Dat is dezelfde datum als in de module manual. Het vak telt 6 ECTS met midterm en eindtoets elk 50%, en voor allebei heb je minimaal een 5,5 nodig.' },
+
+      { type: 'tabel', titel: 'Het leesschema van de eerste helft', toetsstof: true,
+        kop: ['Week', 'Onderwerp', 'Macionis & Plummer'],
+        rijen: [
+          ['1', 'Introductie en sociologische perspectieven', 'H1, H2, H4'],
+          ['2', 'Sociale constructie van het dagelijks leven', 'H7'],
+          ['3', 'Etniciteit en migratie (gastcollege)', 'H11'],
+          ['4', 'Cultuur en sociale bewegingen', 'H5, H16'],
+          ['5', 'Controle en deviantie', 'H17'],
+          ['6', 'Groepen, organisaties en werk', 'H6'],
+          ['7', 'Sociale scheidslijnen en stratificatie', 'H8'],
+          ['8', 'Risicosamenleving, steden en ruimte, plus review', 'H23, H24']
+        ],
+        noot: 'De slides geven per hoofdstuk soms preciezere paginanummers dan de manual. Bij verschil: houd de slides aan, dat is wat de docent toetst.' }
+    ]
+  },
+
+  {
+    id: 'kern', titel: 'Kernstof',
+    blokken: [
+      { type: 'tekst', titel: '1. Wat sociologie is', toetsstof: true,
+        tekst: 'De definitie op de slide is kort: **sociologie is de systematische studie van de menselijke samenleving**. Het woord dat je moet onthouden is *systematisch*. Iedereen heeft meningen over hoe mensen samenleven; sociologie is de poging om dat methodisch te onderzoeken in plaats van er iets over te vinden.\n\nDe docent zet er vier omschrijvingen naast die allemaal hetzelfde punt maken: sociologie is een **vorm van bewustzijn**, een **manier van denken**, een **kritische manier van kijken**, een **perspectief**. Vier woorden voor één idee: sociologie is geen onderwerp maar een bril.\n\nDe openingsvraag van het college maakt dat concreet: waarom zit jij vandaag in de collegezaal? Je eerste antwoord is persoonlijk (ik wil dit diploma). Het sociologische antwoord gaat over leerplicht, over een arbeidsmarkt die diploma\u2019s vraagt, over wat er in jouw omgeving normaal wordt gevonden. Dezelfde handeling, een ander verklaringsniveau.' },
+
+      { type: 'uitleg', titel: 'Waarom dit in een safety- en securityopleiding staat',
+        tekst: 'De tweede openingsvraag is: hoe kan sociologie onze samenleving veiliger maken? Het antwoord loopt door het hele vak heen. Criminaliteit, radicalisering, wantrouwen in instituties, ongelijk verdeelde risico\u2019s: dat zijn geen optelsommen van individuele keuzes maar patronen. Als je alleen naar het individu kijkt, ontwerp je interventies die op het verkeerde niveau ingrijpen.' },
+
+      { type: 'tekst', titel: '2. Samenleving en de typologie van Lenski', toetsstof: true,
+        tekst: 'De definitie: **een samenleving is mensen die met elkaar omgaan in een afgebakende ruimte en een cultuur delen**. Drie elementen dus: interactie, ruimte, gedeelde cultuur.\n\nLenski\u2019s **socioculturele evolutie** stelt dat samenlevingen veranderen naarmate hun technologie verandert, en dat het tempo van verandering meebeweegt: hoe meer technologische informatie beschikbaar is, hoe sneller het gaat. Dat is meteen de kern van waarom onze eeuw zo onrustig aanvoelt en die van een agrarische samenleving niet.' },
+
+      { type: 'tabel', titel: 'De vijf typen van Lenski', toetsstof: true,
+        kop: ['Type', 'Waar het op draait'],
+        rijen: [
+          ['Hunting & gathering', 'Eenvoudige technologie'],
+          ['Horticultural & pastoral', 'Gereedschap, land en vee'],
+          ['Agrarian', 'Technologie en landbouw'],
+          ['Industrial', 'Technologie en machines'],
+          ['Post-industrial', 'Netwerken, risico en surveillance']
+        ],
+        noot: 'Let op de laatste rij. Netwerken, risico en surveillance zijn precies de drie woorden waar jouw opleiding over gaat. Dat is geen toeval: het is de brug naar week 8 over de risicosamenleving.' },
+
+      { type: 'tekst', titel: '3. Berger: de uitnodiging tot sociologie', toetsstof: true,
+        tekst: 'Peter Berger beschrijft sociologie als **erdoorheen kijken** en **achter gesloten deuren kijken**. Zijn bekendste formulering is **"het algemene zien in het bijzondere"**: in één concreet geval het patroon herkennen.\n\nDe opwinding van sociologie zit volgens Berger in het moment dat het vertrouwde plotseling betekenis krijgt. Iets waar je duizend keer langs bent gelopen blijkt ergens over te gaan.\n\nDe zin die je uit je hoofd moet kennen is de **eerste wijsheid van de sociologie: "things are not what they seem"**. Berger vergelijkt het met cadeautjes uitpakken: er zit steeds een laag onder.' },
+
+      { type: 'tekst', titel: '4. Mills: de sociologische verbeelding', toetsstof: true,
+        tekst: 'C. Wright Mills noemt de **sociological imagination** een kwaliteit van geest waarmee je het samenspel ziet tussen het individu en de samenleving. De structuur van de samenleving kan verpletterend aanvoelen; deze denkgewoonte geeft je er grip op.\n\nHet schema op de slide heeft twee assen die elkaar kruisen. **Biografie** tegenover **geschiedenis**, en **persoonlijke omgeving (troubles)** tegenover **publieke kwesties (issues)**. Waar die elkaar raken zit de sociologische verbeelding.\n\nHet voorbeeld van de docent: één student die het collegegeld niet kan betalen is een **persoonlijke trouble**. Miljoenen studenten met torenhoge studieschuld is een **publiek issue**. Dezelfde ervaring, maar op het tweede niveau is het geen pech meer maar een kenmerk van het systeem.' },
+
+      { type: 'slimmer', titel: 'Zo hou je Berger en Mills uit elkaar',
+        tekst: 'Ze lijken op elkaar en dat is precies waar een toetsvraag op mikt.\n\n**Berger** gaat over *diepte*: onder de oppervlakte kijken, het algemene in het bijzondere zien. **Mills** gaat over *schaal*: van het individuele geval opschalen naar structuur en geschiedenis.\n\nEzelsbruggetje: Berger kijkt naar beneden, Mills kijkt naar buiten.' },
+
+      { type: 'tekst', titel: '5. Global village: als de wereld 100 mensen was', toetsstof: true,
+        tekst: 'De slide schaalt de wereldbevolking terug naar honderd mensen, omdat ongelijkheid op die schaal zichtbaar wordt.\n\n**Demografie:** 61 wonen in Azië, 13 in Afrika, 12 in Europa, 14 in Amerika.\n**Welvaart:** 20 mensen bezitten 80% van het wereldinkomen.\n**Kansen:** 50 hebben geen vaste voedselzekerheid of vast werk, en slechts 8 bereiken hoger onderwijs.\n\nDe sociologische vraag die de docent eraan hangt is niet "wat erg", maar: **welke structurele krachten produceren deze verdeling en houden haar in stand?** Dat is de vraagvorm die je in dit vak moet leren stellen.' },
+
+      { type: 'tekst', titel: '6. Theorie en theoretisch perspectief', toetsstof: true,
+        tekst: 'Twee definities die makkelijk door elkaar lopen en daarom vaak getoetst worden.\n\nEen **theorie** is "een uitspraak over hoe en waarom specifieke feiten met elkaar samenhangen". Concreet en toetsbaar.\n\nEen **theoretisch perspectief** is "een basisbeeld dat het denken en het onderzoek stuurt". Veel ruimer: het bepaalt welke vragen je überhaupt stelt.\n\nHet schoolvoorbeeld is **Durkheims studie naar zelfdoding**: hij verbindt de mate van sociale integratie aan het risico, en onderscheidt daarbij onder meer altruïstische en egoïstische vormen. Waarom het zo vaak wordt aangehaald: het koppelt een sociaal feit aan een sociale oorzaak, in plaats van aan een individuele.' },
+
+      { type: 'vergelijking', titel: 'De drie klassieke perspectieven', toetsstof: true,
+        kop: ['Functionalisme', 'Conflicttheorie', 'Symbolisch interactionisme'],
+        rijen: [
+          ['Een wereld van evenwicht', 'Een wereld van verschil', 'Een wereld van betekenis'],
+          ['De samenleving is een systeem waarvan de delen samenwerken voor stabiliteit en solidariteit', 'De samenleving bestaat uit groepen die strijden om schaarse middelen als werk en macht', 'De samenleving is het product van alledaagse interactie tussen mensen in een gedeelde werkelijkheid'],
+          ['Durkheim, Spencer, Merton', 'Marx en latere conflicttheoretici', 'Weber en Goffman'],
+          ['Macroniveau', 'Macroniveau', 'Microniveau'],
+          ['Kritiek: het praat ongelijkheid binnen de samenleving weg', 'Kritiek: het praat gedeelde waarden en onderlinge afhankelijkheid weg', 'Kritiek: het verliest grotere structuren en context uit het oog']
+        ] },
+
+      { type: 'tekst', titel: '7. Functionalisme in detail', toetsstof: true,
+        tekst: 'Het beeld is dat van een **menselijk lichaam**: organen, oftewel onderdelen, houden het geheel in leven. Bij **Durkheim** draait het om sociale banden en solidariteit die de samenleving bijeenhouden.\n\n**Structuren** zijn hoe de delen in elkaar passen; **functies** zijn hoe elk deel bijdraagt aan het geheel. Dat onderscheid komt van Spencer en loopt door bij Merton.\n\n**Merton** voegt het onderscheid toe dat je zeker moet kennen: **manifeste functies** zijn de bedoelde gevolgen, **latente functies** de onbedoelde, en **dysfuncties** de ongewenste gevolgen. Een universiteit heeft als manifeste functie kennisoverdracht, als latente functie het vormen van vriendschappen en relaties, en als dysfunctie bijvoorbeeld het reproduceren van ongelijkheid tussen wie wel en niet kan studeren.' },
+
+      { type: 'tekst', titel: '8. Conflicttheorie in detail', toetsstof: true,
+        tekst: 'Het beeld is een **arena van ongelijkheid** waarin groepen strijden om schaarse middelen. Die strijd is geen storing in het systeem maar de motor van verandering.\n\n**Marx**: de geschiedenis van alle bestaande samenlevingen is de geschiedenis van klassenstrijd. Latere conflicttheoretici hebben dat verbreed voorbij sociale klasse naar **gender, ras en andere vormen van gestructureerde ongelijkheid**.\n\nDat "voorbij klasse" is belangrijk voor de toets: conflicttheorie is niet hetzelfde als marxisme.' },
+
+      { type: 'tekst', titel: '9. Symbolisch interactionisme in detail', toetsstof: true,
+        tekst: 'Dit is het enige van de drie op **microniveau**. De samenleving is wat mensen samen doen, soms **social action** genoemd.\n\n**Weber**: menselijk handelen, ideeën, overtuigingen en betekenissen vormen de samenleving actief, niet alleen andersom. Dat is een directe tegenzet tegen een puur structurele verklaring.\n\n**Goffman**: we doen aan **presentation of self**, we gebruiken symbolen om een beeld van onszelf te projecteren, alsof we op een toneel staan. Kleding, taalgebruik, een uniform: allemaal rekwisieten.' },
+
+      { type: 'tekst', titel: '10. Hedendaagse perspectieven', toetsstof: true,
+        tekst: 'De drie klassieke perspectieven zijn niet het eindpunt. Wat er sinds de tweede helft van de twintigste eeuw bij is gekomen:\n\n**Meerdere perspectieven tegelijk**, een multidisciplinaire aanpak in plaats van één verklaringsmodel.\n\n**Andere posities aan het woord**: vrouwen, minderheden, gekoloniseerde bevolkingen, LHBTQ-personen, kinderen. Het punt is niet alleen "ook hun mening", maar dat je vanuit een andere positie andere patronen ziet.\n\n**Andere stemmen**: postmodernisme, en risicobewustzijn als apart thema.\n\n**Globale perspectieven**: onderlinge verbondenheid over grenzen heen. En daarbinnen **glocalisering**: de lokale reactie op globale verandering. Een mondiale trend landt overal net iets anders, en die vertaalslag is zelf het onderzoeksobject.' },
+
+      { type: 'begrippen', items: [
+        { begrip: 'Sociologie', definitie: 'de systematische studie van de menselijke samenleving; een manier van denken en kritisch kijken, geen verzameling feiten' },
+        { begrip: 'Samenleving', definitie: 'mensen die met elkaar omgaan in een afgebakende ruimte en een cultuur delen' },
+        { begrip: 'Socioculturele evolutie (Lenski)', definitie: 'samenlevingen veranderen naarmate hun technologie verandert; meer technologische informatie betekent een sneller tempo van verandering' },
+        { begrip: 'Het algemene zien in het bijzondere (Berger)', definitie: 'in één concreet geval het onderliggende patroon herkennen' },
+        { begrip: 'Sociological imagination (Mills)', definitie: 'de kwaliteit van geest waarmee je het samenspel ziet tussen biografie en geschiedenis, tussen persoonlijke troubles en publieke issues' },
+        { begrip: 'Personal trouble tegenover public issue', definitie: 'hetzelfde probleem op individueel niveau tegenover hetzelfde probleem als kenmerk van de structuur' },
+        { begrip: 'Theorie', definitie: 'een uitspraak over hoe en waarom specifieke feiten met elkaar samenhangen' },
+        { begrip: 'Theoretisch perspectief', definitie: 'een basisbeeld dat het denken en het onderzoek stuurt' },
+        { begrip: 'Manifeste en latente functies', definitie: 'de bedoelde tegenover de onbedoelde gevolgen van een sociaal onderdeel; ongewenste gevolgen heten dysfuncties' },
+        { begrip: 'Presentation of self (Goffman)', definitie: 'het gebruik van symbolen om een beeld van jezelf te projecteren, als een optreden op een podium' },
+        { begrip: 'Glocalisering', definitie: 'de lokale reactie op globale veranderingen' }
+      ]}
+    ]
+  },
+
+  {
+    id: 'toepassen', titel: 'Toepassen',
+    blokken: [
+      { type: 'stappen', titel: 'Hoe je een verschijnsel sociologisch analyseert',
+        items: [
+          { titel: '1. Beschrijf het verschijnsel zo feitelijk mogelijk', tekst: 'Nog geen verklaring, alleen wat er te zien is. Wie doet wat, waar, hoe vaak.' },
+          { titel: '2. Vraag: is dit een trouble of een issue?', tekst: 'Gaat het om losse gevallen of om een patroon dat zich herhaalt over veel mensen heen? Dat bepaalt op welk niveau je verder zoekt.' },
+          { titel: '3. Kijk erdoorheen (Berger)', tekst: 'Wat is de vanzelfsprekende uitleg, en wat zit daaronder? Formuleer minstens één verklaring die niet over individuele keuze gaat.' },
+          { titel: '4. Zet er drie brillen op', tekst: 'Wat zou een functionalist zeggen dat dit bijdraagt aan het geheel? Welke groepen strijden hier volgens een conflicttheoreticus om wat? Welke betekenissen construeren de betrokkenen zelf?' },
+          { titel: '5. Benoem de blinde vlek', tekst: 'Elke bril heeft een bekende kritiek. Zeg welke je gebruikt en wat je daarmee niet ziet. Dat is precies wat een goed antwoord onderscheidt van een half antwoord.' }
+        ] },
+
+      { type: 'oefening', id: 'sp-c1-oef-1', niveau: 'basis',
+        vraag: 'Een gemeente ziet dat jongeren in één wijk vaker betrokken zijn bij overlast dan elders. Formuleer dit eerst als personal trouble en daarna als public issue, en leg uit wat er verandert.',
+        antwoord: 'Als personal trouble: deze specifieke jongeren maken slechte keuzes, hebben weinig zelfbeheersing, of komen uit gezinnen waar het misgaat. De verklaring ligt bij het individu en het gezin, en de interventie ligt dan ook daar: gesprekken, straffen, hulpverlening per geval.\n\nAls public issue: in deze wijk is de concentratie van overlast structureel hoger, en dat hangt samen met kenmerken van de wijk zelf, zoals werkloosheid, weinig voorzieningen voor jongeren, slechte woningvoorraad, weinig doorstroommogelijkheden en mogelijk een gespannen verhouding met de politie. Het patroon herhaalt zich over generaties jongeren heen, ook als de individuen wisselen.\n\nWat er verandert is het verklaringsniveau en daarmee het aangrijpingspunt van beleid. Bij de eerste formulering blijf je gevallen behandelen; bij de tweede vraag je waarom deze wijk zulke gevallen blijft produceren. Voor een safety- en securityprofessional is dat het verschil tussen symptoombestrijding en een interventie die kans van slagen heeft. Dit is precies Mills\u2019 punt: het gaat niet om de vraag of individuele verantwoordelijkheid bestaat, maar om de constatering dat je een terugkerend patroon niet verklaart met de eigenschappen van steeds andere individuen.' },
+
+      { type: 'oefening', id: 'sp-c1-oef-2', niveau: 'basis',
+        vraag: 'Leg met Mertons begrippenpaar uit welke manifeste functie, latente functie en dysfunctie cameratoezicht in een winkelstraat kan hebben.',
+        antwoord: 'De manifeste, dus bedoelde, functie is het voorkomen en oplossen van winkeldiefstal en het vergroten van het veiligheidsgevoel: dat is waarvoor de camera\u2019s expliciet zijn opgehangen.\n\nEen latente, onbedoelde functie kan zijn dat ondernemers elkaar beter leren kennen doordat ze samen over het toezicht moeten beslissen, of dat de beelden achteraf worden gebruikt voor iets waarvoor ze niet waren bedoeld, zoals verkeersonderzoek of het monitoren van drukte.\n\nEen dysfunctie is een ongewenst gevolg: verplaatsing van de criminaliteit naar de zijstraten zonder camera, een gevoel van wantrouwen bij bezoekers, of juist een afname van informeel toezicht doordat mensen ervan uitgaan dat de camera het wel regelt. Dat laatste is sociologisch het interessantst, omdat de maatregel dan een deel van de veiligheid ondermijnt die hij moest vergroten.' },
+
+      { type: 'oefening', id: 'sp-c1-oef-3', niveau: 'gevorderd',
+        vraag: 'De slide over de global village stelt dat 20 van de 100 mensen 80% van het inkomen bezitten, en vraagt welke structurele krachten die verdeling produceren en in stand houden. Beantwoord die vraag vanuit conflicttheorie, en leg daarna uit wat een functionalist hierop zou tegenwerpen.',
+        antwoord: 'Vanuit conflicttheorie is deze verdeling geen toevallige uitkomst maar het resultaat van een strijd om schaarse middelen waarin sommige groepen structureel in het voordeel zijn. Bezit van kapitaal levert opnieuw inkomen op, wat de voorsprong vergroot; de regels van handel, belasting en eigendom worden mede vastgesteld door partijen die belang hebben bij het behoud van hun positie; en toegang tot onderwijs, waarvan de slide zegt dat maar 8 van de 100 hoger onderwijs bereiken, werkt als filter dat de verdeling doorgeeft aan de volgende generatie. In de verbrede versie van conflicttheorie speelt niet alleen klasse mee maar ook gender, ras en de nawerking van kolonisatie, wat verklaart waarom de verdeling ook geografisch zo scheef is.\n\nEen functionalist zou tegenwerpen dat ongelijke beloning een functie vervult: het motiveert mensen om lang te studeren en moeilijke, belangrijke posities in te nemen, en houdt zo het geheel draaiend. Vanuit dat perspectief is stratificatie een mechanisme dat talent naar de plekken leidt waar het het meeste oplevert voor de samenleving.\n\nDe kritiek op het functionalisme is hier precies van toepassing: het glost ongelijkheid weg. Het verklaart waarom er verschil in beloning is, maar niet waarom dat verschil zo extreem is, waarom het zo sterk erfelijk blijkt, en waarom 50 van de 100 geen voedselzekerheid of vast werk hebben terwijl dat volgens de eigen logica niemand motiveert. Het sterkste antwoord gebruikt beide brillen en benoemt die grens.' },
+
+      { type: 'oefening', id: 'sp-c1-oef-4', niveau: 'gevorderd',
+        vraag: 'Leg uit waarom Lenski\u2019s laatste categorie, de post-industriële samenleving, met "netwerken, risico en surveillance" wordt omschreven, en wat dat betekent voor jouw vakgebied.',
+        antwoord: 'Bij Lenski verandert het karakter van een samenleving met haar technologie. Bij jagers en verzamelaars, tuinbouw, landbouw en industrie draait de kerntechnologie steeds om het produceren van goederen: gereedschap, land en vee, landbouwtechniek, machines. In de post-industriële samenleving is de kerntechnologie het verwerken van informatie, en dan verschuift wat schaars en waardevol is van goederen naar kennis, verbindingen en toegang.\n\nDaaruit volgen de drie woorden. Netwerken, omdat de samenleving zich organiseert in verbindingen in plaats van in vaste plaatsen en hiërarchieën. Risico, omdat de belangrijkste bedreigingen niet meer voortkomen uit natuurlijke schaarste maar uit onze eigen technologie en organisatie: ze zijn door mensen gemaakt, grootschalig en niet netjes begrensd. En surveillance, omdat een samenleving die op informatie draait ook op informatie stuurt, en dus toezicht ontwikkelt op wat mensen doen.\n\nVoor safety en security betekent dit dat je vakgebied geen tijdloos verschijnsel bestudeert maar een specifiek historisch type samenleving. Risico\u2019s beheersen, gegevens verzamelen en netwerken beveiligen zijn precies de kenmerkende bezigheden van dit stadium. Dat is ook waarom Lenski\u2019s schema in week 8 terugkomt bij de risicosamenleving: de theorie die je in week 1 als achtergrond krijgt, blijkt aan het eind de beschrijving van je eigen beroepspraktijk te zijn.' }
+    ]
+  },
+
+  {
+    id: 'checken', titel: 'Checken',
+    blokken: [
+      { type: 'quiz', titel: 'Check jezelf op college 1', vragen: [
+        { vraag: 'Wat is volgens de slide de definitie van sociologie?',
+          opties: ['De studie van individueel gedrag', 'De systematische studie van de menselijke samenleving', 'De studie van politieke systemen', 'De studie van culturele gebruiken'],
+          juist: 1,
+          uitleg: 'Het woord **systematisch** is het scharnier: het onderscheidt sociologie van gewone meningen over hoe mensen samenleven.' },
+        { vraag: 'Wat stelt Lenski over socioculturele evolutie?',
+          opties: ['Samenlevingen doorlopen altijd dezelfde vijf fasen in dezelfde tijd', 'Samenlevingen veranderen naarmate hun technologie verandert, en sneller naarmate er meer technologische informatie is', 'Samenlevingen veranderen vooral door oorlog', 'Samenlevingen veranderen door bevolkingsgroei'],
+          juist: 1,
+          uitleg: 'Technologie is bij Lenski de motor, en het tempo van verandering beweegt mee met de hoeveelheid beschikbare technologische informatie.' },
+        { vraag: 'Wat is de eerste wijsheid van de sociologie volgens Berger?',
+          opties: ['Alles hangt met alles samen', '"Things are not what they seem"', 'De mens is een sociaal dier', 'Structuur gaat boven handeling'],
+          juist: 1,
+          uitleg: 'Berger vergelijkt sociologie met het uitpakken van cadeautjes: onder elke laag zit een volgende.' },
+        { vraag: 'Iemand raakt werkloos in een regio waar één op de vijf werkloos is. Hoe noemt Mills dat?',
+          opties: ['Alleen een personal trouble', 'Een public issue', 'Een latente functie', 'Social action'],
+          juist: 1,
+          uitleg: 'Bij die schaal verklaar je het niet meer uit de eigenschappen van de persoon; het is een kenmerk van de structuur geworden.' },
+        { vraag: 'Welk perspectief werkt op microniveau?',
+          opties: ['Functionalisme', 'Conflicttheorie', 'Symbolisch interactionisme', 'Alle drie'],
+          juist: 2,
+          uitleg: 'Weber en Goffman kijken naar alledaagse interactie en betekenisgeving; de andere twee kijken naar de samenleving als geheel.' },
+        { vraag: 'Wat is een latente functie?',
+          opties: ['Een ongewenst gevolg', 'Een bedoeld gevolg', 'Een onbedoeld gevolg', 'Een gevolg dat nooit optreedt'],
+          juist: 2,
+          uitleg: 'Onbedoeld is niet hetzelfde als ongewenst: dat laatste heet bij Merton een **dysfunctie**.' },
+        { vraag: 'Wat is de standaardkritiek op het functionalisme?',
+          opties: ['Het verliest grotere structuren uit het oog', 'Het praat ongelijkheid binnen de samenleving weg', 'Het praat gedeelde waarden weg', 'Het is niet empirisch toetsbaar'],
+          juist: 1,
+          uitleg: 'Wie de samenleving als samenwerkend geheel beschrijft, heeft moeite met de vraag voor wie dat geheel eigenlijk werkt.' },
+        { vraag: 'Wat betekent glocalisering?',
+          opties: ['De wereldwijde verspreiding van één cultuur', 'De lokale reactie op globale veranderingen', 'Het verdwijnen van landsgrenzen', 'Lokale politiek die mondiaal wordt'],
+          juist: 1,
+          uitleg: 'Een mondiale trend landt overal net anders, en juist die vertaalslag is het onderzoeksobject.' },
+        { vraag: 'Waarom wordt Durkheims studie naar zelfdoding in dit college genoemd?',
+          opties: ['Omdat het de eerste sociologische studie ooit was', 'Als voorbeeld van een theorie die een sociaal feit aan een sociale oorzaak koppelt', 'Omdat het functionalisme ermee werd weerlegd', 'Als voorbeeld van symbolisch interactionisme'],
+          juist: 1,
+          uitleg: 'Hij verbindt sociale integratie aan het risico, in plaats van de verklaring bij het individu te zoeken. Dat is wat een theorie in sociologische zin doet.' }
+      ]},
+
+      { type: 'bronnen', items: [
+        { apa: 'Abanes, M. S. (2026). Society & Politics, Lecture 1 [Collegeslides]. De Haagse Hogeschool.' },
+        { apa: 'Macionis, J. J., & Plummer, K. (2012). Sociology: A global introduction (5th ed., Ch. 1, 2, 4). Pearson Education.' }
+      ]},
+
+      { type: 'preview', titel: 'Volgende keer', vakId: 'society-politics', lesId: 'college-1',
+        tekst: 'Hoofdstuk 7: de sociale constructie van het dagelijks leven. Daar wordt het microniveau van vandaag uitgewerkt: hoe de werkelijkheid die zo vanzelfsprekend voelt, in interactie wordt gemaakt.',
+        punten: ['Lees Macionis & Plummer hoofdstuk 7', 'De opdracht over de toepassing van sociologische perspectieven hoort bij die week'] }
+    ]
+  }
+];
+
+/* Society & Politics registreren, zodat de kaart er ook staat als je
+   rooster nog niet is opgehaald. */
+(function(){
+  if (typeof DATA === 'undefined') return;
+
+  var LESSEN_SP = [
+    { id: 'college-1', groep: 'Lecture slides', titel: 'Sessie 1 \u00b7 Introductie en sociologische perspectieven', duur: 60 }
+  ];
+
+  function isSp(vak){
+    if (!vak) return false;
+    if (vak.id === 'society-politics') return true;
+    var naam = (vak.naam || '').toLowerCase();
+    return naam.indexOf('society') > -1 && naam.indexOf('politic') > -1;
+  }
+
+  function zetSp(){
+    DATA.semesters.forEach(function(sem){
+      var gevonden = false;
+      sem.vakken.forEach(function(vak){ if (isSp(vak)) { vak.lessen = LESSEN_SP; gevonden = true; } });
+      if (!gevonden && sem.id === DATA.actiefSemester) {
+        sem.vakken.push({ id: 'society-politics', naam: 'Society & Politics', lessen: LESSEN_SP });
+      }
+    });
+  }
+
+  zetSp();
+  if (typeof opFeed === 'function') opFeed(zetSp);
+})();
+
+/* ============================================================
+   Course manuals voor de drie vakken waarvan je de aparte
+   handleiding nog niet hebt. Alles hieronder komt uit de Y1
+   Semester 1 module manual. Zodra je een eigen course manual
+   krijgt, zet je de pdf in de map 'manuals' en pas je alleen
+   het veld pdf en pdfNaam aan.
+   ============================================================ */
+(function(){
+  if (typeof VAK_MANUAL === 'undefined') return;
+
+  VAK_MANUAL['governance-policy'] = {
+    pdf: '', pdfNaam: '',
+    studiegids: 'governance',
+    intro: 'Over hoe bureaucratieën werken en hoe beleid tot stand komt. De eerste helft gaat over publieke organisaties en governance, de tweede helft over de fasen van beleidsvorming en waar die in de praktijk vastlopen.',
+    regels: [
+      { label: 'Code',        waarde: 'SSMS-1T2-22' },
+      { label: 'Docenten',    waarde: 'Ines Trigo de Sousa, Enrique Gomez Llata Cazares, Marc-Oliver Del Grosso' },
+      { label: 'Studiepunten', waarde: '6 ECTS \u00b7 42 contacturen \u00b7 126 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'McCormick, Hague & Harrop (2022) plus een WebEDU-reader voor het tweede semesterdeel' },
+      { label: 'Midterm',     waarde: 'Individueel schriftelijk \u00b7 50% \u00b7 november 2026' },
+      { label: 'Eindtoets',   waarde: 'Individueel schriftelijk \u00b7 50% \u00b7 februari 2027' },
+      { label: 'Voldoende',   waarde: '5,5 of hoger voor beide toetsen' },
+      { label: 'Let op',      waarde: 'Dit vak staat op de lijst voor de stage in jaar 3: daarvoor tel je mee met een gemiddelde van 7,5' }
+    ],
+    samenvatting: [
+      { titel: 'Wat je hier leert',
+        tekst: 'Veel van je werk als safety- en securityprofessional speelt zich af binnen **bureaucratieën**: hiërarchische, doelgerichte organisaties waarin centrale beslissingen door lagere niveaus worden uitgevoerd. Denk aan brandweer, ministeries, politie, inlichtingendiensten en gemeenten.\n\nDe eerste helft gaat over hoe die organisaties werkelijk functioneren en in welke politieke context ze opereren, met aandacht voor verschillen tussen bestuurssystemen wereldwijd. De tweede helft gaat over beleidsvorming in publieke, private en hybride organisaties, en over de obstakels en pathologieën die het ideaal van rationeel beleid in de weg staan.' },
+      { titel: 'De zeven leerdoelen',
+        tekst: 'De toetsstof is per leerdoel opgebouwd.',
+        punten: [
+          '1. De basiskenmerken van publieke organisaties benoemen',
+          '2. Uitleggen waarom organisatie belangrijk is voor het functioneren van bureaucratieën',
+          '3. Categorieën ambtenaren en typen overheidsinstanties onderscheiden, plus de factoren die hun werk vormgeven in verschillende culturele contexten',
+          '4. Publieke, private en gemengde actoren onderscheiden in het beleidsproces',
+          '5. De verschillende fasen van het beleidsproces onderscheiden',
+          '6. De uitdagingen en dilemma\u2019s van beleidsmakers uitleggen in internationale context',
+          '7. Uitleggen hoe obstakels en pathologieën het ideaal van rationeel beleid ondermijnen'
+        ] },
+      { titel: 'Literatuur',
+        tekst: 'Voor het eerste deel het boek van **McCormick, Hague & Harrop (2022)**, *Comparative Government and Politics*, twaalfde druk, plus drie losse teksten: Levi-Faur over de verschuiving van big government naar big governance, Buckwalter & Balfour over democratische legitimiteit in bureaucratische structuren (hoofdstuk 2 van *Quality of Governance*, te downloaden via de HHS-bibliotheek), en Huberts, Kaptein & De Koning over integriteitsschandalen van politici.\n\nVoor het tweede deel is er een **reader via de WebEDU-winkel** met Allison & Zelikow, House en Weiss. Aanbevolen maar niet verplicht: Sørensen & Torfing (2018).' },
+      { titel: 'Toetsing',
+        tekst: 'Twee individuele schriftelijke tentamens van elk 50%, in november 2026 en februari 2027, beide minimaal een 5,5. Toetsstof is alle cursusliteratuur **plus de collegeslides**. Voor de criteria en de beoordeling verwijst de handleiding naar het tentamen en de antwoordsleutel zelf.' },
+      { titel: 'Aanwezigheid en regels',
+        tekst: 'Colleges zijn niet verplicht maar sterk aanbevolen. Gastcolleges zijn wel verplicht. Geplande data en deadlines voor presentaties, workshops, opdrachten, toetsen en excursies zijn hard.' }
+    ]
+  };
+
+  VAK_MANUAL['society-politics'] = {
+    pdf: '', pdfNaam: '',
+    studiegids: 'society',
+    intro: 'Sociologie in de eerste helft, politicologie in de tweede. Het vak geldt als een van de academische moederdisciplines van safety en security studies.',
+    regels: [
+      { label: 'Code',        waarde: 'SSMS-1T3-21' },
+      { label: 'Docenten',    waarde: 'Menandro S. Abanes (sociologie), Ines Trigo de Sousa (politicologie)' },
+      { label: 'Studiepunten', waarde: '6 ECTS \u00b7 42 contacturen \u00b7 126 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'Midterm: Macionis & Plummer (2012), Sociology. Eindtoets: McCormick, Hague & Harrop (2022)' },
+      { label: 'Midterm',     waarde: 'Individueel schriftelijk \u00b7 50% \u00b7 13 november 2026' },
+      { label: 'Eindtoets',   waarde: 'Individueel schriftelijk \u00b7 50% \u00b7 februari 2027' },
+      { label: 'Voldoende',   waarde: '5,5 of hoger voor beide toetsen' },
+      { label: 'Let op',      waarde: 'De literatuur voor de eindtoets verandert dit jaar deels; houd Brightspace bij' }
+    ],
+    samenvatting: [
+      { titel: 'Wat je hier leert',
+        tekst: 'Het vak combineert **sociologie** en **politicologie**. Sociologie gaat over hoe mensen samenleven en met elkaar omgaan; politiek is, in Laswells formulering, de vraag wie wat krijgt, wanneer en hoe.\n\nDe eerste helft behandelt drie sociologische hoofdthema\u2019s: **identiteit, sociale orde en stratificatie**, elk gekoppeld aan een safety- en securityvraagstuk. De tweede helft behandelt regimetypen (democratisch, hybride, autoritair, totalitair), hun instituties, regimeverandering, ideologieën, en de factoren die politiek vormgeven.' },
+      { titel: 'De vijf leerdoelen',
+        punten: [
+          '1. Klassieke en hedendaagse sociologische perspectieven en begrippen rond identiteit, stratificatie en sociale orde herkennen, en hun relatie tot safety en security',
+          '2. Situaties met safety- en securityvraagstukken sociologisch interpreteren',
+          '3. De grondbeginselen uitleggen waarop staten en politieke systemen van democratische en autoritaire regimes berusten',
+          '4. Ideologieën en regimetypen wereldwijd onderscheiden',
+          '5. Abstracte begrippen als democratisering, macht en gezag omzetten in concrete voorbeelden, en omgekeerd'
+        ] },
+      { titel: 'Twee boeken, twee toetsen',
+        tekst: 'Voor de **midterm** lees je Macionis & Plummer, *Sociology: A Global Introduction*, vijfde druk. Voor de **eindtoets** McCormick, Hague & Harrop, *Comparative Government and Politics*, twaalfde druk. Dat tweede boek gebruik je ook bij Governance & Policy, dus je hebt het maar één keer nodig.\n\nDe handleiding meldt bij de wijzigingen ten opzichte van vorig jaar dat de literatuur voor de eindtoets ten minste deels verandert, en dat er mogelijk een laatste toetsgelegenheid komt.' },
+      { titel: 'Toetsing',
+        tekst: 'Twee individuele schriftelijke tentamens van elk 50%. De midterm staat op **13 november 2026**, de eindtoets in februari 2027. Toetsstof is alle cursusliteratuur plus de collegeslides. Beide toetsen minimaal een 5,5.' },
+      { titel: 'Aanwezigheid en regels',
+        tekst: 'Colleges zijn niet verplicht maar sterk aanbevolen. Gastcolleges zijn wel verplicht: in week 3 staat het gastcollege over etniciteit en migratie. Geplande data en deadlines zijn hard.' }
+    ]
+  };
+
+  VAK_MANUAL['fundamentals-of-academic-writing'] = {
+    pdf: '', pdfNaam: '',
+    studiegids: 'writing',
+    intro: 'Schrijfvak Engels: alinea\u2019s, cohesie en coherentie, zinsbouw, formele stijl en parafraseren. Eén examen aan het eind bepaalt je hele cijfer.',
+    regels: [
+      { label: 'Code',        waarde: 'SSMS-1S2-20' },
+      { label: 'Docenten',    waarde: 'Senj Temple, Simone Hackett' },
+      { label: 'Studiepunten', waarde: '3 ECTS \u00b7 21 contacturen \u00b7 63 uur zelfstudie' },
+      { label: 'Literatuur',  waarde: 'Geen aanschaf nodig; alles staat op Brightspace' },
+      { label: 'Oefenexamen', waarde: 'Remindo \u00b7 15 oktober 2026 \u00b7 telt niet mee' },
+      { label: 'Examen',      waarde: 'Remindo \u00b7 100% \u00b7 14 december 2026' },
+      { label: 'Voldoende',   waarde: '5,5 of hoger; geen enkele score van 1 op de rubric' },
+      { label: 'Let op',      waarde: 'Grammatica polijst je zelf via de toolbox op Brightspace; daar is in college nauwelijks tijd voor' }
+    ],
+    samenvatting: [
+      { titel: 'Wat je hier leert',
+        tekst: 'Goed Engels spreken betekent niet dat je goed Engels schrijft. Dit vak richt zich op de **fundamenten** van academisch en professioneel schrijven: alinea\u2019s structureren, cohesie en coherentie aanbrengen, bondige zinnen bouwen, een formele stijl produceren en parafraseren.',
+        punten: [
+          '1. Academische tekst schrijven met alinea\u2019s, topic sentences, cohesie en coherentie',
+          '2. Academische zinnen van passende lengte, structuur en grammaticale correctheid produceren',
+          '3. Tekst in de gepaste formele academische stijl schrijven',
+          '4. De kernpunten in een tekst herkennen',
+          '5. Parafraseren'
+        ] },
+      { titel: 'Eén examen, honderd procent',
+        tekst: 'Het eindexamen in Remindo bepaalt je hele cijfer en lijkt op de schrijftaken die je tijdens het vak hebt gemaakt. Er is een **oefenexamen op 15 oktober** dat niet meetelt, en dat je dus vooral moet gebruiken om te weten waar je staat.\n\nDe beoordeling loopt via een rubric met vijf onderdelen van elk 4 punten: content, paraphrasing, paragraphs, sentence structure en style. Je moet **op geen enkel onderdeel een 1 scoren** om te slagen; 11 van de 20 punten is een 5,5.' },
+      { titel: 'Schrijftaken en peer feedback',
+        tekst: 'Tijdens het vak lever je verschillende schrijftaken in via Brightspace, in Word of pdf. Die tellen niet mee voor je cijfer maar zijn wel dezelfde soort taak als het examen, dus ze zijn je oefenmateriaal.\n\n**Peer feedback is een vast onderdeel**: bij een aantal taken word je aan een partner gekoppeld om feedback te geven en te ontvangen aan de hand van de rubric.\n\nGrammatica, dus werkwoordstijden, betrekkelijke bijzinnen, voorwaardelijke zinnen, interpunctie, parallelle structuur en comma splices, polijst je zelf met de toolbox in de course information op Brightspace.' },
+      { titel: 'Aanwezigheid en regels',
+        tekst: 'Colleges zijn niet verplicht maar sterk aanbevolen om het vak te halen. Schrijven is een vaardigheid die je moet oefenen, en de feedback op je taken is de enige plek waar je vooraf hoort wat er nog niet goed genoeg is.' }
+    ]
+  };
 })();

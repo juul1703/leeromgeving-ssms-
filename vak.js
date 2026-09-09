@@ -45,14 +45,21 @@
 
   /* De voorbereiding voor het eerstvolgende college van dit vak, uit
      VAK_VOORBEREIDING. Read-only: dit komt uit het leesschema, niet van jou. */
+  /* Wat er voor de eerstvolgende les van dit vak moet gebeuren. De sessie en
+     het onderwerp komen uit VAK_VOORBEREIDING; welke sessie eraan komt, leidt
+     app.js af uit je rooster. */
   function voorbereidingRegel(){
     if (typeof voorbereidingDeadlines !== 'function') return '';
     var mijn = voorbereidingDeadlines(new Date()).filter(function(d){ return d.vakId === vakParam; })[0];
     if (!mijn) return '';
     var wanneer = mijn.dagen === 0 ? 'vandaag' : mijn.dagen === 1 ? 'morgen' : 'over ' + mijn.dagen + ' dagen';
-    return '<div class="dl-rij voorbereiding">' +
-      '<span>' + esc(mijn.titel) + '<span class="dl-soort voorbereiding">voorbereiding</span></span>' +
-      '<span class="dl-datum">' + esc(wanneer) + '</span></div>';
+    var kop = 'Volgende les' + (mijn.sessie ? ' \u00b7 sessie ' + mijn.sessie : '');
+    return '<div class="voorbereiding-blok">' +
+      '<div class="voorbereiding-kop"><span>' + esc(kop) + '</span>' +
+      '<span class="dl-datum">' + esc(wanneer) + '</span></div>' +
+      (mijn.onderwerp ? '<div class="voorbereiding-onderwerp">' + esc(mijn.onderwerp) + '</div>' : '') +
+      '<div class="voorbereiding-taak">' + esc(mijn.titel) +
+      '<span class="dl-soort voorbereiding">voorbereiding</span></div></div>';
   }
 
   function dlRij(d, i, klaar){
@@ -204,9 +211,11 @@
     }
     var groepen = [];
     vak.lessen.forEach(function(l, i){
-      var deel = l.titel.split(' \u00b7 ');
-      var bron = deel.length > 1 ? deel[0] : 'Oefeningen';
-      var kort = deel.length > 1 ? deel.slice(1).join(' \u00b7 ') : l.titel;
+      /* Het kopje boven een groep komt uit het veld 'groep' van de les
+         (ssms-inhoud.js). Ontbreekt dat, bijvoorbeeld bij lessen die
+         rechtstreeks uit je rooster komen, dan heet de groep 'Onderdelen'. */
+      var bron = l.groep || 'Onderdelen';
+      var kort = l.titel;
       var g = groepen.filter(function(x){ return x.bron === bron; })[0];
       if (!g) { g = { bron: bron, items: [] }; groepen.push(g); }
       g.items.push({ les: l, nr: i + 1, kort: kort });
