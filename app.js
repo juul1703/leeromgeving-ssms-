@@ -71,24 +71,40 @@ function voorbereidingDeadlines(nu){
     var hit = vindVak(vakId);
     if (!hit || verborgen(hit.vak)) return;
 
-    var colleges = ROOSTER_FEED.filter(function(e){
+    /* Sessienummer = de hoeveelste collegedag van dit vak. Staan er twee
+       roosteritems op dezelfde dag (college plus workshop, of een dubbel
+       geboekt uur), dan is dat samen één sessie. Zonder deze ontdubbeling
+       loopt het sessienummer te snel op en zie je het leesschema van een
+       latere sessie. */
+    var sessies = [];
+    ROOSTER_FEED.filter(function(e){
       return e.vakId === vakId && soortUit(e.titel) !== 'toets';
-    }).sort(function(a, b){ return a.start - b.start; });
+    }).sort(function(a, b){ return a.start - b.start; })
+      .forEach(function(e){
+        var dag = new Date(e.start).toDateString();
+        var laatste = sessies[sessies.length - 1];
+        if (laatste && laatste.dag === dag) return;   // zelfde dag, zelfde sessie
+        sessies.push({ dag: dag, start: e.start, eind: e.eind });
+      });
 
-    for (var i = 0; i < colleges.length; i++) {
-      if (colleges[i].eind <= nu) continue;           // al geweest
-      var plan = VAK_VOORBEREIDING[vakId][i + 1];     // sessienummer = plek in de reeks
-      if (!plan) continue;
+    for (var i = 0; i < sessies.length; i++) {
+      if (sessies[i].eind <= nu) continue;            // al geweest
+      var plan = VAK_VOORBEREIDING[vakId][i + 1];
+      /* Heeft de eerstvolgende sessie geen leeswerk, dan is er niets te
+         melden. Niet doorschuiven naar een latere sessie: dan zou je nu al
+         de voorbereiding van over drie weken op je homescreen zien. */
+      if (!plan) break;
       var klaar = (plan.lesIds || []).length && (plan.lesIds || []).every(function(lesId){
         var les = hit.vak.lessen.filter(function(l){ return l.id === lesId; })[0];
         return les ? isAf(hit.vak, les) : false;
       });
-      if (klaar) continue;                            // al gelezen, niets te melden
-      uit.push({
-        titel: plan.titel, vak: hit.vak.naam, vakId: vakId, soort: 'voorbereiding',
-        datum: colleges[i].start,
-        dagen: Math.ceil((colleges[i].start - nu) / 86400000)
-      });
+      if (!klaar) {
+        uit.push({
+          titel: plan.titel, vak: hit.vak.naam, vakId: vakId, soort: 'voorbereiding',
+          datum: sessies[i].start,
+          dagen: Math.ceil((sessies[i].start - nu) / 86400000)
+        });
+      }
       break;                                          // hoogstens één per vak
     }
   });
