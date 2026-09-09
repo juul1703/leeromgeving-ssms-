@@ -146,12 +146,24 @@ function deadlines(){
   /* Jouw eigen deadlines en je toetsen gaan altijd voor. De voorbereiding
      per vak is nuttig maar het zijn er zes, en die verdrongen anders alles
      wat je zelf had toegevoegd uit het lijstje van het homescreen. */
-  var voorbereiding = voorbereidingDeadlines(nu)
-    .filter(function(d){ return !d.leeg; }).slice(0, 2);
+  /* Wat er op je homescreen komt te staan:
+
+     - jouw eigen deadlines: altijd, ongeacht hoe ver weg. Een grote
+       opdracht die over twee maanden af moet wil je nu al zien.
+     - toetsen uit je rooster: pas vanaf twee weken van tevoren, anders
+       staat er de halve semester een tentamen te wachten.
+     - de voorbereiding per vak: die van het eerstvolgende college. */
+  var TOETS_VENSTER = 14;
+
   uit = uit.concat(handmatigeDeadlines(nu));
-  if (typeof toetsenUitRooster === 'function') uit = uit.concat(toetsenUitRooster(nu));
-  uit = uit.sort(function(x, y){ return x.dagen - y.dagen; }).slice(0, 6);
-  return uit.concat(voorbereiding).sort(function(x, y){ return x.dagen - y.dagen; });
+  if (typeof toetsenUitRooster === 'function') {
+    uit = uit.concat(toetsenUitRooster(nu).filter(function(d){
+      return d.dagen <= TOETS_VENSTER;
+    }));
+  }
+  uit = uit.concat(voorbereidingDeadlines(nu).filter(function(d){ return !d.leeg; }));
+
+  return uit.sort(function(x, y){ return x.dagen - y.dagen; });
 }
 
 /* 'Laatst bekeken' vult zich met de aantekeningen die je op lespagina's schrijft. */
