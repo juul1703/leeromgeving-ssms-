@@ -10,10 +10,10 @@
 
    VERSIE hoeft nu niet meer per se omhoog bij elke wijziging, maar het
    blijft handig: het ruimt de oude cache op. */
-var VERSIE = 'ssms-v26';
+var VERSIE = 'ssms-v27';
 var BESTANDEN = ['./', './index.html', './les.html', './vak.html', './styles.css', './app.js',
   './rooster.js', './les.js', './lesextra.js', './vak.js', './lesblokken.js', './lesstof.js',
-  './ssms-inhoud.js', './manifest.webmanifest'];
+  './ssms-inhoud.js', './society-slides.js', './manifest.webmanifest'];
 
 self.addEventListener('install', function(e){
   e.waitUntil(caches.open(VERSIE).then(function(c){ return c.addAll(BESTANDEN); }));
